@@ -1,0 +1,372 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		AC1174A42676AF2B00847450 /* TimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1174A32676AF2B00847450 /* TimeView.swift */; };
+		AC1174A62676B29C00847450 /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1174A52676B29C00847450 /* DateView.swift */; };
+		AC1174A82676B3B300847450 /* CSCoverSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1174A72676B3B300847450 /* CSCoverSheetView.m */; };
+		AC1174AB2676B5C600847450 /* SBUIProudLockIconView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1174AA2676B5C600847450 /* SBUIProudLockIconView.m */; };
+		AC1174AD2676B63500847450 /* SBFLockScreenDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1174AC2676B63500847450 /* SBFLockScreenDateView.m */; };
+		AC1174AF2676B6A400847450 /* SBFLockScreenDateSubtitleView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1174AE2676B6A400847450 /* SBFLockScreenDateSubtitleView.m */; };
+		AC1174B12676B6ED00847450 /* SBLockScreenTimerDialView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1174B02676B6ED00847450 /* SBLockScreenTimerDialView.m */; };
+		AC1174B32676B71200847450 /* SBFLockScreenDateSubtitleDateView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1174B22676B71200847450 /* SBFLockScreenDateSubtitleDateView.m */; };
+		AC1174B52676B74300847450 /* NCNotificationListSectionRevealHintView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1174B42676B74300847450 /* NCNotificationListSectionRevealHintView.m */; };
+		AC1174B72676B7A300847450 /* CSQuickActionsButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1174B62676B7A300847450 /* CSQuickActionsButton.m */; };
+		AC1174B92676B7C600847450 /* CSTeachableMomentsContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1174B82676B7C600847450 /* CSTeachableMomentsContainerView.m */; };
+		AC1174BB2676B7F400847450 /* SBUICallToActionLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1174BA2676B7F400847450 /* SBUICallToActionLabel.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		AC11749E2676AEDC00847450 /* Thanos-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Thanos-Bridging-Header.h"; sourceTree = "<group>"; };
+		AC1174A32676AF2B00847450 /* TimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeView.swift; sourceTree = "<group>"; };
+		AC1174A52676B29C00847450 /* DateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
+		AC1174A72676B3B300847450 /* CSCoverSheetView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSCoverSheetView.m; sourceTree = "<group>"; usesTabs = 1; };
+		AC1174A92676B3BE00847450 /* Hooks.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Hooks.h; sourceTree = "<group>"; };
+		AC1174AA2676B5C600847450 /* SBUIProudLockIconView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBUIProudLockIconView.m; sourceTree = "<group>"; };
+		AC1174AC2676B63500847450 /* SBFLockScreenDateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBFLockScreenDateView.m; sourceTree = "<group>"; };
+		AC1174AE2676B6A400847450 /* SBFLockScreenDateSubtitleView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBFLockScreenDateSubtitleView.m; sourceTree = "<group>"; };
+		AC1174B02676B6ED00847450 /* SBLockScreenTimerDialView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBLockScreenTimerDialView.m; sourceTree = "<group>"; };
+		AC1174B22676B71200847450 /* SBFLockScreenDateSubtitleDateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBFLockScreenDateSubtitleDateView.m; sourceTree = "<group>"; };
+		AC1174B42676B74300847450 /* NCNotificationListSectionRevealHintView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NCNotificationListSectionRevealHintView.m; sourceTree = "<group>"; };
+		AC1174B62676B7A300847450 /* CSQuickActionsButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSQuickActionsButton.m; sourceTree = "<group>"; };
+		AC1174B82676B7C600847450 /* CSTeachableMomentsContainerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSTeachableMomentsContainerView.m; sourceTree = "<group>"; };
+		AC1174BA2676B7F400847450 /* SBUICallToActionLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBUICallToActionLabel.m; sourceTree = "<group>"; };
+		ACB706012676AE2000521E7E /* Thanos.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = Thanos.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		ACB705FF2676AE2000521E7E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AC1174A12676AEE500847450 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AC1174A32676AF2B00847450 /* TimeView.swift */,
+				AC1174A52676B29C00847450 /* DateView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		AC1174A22676AEFD00847450 /* Hooks */ = {
+			isa = PBXGroup;
+			children = (
+				AC1174A72676B3B300847450 /* CSCoverSheetView.m */,
+				AC1174A92676B3BE00847450 /* Hooks.h */,
+				AC1174AA2676B5C600847450 /* SBUIProudLockIconView.m */,
+				AC1174AC2676B63500847450 /* SBFLockScreenDateView.m */,
+				AC1174AE2676B6A400847450 /* SBFLockScreenDateSubtitleView.m */,
+				AC1174B02676B6ED00847450 /* SBLockScreenTimerDialView.m */,
+				AC1174B22676B71200847450 /* SBFLockScreenDateSubtitleDateView.m */,
+				AC1174B42676B74300847450 /* NCNotificationListSectionRevealHintView.m */,
+				AC1174B62676B7A300847450 /* CSQuickActionsButton.m */,
+				AC1174B82676B7C600847450 /* CSTeachableMomentsContainerView.m */,
+				AC1174BA2676B7F400847450 /* SBUICallToActionLabel.m */,
+			);
+			path = Hooks;
+			sourceTree = "<group>";
+		};
+		ACB705F82676AE2000521E7E = {
+			isa = PBXGroup;
+			children = (
+				AC1174A22676AEFD00847450 /* Hooks */,
+				AC1174A12676AEE500847450 /* Views */,
+				AC11749E2676AEDC00847450 /* Thanos-Bridging-Header.h */,
+				ACB706022676AE2000521E7E /* Products */,
+			);
+			sourceTree = "<group>";
+			usesTabs = 1;
+		};
+		ACB706022676AE2000521E7E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				ACB706012676AE2000521E7E /* Thanos.dylib */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		ACB705FD2676AE2000521E7E /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		ACB706002676AE2000521E7E /* Thanos */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ACB706052676AE2000521E7E /* Build configuration list for PBXNativeTarget "Thanos" */;
+			buildPhases = (
+				ACB705FD2676AE2000521E7E /* Headers */,
+				ACB705FE2676AE2000521E7E /* Sources */,
+				ACB705FF2676AE2000521E7E /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Thanos;
+			productName = Thanos;
+			productReference = ACB706012676AE2000521E7E /* Thanos.dylib */;
+			productType = "com.apple.product-type.library.dynamic";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		ACB705F92676AE2000521E7E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1250;
+				TargetAttributes = {
+					ACB706002676AE2000521E7E = {
+						CreatedOnToolsVersion = 12.5;
+						LastSwiftMigration = 1250;
+					};
+				};
+			};
+			buildConfigurationList = ACB705FC2676AE2000521E7E /* Build configuration list for PBXProject "Thanos" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = ACB705F82676AE2000521E7E;
+			productRefGroup = ACB706022676AE2000521E7E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				ACB706002676AE2000521E7E /* Thanos */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		ACB705FE2676AE2000521E7E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AC1174A82676B3B300847450 /* CSCoverSheetView.m in Sources */,
+				AC1174B32676B71200847450 /* SBFLockScreenDateSubtitleDateView.m in Sources */,
+				AC1174BB2676B7F400847450 /* SBUICallToActionLabel.m in Sources */,
+				AC1174AF2676B6A400847450 /* SBFLockScreenDateSubtitleView.m in Sources */,
+				AC1174B12676B6ED00847450 /* SBLockScreenTimerDialView.m in Sources */,
+				AC1174B92676B7C600847450 /* CSTeachableMomentsContainerView.m in Sources */,
+				AC1174AD2676B63500847450 /* SBFLockScreenDateView.m in Sources */,
+				AC1174A62676B29C00847450 /* DateView.swift in Sources */,
+				AC1174A42676AF2B00847450 /* TimeView.swift in Sources */,
+				AC1174B72676B7A300847450 /* CSQuickActionsButton.m in Sources */,
+				AC1174AB2676B5C600847450 /* SBUIProudLockIconView.m in Sources */,
+				AC1174B52676B74300847450 /* NCNotificationListSectionRevealHintView.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		ACB706032676AE2000521E7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					arm64e,
+					arm64,
+				);
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		ACB706042676AE2000521E7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = (
+					arm64e,
+					arm64,
+				);
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Release;
+		};
+		ACB706062676AE2000521E7E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_STYLE = Manual;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Thanos-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		ACB706072676AE2000521E7E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Manual;
+				CODE_SIGNING_ALLOWED = NO;
+				CODE_SIGNING_REQUIRED = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				EXECUTABLE_PREFIX = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "Thanos-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		ACB705FC2676AE2000521E7E /* Build configuration list for PBXProject "Thanos" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ACB706032676AE2000521E7E /* Debug */,
+				ACB706042676AE2000521E7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		ACB706052676AE2000521E7E /* Build configuration list for PBXNativeTarget "Thanos" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				ACB706062676AE2000521E7E /* Debug */,
+				ACB706072676AE2000521E7E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = ACB705F92676AE2000521E7E /* Project object */;
+}
