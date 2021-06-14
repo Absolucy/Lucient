@@ -14,4 +14,5 @@ import UIKit
 	func setRootController(_: Any?) {}
 	func setParentController(_: Any?) {}
 	func setSpecifier(_: Any?) {}
+	func specifier() -> Any? { nil }
 }

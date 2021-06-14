@@ -19,6 +19,12 @@
 		AC1174B72676B7A300847450 /* CSQuickActionsButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1174B62676B7A300847450 /* CSQuickActionsButton.m */; };
 		AC1174B92676B7C600847450 /* CSTeachableMomentsContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1174B82676B7C600847450 /* CSTeachableMomentsContainerView.m */; };
 		AC1174BB2676B7F400847450 /* SBUICallToActionLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1174BA2676B7F400847450 /* SBUICallToActionLabel.m */; };
+		AC4192902677639D00797FE0 /* NomaePreferencesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4192872677639D00797FE0 /* NomaePreferencesController.swift */; };
+		AC4192912677639D00797FE0 /* PreferenceLoaderController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4192882677639D00797FE0 /* PreferenceLoaderController.swift */; };
+		AC4192922677639D00797FE0 /* Color+RawRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC41928A2677639D00797FE0 /* Color+RawRepresentable.swift */; };
+		AC4192932677639D00797FE0 /* Color+HexString.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC41928B2677639D00797FE0 /* Color+HexString.swift */; };
+		AC4192942677639D00797FE0 /* Preference.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC41928D2677639D00797FE0 /* Preference.swift */; };
+		AC4192952677639D00797FE0 /* Header.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC41928F2677639D00797FE0 /* Header.swift */; };
 		AC9F29C32676C0F200278CAE /* Tweak.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9F29C22676C09700278CAE /* Tweak.m */; };
 		AC9F29C52676C25100278CAE /* UIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9F29C42676C25100278CAE /* UIViewController.m */; };
 		AC9F29C82676C2A600278CAE /* CydiaSubstrate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9F29C72676C2A600278CAE /* CydiaSubstrate.framework */; };
@@ -46,6 +52,12 @@
 		AC1174B62676B7A300847450 /* CSQuickActionsButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSQuickActionsButton.m; sourceTree = "<group>"; };
 		AC1174B82676B7C600847450 /* CSTeachableMomentsContainerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSTeachableMomentsContainerView.m; sourceTree = "<group>"; };
 		AC1174BA2676B7F400847450 /* SBUICallToActionLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBUICallToActionLabel.m; sourceTree = "<group>"; };
+		AC4192872677639D00797FE0 /* NomaePreferencesController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NomaePreferencesController.swift; sourceTree = "<group>"; };
+		AC4192882677639D00797FE0 /* PreferenceLoaderController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PreferenceLoaderController.swift; sourceTree = "<group>"; };
+		AC41928A2677639D00797FE0 /* Color+RawRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+RawRepresentable.swift"; sourceTree = "<group>"; };
+		AC41928B2677639D00797FE0 /* Color+HexString.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Color+HexString.swift"; sourceTree = "<group>"; };
+		AC41928D2677639D00797FE0 /* Preference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Preference.swift; sourceTree = "<group>"; };
+		AC41928F2677639D00797FE0 /* Header.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Header.swift; sourceTree = "<group>"; };
 		AC9F29C22676C09700278CAE /* Tweak.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tweak.m; sourceTree = "<group>"; };
 		AC9F29C42676C25100278CAE /* UIViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIViewController.m; sourceTree = "<group>"; };
 		AC9F29C72676C2A600278CAE /* CydiaSubstrate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CydiaSubstrate.framework; path = ../../../../Library/Theos/vendor/lib/CydiaSubstrate.framework; sourceTree = "<group>"; };
@@ -106,6 +118,51 @@
 			path = Hooks;
 			sourceTree = "<group>";
 		};
+		AC4192852677639D00797FE0 /* NomaePreferences */ = {
+			isa = PBXGroup;
+			children = (
+				AC4192862677639D00797FE0 /* UIKit */,
+				AC4192892677639D00797FE0 /* Extensions */,
+				AC41928C2677639D00797FE0 /* Preference */,
+				AC41928E2677639D00797FE0 /* Views */,
+			);
+			path = NomaePreferences;
+			sourceTree = "<group>";
+		};
+		AC4192862677639D00797FE0 /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				AC4192872677639D00797FE0 /* NomaePreferencesController.swift */,
+				AC4192882677639D00797FE0 /* PreferenceLoaderController.swift */,
+			);
+			path = UIKit;
+			sourceTree = "<group>";
+		};
+		AC4192892677639D00797FE0 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				AC41928A2677639D00797FE0 /* Color+RawRepresentable.swift */,
+				AC41928B2677639D00797FE0 /* Color+HexString.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		AC41928C2677639D00797FE0 /* Preference */ = {
+			isa = PBXGroup;
+			children = (
+				AC41928D2677639D00797FE0 /* Preference.swift */,
+			);
+			path = Preference;
+			sourceTree = "<group>";
+		};
+		AC41928E2677639D00797FE0 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				AC41928F2677639D00797FE0 /* Header.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		AC9F29C62676C2A600278CAE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -118,9 +175,10 @@
 		ACB705F82676AE2000521E7E = {
 			isa = PBXGroup;
 			children = (
-				ACB706022676AE2000521E7E /* Products */,
-				AC9F29C62676C2A600278CAE /* Frameworks */,
 				AC11749E2676AEDC00847450 /* Thanos-Bridging-Header.h */,
+				AC9F29C62676C2A600278CAE /* Frameworks */,
+				AC4192852677639D00797FE0 /* NomaePreferences */,
+				ACB706022676AE2000521E7E /* Products */,
 				ACFF8B71267760C2009CC786 /* Tweak */,
 				ACFF8B72267760D2009CC786 /* UI */,
 			);
@@ -221,24 +279,30 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC4192942677639D00797FE0 /* Preference.swift in Sources */,
 				AC1174A82676B3B300847450 /* CSCoverSheetView.m in Sources */,
 				AC1174B32676B71200847450 /* SBFLockScreenDateSubtitleDateView.m in Sources */,
 				AC1174BB2676B7F400847450 /* SBUICallToActionLabel.m in Sources */,
 				AC1174AF2676B6A400847450 /* SBFLockScreenDateSubtitleView.m in Sources */,
 				ACFF8B6E26775E06009CC786 /* SBLockScreenManager.m in Sources */,
 				AC1174B12676B6ED00847450 /* SBLockScreenTimerDialView.m in Sources */,
+				AC4192932677639D00797FE0 /* Color+HexString.swift in Sources */,
 				AC1174B92676B7C600847450 /* CSTeachableMomentsContainerView.m in Sources */,
 				AC1174AD2676B63500847450 /* SBFLockScreenDateView.m in Sources */,
+				AC4192912677639D00797FE0 /* PreferenceLoaderController.swift in Sources */,
 				AC1174A62676B29C00847450 /* DateView.swift in Sources */,
 				AC9F29CA2676C67900278CAE /* NCNotificationStructuredListViewController.m in Sources */,
 				AC1174A42676AF2B00847450 /* TimeView.swift in Sources */,
+				AC4192952677639D00797FE0 /* Header.swift in Sources */,
 				AC1174B72676B7A300847450 /* CSQuickActionsButton.m in Sources */,
 				AC1174AB2676B5C600847450 /* SBUIProudLockIconView.m in Sources */,
 				AC9F29D32676DDE500278CAE /* CSCoverSheetViewController.m in Sources */,
+				AC4192922677639D00797FE0 /* Color+RawRepresentable.swift in Sources */,
 				AC9F29CC2676CE3500278CAE /* SharedData.swift in Sources */,
 				AC9F29CE2676D24800278CAE /* CSCombinedListViewController.m in Sources */,
 				ACFF8B7026775EB1009CC786 /* SBBacklightController.m in Sources */,
 				AC1174B52676B74300847450 /* NCNotificationListSectionRevealHintView.m in Sources */,
+				AC4192902677639D00797FE0 /* NomaePreferencesController.swift in Sources */,
 				AC9F29C52676C25100278CAE /* UIViewController.m in Sources */,
 				AC9F29C32676C0F200278CAE /* Tweak.m in Sources */,
 			);
