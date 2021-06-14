@@ -13,21 +13,23 @@ struct DateView: View {
 		formatter.dateFormat = "E, MMM d"
 		return formatter
 	}()
+
 	private let timeFormatter: DateFormatter = {
 		let formatter = DateFormatter()
 		formatter.dateFormat = "hh:mm"
 		return formatter
 	}()
+
 	private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
 	private let weatherTimer = Timer.publish(every: 30, on: .main, in: .common).autoconnect()
-	
+
 	@State private var date = Date()
 	@ObservedObject private var shared = SharedData.global
-	
+
 	private func updateTimeDate() {
 		date = Date()
 	}
-	
+
 	var body: some View {
 		VStack(alignment: .leading) {
 			if shared.notifsVisible {

@@ -14,12 +14,23 @@ struct TimeView: View {
 		formatter.dateFormat = "hh\nmm"
 		return formatter
 	}()
+
+	private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+
 	@State private var size: CGFloat = 128
+	@State private var date = Date()
+
+	private func updateTimeDate() {
+		date = Date()
+	}
 
 	var body: some View {
-		Text(formatter.string(from: Date()))
+		Text(formatter.string(from: date))
 			.font(.system(size: size, weight: .thin, design: .rounded))
 			.multilineTextAlignment(.center)
+			.onReceive(timer) { _ in
+				updateTimeDate()
+			}
 	}
 }
 

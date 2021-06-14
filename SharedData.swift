@@ -21,15 +21,15 @@ extension SharedData {
 		guard let pd = PDDokdo.sharedInstance() else { return }
 		pd.refreshWeatherData()
 		guard let weatherData = pd.weatherData as NSDictionary?,
-			  let temperature = weatherData["temperature"] as? NSString,
-			  let image = weatherData["conditionsImage"] as? UIImage
+		      let temperature = weatherData["temperature"] as? NSString,
+		      let image = weatherData["conditionsImage"] as? UIImage
 		else {
 			self.temperature = nil
-			self.weatherImage = nil
+			weatherImage = nil
 			return
 		}
 		self.temperature = String(temperature)
-		self.weatherImage = Image(uiImage: image)
+		weatherImage = Image(uiImage: image)
 	}
 }
 

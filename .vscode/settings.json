@@ -1,0 +1,14 @@
+{
+	"ccls.clang.extraArgs": [
+		"-DDRM",
+		"-arch",
+		"arm64",
+		"-target",
+		"arm64-apple-ios",
+		"-isysroot",
+		"/Users/Aspen/Library/Theos/sdks/iPhoneOS14.4.sdk"
+	],
+	"files.associations": {
+		"*.h": "objective-c"
+	}
+}
