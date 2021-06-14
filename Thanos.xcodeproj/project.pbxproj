@@ -19,6 +19,14 @@
 		AC1174B72676B7A300847450 /* CSQuickActionsButton.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1174B62676B7A300847450 /* CSQuickActionsButton.m */; };
 		AC1174B92676B7C600847450 /* CSTeachableMomentsContainerView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1174B82676B7C600847450 /* CSTeachableMomentsContainerView.m */; };
 		AC1174BB2676B7F400847450 /* SBUICallToActionLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1174BA2676B7F400847450 /* SBUICallToActionLabel.m */; };
+		AC9F29C32676C0F200278CAE /* Tweak.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9F29C22676C09700278CAE /* Tweak.m */; };
+		AC9F29C52676C25100278CAE /* UIViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9F29C42676C25100278CAE /* UIViewController.m */; };
+		AC9F29C82676C2A600278CAE /* CydiaSubstrate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9F29C72676C2A600278CAE /* CydiaSubstrate.framework */; };
+		AC9F29CA2676C67900278CAE /* NCNotificationStructuredListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9F29C92676C67900278CAE /* NCNotificationStructuredListViewController.m */; };
+		AC9F29CC2676CE3500278CAE /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9F29CB2676CE3500278CAE /* SharedData.swift */; };
+		AC9F29CE2676D24800278CAE /* CSCombinedListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9F29CD2676D24800278CAE /* CSCombinedListViewController.m */; };
+		AC9F29D12676D80700278CAE /* libpddokdo.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9F29D02676D80700278CAE /* libpddokdo.dylib */; };
+		AC9F29D32676DDE500278CAE /* CSCoverSheetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9F29D22676DDE500278CAE /* CSCoverSheetViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +44,15 @@
 		AC1174B62676B7A300847450 /* CSQuickActionsButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSQuickActionsButton.m; sourceTree = "<group>"; };
 		AC1174B82676B7C600847450 /* CSTeachableMomentsContainerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSTeachableMomentsContainerView.m; sourceTree = "<group>"; };
 		AC1174BA2676B7F400847450 /* SBUICallToActionLabel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBUICallToActionLabel.m; sourceTree = "<group>"; };
+		AC9F29C22676C09700278CAE /* Tweak.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tweak.m; sourceTree = "<group>"; };
+		AC9F29C42676C25100278CAE /* UIViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UIViewController.m; sourceTree = "<group>"; };
+		AC9F29C72676C2A600278CAE /* CydiaSubstrate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CydiaSubstrate.framework; path = ../../../../Library/Theos/vendor/lib/CydiaSubstrate.framework; sourceTree = "<group>"; };
+		AC9F29C92676C67900278CAE /* NCNotificationStructuredListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NCNotificationStructuredListViewController.m; sourceTree = "<group>"; };
+		AC9F29CB2676CE3500278CAE /* SharedData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharedData.swift; sourceTree = "<group>"; };
+		AC9F29CD2676D24800278CAE /* CSCombinedListViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSCombinedListViewController.m; sourceTree = "<group>"; };
+		AC9F29CF2676D77400278CAE /* libpddokdo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = libpddokdo.h; sourceTree = "<group>"; };
+		AC9F29D02676D80700278CAE /* libpddokdo.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpddokdo.dylib; path = ../../../../Library/Theos/lib/libpddokdo.dylib; sourceTree = "<group>"; };
+		AC9F29D22676DDE500278CAE /* CSCoverSheetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSCoverSheetViewController.m; sourceTree = "<group>"; };
 		ACB706012676AE2000521E7E /* Thanos.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = Thanos.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -44,6 +61,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC9F29C82676C2A600278CAE /* CydiaSubstrate.framework in Frameworks */,
+				AC9F29D12676D80700278CAE /* libpddokdo.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -73,17 +92,34 @@
 				AC1174B62676B7A300847450 /* CSQuickActionsButton.m */,
 				AC1174B82676B7C600847450 /* CSTeachableMomentsContainerView.m */,
 				AC1174BA2676B7F400847450 /* SBUICallToActionLabel.m */,
+				AC9F29C42676C25100278CAE /* UIViewController.m */,
+				AC9F29C92676C67900278CAE /* NCNotificationStructuredListViewController.m */,
+				AC9F29CD2676D24800278CAE /* CSCombinedListViewController.m */,
+				AC9F29D22676DDE500278CAE /* CSCoverSheetViewController.m */,
 			);
 			path = Hooks;
+			sourceTree = "<group>";
+		};
+		AC9F29C62676C2A600278CAE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				AC9F29D02676D80700278CAE /* libpddokdo.dylib */,
+				AC9F29C72676C2A600278CAE /* CydiaSubstrate.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		ACB705F82676AE2000521E7E = {
 			isa = PBXGroup;
 			children = (
+				AC9F29CF2676D77400278CAE /* libpddokdo.h */,
+				AC9F29CB2676CE3500278CAE /* SharedData.swift */,
+				AC9F29C22676C09700278CAE /* Tweak.m */,
 				AC1174A22676AEFD00847450 /* Hooks */,
 				AC1174A12676AEE500847450 /* Views */,
 				AC11749E2676AEDC00847450 /* Thanos-Bridging-Header.h */,
 				ACB706022676AE2000521E7E /* Products */,
+				AC9F29C62676C2A600278CAE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 			usesTabs = 1;
@@ -132,7 +168,7 @@
 		ACB705F92676AE2000521E7E /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1250;
+				LastUpgradeCheck = 1300;
 				TargetAttributes = {
 					ACB706002676AE2000521E7E = {
 						CreatedOnToolsVersion = 12.5;
@@ -171,10 +207,16 @@
 				AC1174B92676B7C600847450 /* CSTeachableMomentsContainerView.m in Sources */,
 				AC1174AD2676B63500847450 /* SBFLockScreenDateView.m in Sources */,
 				AC1174A62676B29C00847450 /* DateView.swift in Sources */,
+				AC9F29CA2676C67900278CAE /* NCNotificationStructuredListViewController.m in Sources */,
 				AC1174A42676AF2B00847450 /* TimeView.swift in Sources */,
 				AC1174B72676B7A300847450 /* CSQuickActionsButton.m in Sources */,
 				AC1174AB2676B5C600847450 /* SBUIProudLockIconView.m in Sources */,
+				AC9F29D32676DDE500278CAE /* CSCoverSheetViewController.m in Sources */,
+				AC9F29CC2676CE3500278CAE /* SharedData.swift in Sources */,
+				AC9F29CE2676D24800278CAE /* CSCombinedListViewController.m in Sources */,
 				AC1174B52676B74300847450 /* NCNotificationListSectionRevealHintView.m in Sources */,
+				AC9F29C52676C25100278CAE /* UIViewController.m in Sources */,
+				AC9F29C32676C0F200278CAE /* Tweak.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -239,7 +281,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -296,7 +338,9 @@
 				MACOSX_DEPLOYMENT_TARGET = 11.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 			};
 			name = Release;
 		};
@@ -310,10 +354,19 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Theos/vendor/lib",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Theos/lib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -327,16 +380,25 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Manual;
 				CODE_SIGNING_ALLOWED = NO;
 				CODE_SIGNING_REQUIRED = NO;
+				CODE_SIGN_STYLE = Manual;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				EXECUTABLE_PREFIX = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Theos/vendor/lib",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 14.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 					"@loader_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(USER_LIBRARY_DIR)/Theos/lib",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;

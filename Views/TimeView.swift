@@ -9,16 +9,15 @@ import SwiftUI
 import UIKit
 
 struct TimeView: View {
-	private static var formatter: DateFormatter = {
+	private let formatter: DateFormatter = {
 		let formatter = DateFormatter()
-		formatter.dateFormat = "h\nmm"
+		formatter.dateFormat = "hh\nmm"
 		return formatter
 	}()
-
-	@State private var size: CGFloat = 96
+	@State private var size: CGFloat = 128
 
 	var body: some View {
-		Text(TimeView.formatter.string(from: Date()))
+		Text(formatter.string(from: Date()))
 			.font(.system(size: size, weight: .thin, design: .rounded))
 			.multilineTextAlignment(.center)
 	}

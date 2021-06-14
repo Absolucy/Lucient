@@ -7,7 +7,7 @@
 
 #import "Hooks.h"
 
-static id (*orig_CSQuickActionsButton_initWithFrame)(UIView* self, SEL cmd, CGRect frame);
-static id hook_CSQuickActionsButton_initWithFrame(UIView* self, SEL cmd, CGRect frame) {
+id (*orig_CSQuickActionsButton_initWithFrame)(UIView* self, SEL cmd, CGRect frame);
+id hook_CSQuickActionsButton_initWithFrame(UIView* self, SEL cmd, CGRect frame) {
 	return nil;
 }
