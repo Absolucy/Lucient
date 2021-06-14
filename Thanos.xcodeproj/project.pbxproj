@@ -76,8 +76,8 @@
 		AC1174A12676AEE500847450 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				AC1174A32676AF2B00847450 /* TimeView.swift */,
 				AC1174A52676B29C00847450 /* DateView.swift */,
+				AC1174A32676AF2B00847450 /* TimeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -85,23 +85,23 @@
 		AC1174A22676AEFD00847450 /* Hooks */ = {
 			isa = PBXGroup;
 			children = (
+				AC9F29CD2676D24800278CAE /* CSCombinedListViewController.m */,
 				AC1174A72676B3B300847450 /* CSCoverSheetView.m */,
-				AC1174A92676B3BE00847450 /* Hooks.h */,
-				AC1174AA2676B5C600847450 /* SBUIProudLockIconView.m */,
-				AC1174AC2676B63500847450 /* SBFLockScreenDateView.m */,
-				AC1174AE2676B6A400847450 /* SBFLockScreenDateSubtitleView.m */,
-				AC1174B02676B6ED00847450 /* SBLockScreenTimerDialView.m */,
-				AC1174B22676B71200847450 /* SBFLockScreenDateSubtitleDateView.m */,
-				AC1174B42676B74300847450 /* NCNotificationListSectionRevealHintView.m */,
+				AC9F29D22676DDE500278CAE /* CSCoverSheetViewController.m */,
 				AC1174B62676B7A300847450 /* CSQuickActionsButton.m */,
 				AC1174B82676B7C600847450 /* CSTeachableMomentsContainerView.m */,
-				AC1174BA2676B7F400847450 /* SBUICallToActionLabel.m */,
-				AC9F29C42676C25100278CAE /* UIViewController.m */,
+				AC1174A92676B3BE00847450 /* Hooks.h */,
+				AC1174B42676B74300847450 /* NCNotificationListSectionRevealHintView.m */,
 				AC9F29C92676C67900278CAE /* NCNotificationStructuredListViewController.m */,
-				AC9F29CD2676D24800278CAE /* CSCombinedListViewController.m */,
-				AC9F29D22676DDE500278CAE /* CSCoverSheetViewController.m */,
-				ACFF8B6D26775E06009CC786 /* SBLockScreenManager.m */,
 				ACFF8B6F26775EB1009CC786 /* SBBacklightController.m */,
+				AC1174B22676B71200847450 /* SBFLockScreenDateSubtitleDateView.m */,
+				AC1174AE2676B6A400847450 /* SBFLockScreenDateSubtitleView.m */,
+				AC1174AC2676B63500847450 /* SBFLockScreenDateView.m */,
+				ACFF8B6D26775E06009CC786 /* SBLockScreenManager.m */,
+				AC1174B02676B6ED00847450 /* SBLockScreenTimerDialView.m */,
+				AC1174BA2676B7F400847450 /* SBUICallToActionLabel.m */,
+				AC1174AA2676B5C600847450 /* SBUIProudLockIconView.m */,
+				AC9F29C42676C25100278CAE /* UIViewController.m */,
 			);
 			path = Hooks;
 			sourceTree = "<group>";
@@ -118,14 +118,11 @@
 		ACB705F82676AE2000521E7E = {
 			isa = PBXGroup;
 			children = (
-				AC9F29CF2676D77400278CAE /* libpddokdo.h */,
-				AC9F29CB2676CE3500278CAE /* SharedData.swift */,
-				AC9F29C22676C09700278CAE /* Tweak.m */,
-				AC1174A22676AEFD00847450 /* Hooks */,
-				AC1174A12676AEE500847450 /* Views */,
-				AC11749E2676AEDC00847450 /* Thanos-Bridging-Header.h */,
 				ACB706022676AE2000521E7E /* Products */,
 				AC9F29C62676C2A600278CAE /* Frameworks */,
+				AC11749E2676AEDC00847450 /* Thanos-Bridging-Header.h */,
+				ACFF8B71267760C2009CC786 /* Tweak */,
+				ACFF8B72267760D2009CC786 /* UI */,
 			);
 			sourceTree = "<group>";
 			usesTabs = 1;
@@ -136,6 +133,25 @@
 				ACB706012676AE2000521E7E /* Thanos.dylib */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		ACFF8B71267760C2009CC786 /* Tweak */ = {
+			isa = PBXGroup;
+			children = (
+				AC1174A22676AEFD00847450 /* Hooks */,
+				AC9F29C22676C09700278CAE /* Tweak.m */,
+			);
+			path = Tweak;
+			sourceTree = "<group>";
+		};
+		ACFF8B72267760D2009CC786 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				AC9F29CF2676D77400278CAE /* libpddokdo.h */,
+				AC9F29CB2676CE3500278CAE /* SharedData.swift */,
+				AC1174A12676AEE500847450 /* Views */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
