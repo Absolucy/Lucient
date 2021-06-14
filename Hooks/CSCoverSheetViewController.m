@@ -7,10 +7,14 @@
 
 #import "Hooks.h"
 
-extern void updateData(void);
-
 void (*orig_CSCoverSheetViewController_viewWillAppear)(UIViewController* self, SEL cmd, BOOL animated);
 void hook_CSCoverSheetViewController_viewWillAppear(UIViewController* self, SEL cmd, BOOL animated) {
-	updateData();
+	updateData(YES);
 	return orig_CSCoverSheetViewController_viewWillAppear(self, cmd, animated);
+}
+
+void (*orig_CSCoverSheetViewController_viewDidDisappear)(UIViewController* self, SEL cmd, BOOL animated);
+void hook_CSCoverSheetViewController_viewDidDisappear(UIViewController* self, SEL cmd, BOOL animated) {
+	updateData(NO);
+	return orig_CSCoverSheetViewController_viewDidDisappear(self, cmd, animated);
 }

@@ -12,7 +12,6 @@
 extern void MSHookMessageEx(Class _class, SEL sel, IMP imp, IMP* result);
 
 void hook(Class cls, SEL sel, void* imp, void** result) {
-	NSLog(@"[Thanos] hooking [%@ %@]", NSStringFromClass(cls), NSStringFromSelector(sel));
 	MSHookMessageEx(cls, sel, (IMP)imp, (IMP*)result);
 }
 
@@ -57,4 +56,12 @@ __attribute__((constructor)) static void initTweakFunc() {
 	hook(objc_getClass("CSCoverSheetViewController"), @selector(viewWillAppear:),
 		 (void*)&hook_CSCoverSheetViewController_viewWillAppear,
 		 (void**)&orig_CSCoverSheetViewController_viewWillAppear);
+	hook(objc_getClass("CSCoverSheetViewController"), @selector(viewDidDisappear:),
+		 (void*)&hook_CSCoverSheetViewController_viewDidDisappear,
+		 (void**)&orig_CSCoverSheetViewController_viewDidDisappear);
+	hook(objc_getClass("SBLockScreenManager"), @selector(lockUIFromSource:withOptions:),
+		 (void*)&hook_SBLockScreenManager_lockUIFromSource, (void**)&orig_SBLockScreenManager_lockUIFromSource);
+	hook(objc_getClass("SBBacklightController"), @selector(turnOnScreenFullyWithBacklightSource:),
+		 (void*)&hook_SBBacklightController_turnOnScreenFullyWithBacklightSource,
+		 (void**)&orig_SBBacklightController_turnOnScreenFullyWithBacklightSource);
 }

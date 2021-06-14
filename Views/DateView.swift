@@ -20,14 +20,25 @@ struct DateView: View {
 		return formatter
 	}()
 
-	private let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-	private let weatherTimer = Timer.publish(every: 30, on: .main, in: .common).autoconnect()
+	private let observer = NotificationCenter.default.publisher(for: Notification.Name("me.aspenuwu.thanos.lsvis"))
 
+	@State private var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+	@State private var weatherTimer = Timer.publish(every: 30, on: .main, in: .common).autoconnect()
 	@State private var date = Date()
 	@ObservedObject private var shared = SharedData.global
 
 	private func updateTimeDate() {
 		date = Date()
+	}
+
+	private func startTimer() {
+		timer = timer.upstream.autoconnect()
+		weatherTimer = weatherTimer.upstream.autoconnect()
+	}
+
+	private func stopTimer() {
+		timer.upstream.connect().cancel()
+		weatherTimer.upstream.connect().cancel()
 	}
 
 	var body: some View {
@@ -58,6 +69,14 @@ struct DateView: View {
 		}
 		.onReceive(weatherTimer) { _ in
 			shared.updateWeatherData()
+		}
+		.onReceive(observer) { obj in
+			guard let visible = obj.object as? Bool else { return }
+			if visible {
+				startTimer()
+			} else {
+				stopTimer()
+			}
 		}
 	}
 }

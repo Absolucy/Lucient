@@ -40,6 +40,12 @@ public dynamic func setNotifsVisible(_ visible: Bool) {
 }
 
 @_cdecl("updateData")
-public dynamic func updateData() {
-	SharedData.global.updateWeatherData()
+public dynamic func updateData(_ screenVisible: Bool) {
+	NotificationCenter.default.post(
+		name: Notification.Name("me.aspenuwu.thanos.lsvis"),
+		object: screenVisible
+	)
+	if screenVisible {
+		SharedData.global.updateWeatherData()
+	}
 }

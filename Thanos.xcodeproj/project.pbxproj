@@ -27,6 +27,8 @@
 		AC9F29CE2676D24800278CAE /* CSCombinedListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9F29CD2676D24800278CAE /* CSCombinedListViewController.m */; };
 		AC9F29D12676D80700278CAE /* libpddokdo.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9F29D02676D80700278CAE /* libpddokdo.dylib */; };
 		AC9F29D32676DDE500278CAE /* CSCoverSheetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9F29D22676DDE500278CAE /* CSCoverSheetViewController.m */; };
+		ACFF8B6E26775E06009CC786 /* SBLockScreenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFF8B6D26775E06009CC786 /* SBLockScreenManager.m */; };
+		ACFF8B7026775EB1009CC786 /* SBBacklightController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFF8B6F26775EB1009CC786 /* SBBacklightController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +56,8 @@
 		AC9F29D02676D80700278CAE /* libpddokdo.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpddokdo.dylib; path = ../../../../Library/Theos/lib/libpddokdo.dylib; sourceTree = "<group>"; };
 		AC9F29D22676DDE500278CAE /* CSCoverSheetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSCoverSheetViewController.m; sourceTree = "<group>"; };
 		ACB706012676AE2000521E7E /* Thanos.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = Thanos.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACFF8B6D26775E06009CC786 /* SBLockScreenManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBLockScreenManager.m; sourceTree = "<group>"; };
+		ACFF8B6F26775EB1009CC786 /* SBBacklightController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBBacklightController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +100,8 @@
 				AC9F29C92676C67900278CAE /* NCNotificationStructuredListViewController.m */,
 				AC9F29CD2676D24800278CAE /* CSCombinedListViewController.m */,
 				AC9F29D22676DDE500278CAE /* CSCoverSheetViewController.m */,
+				ACFF8B6D26775E06009CC786 /* SBLockScreenManager.m */,
+				ACFF8B6F26775EB1009CC786 /* SBBacklightController.m */,
 			);
 			path = Hooks;
 			sourceTree = "<group>";
@@ -203,6 +209,7 @@
 				AC1174B32676B71200847450 /* SBFLockScreenDateSubtitleDateView.m in Sources */,
 				AC1174BB2676B7F400847450 /* SBUICallToActionLabel.m in Sources */,
 				AC1174AF2676B6A400847450 /* SBFLockScreenDateSubtitleView.m in Sources */,
+				ACFF8B6E26775E06009CC786 /* SBLockScreenManager.m in Sources */,
 				AC1174B12676B6ED00847450 /* SBLockScreenTimerDialView.m in Sources */,
 				AC1174B92676B7C600847450 /* CSTeachableMomentsContainerView.m in Sources */,
 				AC1174AD2676B63500847450 /* SBFLockScreenDateView.m in Sources */,
@@ -214,6 +221,7 @@
 				AC9F29D32676DDE500278CAE /* CSCoverSheetViewController.m in Sources */,
 				AC9F29CC2676CE3500278CAE /* SharedData.swift in Sources */,
 				AC9F29CE2676D24800278CAE /* CSCombinedListViewController.m in Sources */,
+				ACFF8B7026775EB1009CC786 /* SBBacklightController.m in Sources */,
 				AC1174B52676B74300847450 /* NCNotificationListSectionRevealHintView.m in Sources */,
 				AC9F29C52676C25100278CAE /* UIViewController.m in Sources */,
 				AC9F29C32676C0F200278CAE /* Tweak.m in Sources */,

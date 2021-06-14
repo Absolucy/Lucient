@@ -12,6 +12,8 @@
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
 
+extern void updateData(BOOL);
+
 @interface CSCoverSheetView : UIView
 @end
 
@@ -82,5 +84,14 @@ extern UIEdgeInsets hook_CSCombinedListViewController_listViewDefaultContentInse
 
 extern void (*orig_CSCoverSheetViewController_viewWillAppear)(UIViewController* self, SEL cmd, BOOL animated);
 extern void hook_CSCoverSheetViewController_viewWillAppear(UIViewController* self, SEL cmd, BOOL animated);
+
+extern void (*orig_CSCoverSheetViewController_viewDidDisappear)(UIViewController* self, SEL cmd, BOOL animated);
+extern void hook_CSCoverSheetViewController_viewDidDisappear(UIViewController* self, SEL cmd, BOOL animated);
+
+extern void (*orig_SBLockScreenManager_lockUIFromSource)(UIView* self, SEL cmd, int arg1, id withOptions);
+extern void hook_SBLockScreenManager_lockUIFromSource(UIView* self, SEL cmd, int arg1, id withOptions);
+
+extern void (*orig_SBBacklightController_turnOnScreenFullyWithBacklightSource)(UIView* self, SEL cmd, long long arg1);
+extern void hook_SBBacklightController_turnOnScreenFullyWithBacklightSource(UIView* self, SEL cmd, long long arg1);
 
 #endif /* Hooks_h */
