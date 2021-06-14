@@ -25,7 +25,7 @@ id hook_CSCoverSheetView_initWithFrame(CSCoverSheetView* self, SEL cmd, CGRect f
 void (*orig_CSCoverSheetView_didMoveToWindow)(CSCoverSheetView* self, SEL cmd);
 void hook_CSCoverSheetView_didMoveToWindow(CSCoverSheetView* self, SEL cmd) {
 	orig_CSCoverSheetView_didMoveToWindow(self, cmd);
-	
+
 	if (!thanosTimeView) {
 		thanosTimeView = makeTimeView();
 		thanosTimeView.view.backgroundColor = UIColor.clearColor;
@@ -37,7 +37,7 @@ void hook_CSCoverSheetView_didMoveToWindow(CSCoverSheetView* self, SEL cmd) {
 		[thanosTimeView.view.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
 		[thanosTimeView.view.centerYAnchor constraintEqualToAnchor:self.centerYAnchor]
 	]];
-	
+
 	if (!thanosDateView) {
 		thanosDateView = makeDateView();
 		thanosDateView.view.backgroundColor = UIColor.clearColor;

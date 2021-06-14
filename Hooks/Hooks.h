@@ -30,7 +30,7 @@
 @end
 
 @interface NCNotificationStructuredListViewController : UIViewController
--(BOOL)hasVisibleContent;
+- (BOOL)hasVisibleContent;
 @end
 
 // the actual hooks
@@ -72,8 +72,10 @@ extern id hook_SBUICallToActionLabel_initWithFrame(UILabel* self, SEL cmd, CGRec
 extern BOOL (*orig_UIViewController_canShowWhileLocked)(UIViewController* self, SEL cmd);
 extern BOOL hook_UIViewController_canShowWhileLocked(UIViewController* self, SEL cmd);
 
-extern BOOL (*orig_NCNotificationStructuredListViewController_hasVisibleContent)(NCNotificationStructuredListViewController* self, SEL cmd);
-extern BOOL hook_NCNotificationStructuredListViewController_hasVisibleContent(NCNotificationStructuredListViewController* self, SEL cmd);
+extern BOOL (*orig_NCNotificationStructuredListViewController_hasVisibleContent)(
+	NCNotificationStructuredListViewController* self, SEL cmd);
+extern BOOL hook_NCNotificationStructuredListViewController_hasVisibleContent(
+	NCNotificationStructuredListViewController* self, SEL cmd);
 
 extern UIEdgeInsets (*orig_CSCombinedListViewController_listViewDefaultContentInsets)(UIViewController* self, SEL cmd);
 extern UIEdgeInsets hook_CSCombinedListViewController_listViewDefaultContentInsets(UIViewController* self, SEL cmd);
