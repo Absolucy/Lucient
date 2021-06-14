@@ -31,8 +31,8 @@
 		AC9F29CA2676C67900278CAE /* NCNotificationStructuredListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9F29C92676C67900278CAE /* NCNotificationStructuredListViewController.m */; };
 		AC9F29CC2676CE3500278CAE /* SharedData.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC9F29CB2676CE3500278CAE /* SharedData.swift */; };
 		AC9F29CE2676D24800278CAE /* CSCombinedListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9F29CD2676D24800278CAE /* CSCombinedListViewController.m */; };
-		AC9F29D12676D80700278CAE /* libpddokdo.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = AC9F29D02676D80700278CAE /* libpddokdo.dylib */; };
 		AC9F29D32676DDE500278CAE /* CSCoverSheetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = AC9F29D22676DDE500278CAE /* CSCoverSheetViewController.m */; };
+		ACCA8C1B2677674600C6142F /* libpddokdo.m in Sources */ = {isa = PBXBuildFile; fileRef = ACCA8C1A2677674600C6142F /* libpddokdo.m */; };
 		ACFF8B6E26775E06009CC786 /* SBLockScreenManager.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFF8B6D26775E06009CC786 /* SBLockScreenManager.m */; };
 		ACFF8B7026775EB1009CC786 /* SBBacklightController.m in Sources */ = {isa = PBXBuildFile; fileRef = ACFF8B6F26775EB1009CC786 /* SBBacklightController.m */; };
 /* End PBXBuildFile section */
@@ -68,6 +68,7 @@
 		AC9F29D02676D80700278CAE /* libpddokdo.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpddokdo.dylib; path = ../../../../Library/Theos/lib/libpddokdo.dylib; sourceTree = "<group>"; };
 		AC9F29D22676DDE500278CAE /* CSCoverSheetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSCoverSheetViewController.m; sourceTree = "<group>"; };
 		ACB706012676AE2000521E7E /* Thanos.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = Thanos.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACCA8C1A2677674600C6142F /* libpddokdo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = libpddokdo.m; sourceTree = "<group>"; };
 		ACFF8B6D26775E06009CC786 /* SBLockScreenManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBLockScreenManager.m; sourceTree = "<group>"; };
 		ACFF8B6F26775EB1009CC786 /* SBBacklightController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBBacklightController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,7 +79,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC9F29C82676C2A600278CAE /* CydiaSubstrate.framework in Frameworks */,
-				AC9F29D12676D80700278CAE /* libpddokdo.dylib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -206,6 +206,7 @@
 			isa = PBXGroup;
 			children = (
 				AC9F29CF2676D77400278CAE /* libpddokdo.h */,
+				ACCA8C1A2677674600C6142F /* libpddokdo.m */,
 				AC9F29CB2676CE3500278CAE /* SharedData.swift */,
 				AC1174A12676AEE500847450 /* Views */,
 			);
@@ -296,6 +297,7 @@
 				AC4192952677639D00797FE0 /* Header.swift in Sources */,
 				AC1174B72676B7A300847450 /* CSQuickActionsButton.m in Sources */,
 				AC1174AB2676B5C600847450 /* SBUIProudLockIconView.m in Sources */,
+				ACCA8C1B2677674600C6142F /* libpddokdo.m in Sources */,
 				AC9F29D32676DDE500278CAE /* CSCoverSheetViewController.m in Sources */,
 				AC4192922677639D00797FE0 /* Color+RawRepresentable.swift in Sources */,
 				AC9F29CC2676CE3500278CAE /* SharedData.swift in Sources */,
