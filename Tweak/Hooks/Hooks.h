@@ -12,8 +12,6 @@
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
 
-extern void updateData(BOOL);
-
 @interface CSCoverSheetView : UIView
 @end
 

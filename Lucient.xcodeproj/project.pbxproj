@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8D301954267ABED1008A4F96 /* Tweak.h in Headers */ = {isa = PBXBuildFile; fileRef = 8D301953267ABED1008A4F96 /* Tweak.h */; };
 		AC1174A42676AF2B00847450 /* TimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1174A32676AF2B00847450 /* TimeView.swift */; };
 		AC1174A62676B29C00847450 /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1174A52676B29C00847450 /* DateView.swift */; };
 		AC1174A82676B3B300847450 /* CSCoverSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1174A72676B3B300847450 /* CSCoverSheetView.m */; };
@@ -38,7 +39,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		AC11749E2676AEDC00847450 /* Thanos-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Thanos-Bridging-Header.h"; sourceTree = "<group>"; };
+		8D301953267ABED1008A4F96 /* Tweak.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tweak.h; sourceTree = "<group>"; };
+		AC11749E2676AEDC00847450 /* Lucient-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Lucient-Bridging-Header.h"; sourceTree = "<group>"; };
 		AC1174A32676AF2B00847450 /* TimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeView.swift; sourceTree = "<group>"; };
 		AC1174A52676B29C00847450 /* DateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
 		AC1174A72676B3B300847450 /* CSCoverSheetView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSCoverSheetView.m; sourceTree = "<group>"; usesTabs = 1; };
@@ -67,7 +69,7 @@
 		AC9F29CF2676D77400278CAE /* libpddokdo.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = libpddokdo.h; sourceTree = "<group>"; };
 		AC9F29D02676D80700278CAE /* libpddokdo.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libpddokdo.dylib; path = ../../../../Library/Theos/lib/libpddokdo.dylib; sourceTree = "<group>"; };
 		AC9F29D22676DDE500278CAE /* CSCoverSheetViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CSCoverSheetViewController.m; sourceTree = "<group>"; };
-		ACB706012676AE2000521E7E /* Thanos.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = Thanos.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
+		ACB706012676AE2000521E7E /* Lucient.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = Lucient.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACCA8C1A2677674600C6142F /* libpddokdo.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = libpddokdo.m; sourceTree = "<group>"; };
 		ACFF8B6D26775E06009CC786 /* SBLockScreenManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBLockScreenManager.m; sourceTree = "<group>"; };
 		ACFF8B6F26775EB1009CC786 /* SBBacklightController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SBBacklightController.m; sourceTree = "<group>"; };
@@ -85,24 +87,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		AC1174A12676AEE500847450 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				AC1174A52676B29C00847450 /* DateView.swift */,
-				AC1174A32676AF2B00847450 /* TimeView.swift */,
-			);
-			path = Views;
-			sourceTree = "<group>";
-		};
 		AC1174A22676AEFD00847450 /* Hooks */ = {
 			isa = PBXGroup;
 			children = (
+				AC1174A92676B3BE00847450 /* Hooks.h */,
 				AC9F29CD2676D24800278CAE /* CSCombinedListViewController.m */,
 				AC1174A72676B3B300847450 /* CSCoverSheetView.m */,
 				AC9F29D22676DDE500278CAE /* CSCoverSheetViewController.m */,
 				AC1174B62676B7A300847450 /* CSQuickActionsButton.m */,
 				AC1174B82676B7C600847450 /* CSTeachableMomentsContainerView.m */,
-				AC1174A92676B3BE00847450 /* Hooks.h */,
 				AC1174B42676B74300847450 /* NCNotificationListSectionRevealHintView.m */,
 				AC9F29C92676C67900278CAE /* NCNotificationStructuredListViewController.m */,
 				ACFF8B6F26775EB1009CC786 /* SBBacklightController.m */,
@@ -175,12 +168,13 @@
 		ACB705F82676AE2000521E7E = {
 			isa = PBXGroup;
 			children = (
-				AC11749E2676AEDC00847450 /* Thanos-Bridging-Header.h */,
+				AC11749E2676AEDC00847450 /* Lucient-Bridging-Header.h */,
+				AC9F29CF2676D77400278CAE /* libpddokdo.h */,
+				ACCA8C1A2677674600C6142F /* libpddokdo.m */,
 				AC9F29C62676C2A600278CAE /* Frameworks */,
 				AC4192852677639D00797FE0 /* NomaePreferences */,
 				ACB706022676AE2000521E7E /* Products */,
 				ACFF8B71267760C2009CC786 /* Tweak */,
-				ACFF8B72267760D2009CC786 /* UI */,
 			);
 			sourceTree = "<group>";
 			usesTabs = 1;
@@ -188,7 +182,7 @@
 		ACB706022676AE2000521E7E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				ACB706012676AE2000521E7E /* Thanos.dylib */,
+				ACB706012676AE2000521E7E /* Lucient.dylib */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -196,8 +190,11 @@
 		ACFF8B71267760C2009CC786 /* Tweak */ = {
 			isa = PBXGroup;
 			children = (
-				AC1174A22676AEFD00847450 /* Hooks */,
+				8D301953267ABED1008A4F96 /* Tweak.h */,
 				AC9F29C22676C09700278CAE /* Tweak.m */,
+				AC9F29CB2676CE3500278CAE /* SharedData.swift */,
+				AC1174A22676AEFD00847450 /* Hooks */,
+				ACFF8B72267760D2009CC786 /* UI */,
 			);
 			path = Tweak;
 			sourceTree = "<group>";
@@ -205,10 +202,8 @@
 		ACFF8B72267760D2009CC786 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				AC9F29CF2676D77400278CAE /* libpddokdo.h */,
-				ACCA8C1A2677674600C6142F /* libpddokdo.m */,
-				AC9F29CB2676CE3500278CAE /* SharedData.swift */,
-				AC1174A12676AEE500847450 /* Views */,
+				AC1174A52676B29C00847450 /* DateView.swift */,
+				AC1174A32676AF2B00847450 /* TimeView.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -220,15 +215,16 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D301954267ABED1008A4F96 /* Tweak.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		ACB706002676AE2000521E7E /* Thanos */ = {
+		ACB706002676AE2000521E7E /* Lucient */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = ACB706052676AE2000521E7E /* Build configuration list for PBXNativeTarget "Thanos" */;
+			buildConfigurationList = ACB706052676AE2000521E7E /* Build configuration list for PBXNativeTarget "Lucient" */;
 			buildPhases = (
 				ACB705FD2676AE2000521E7E /* Headers */,
 				ACB705FE2676AE2000521E7E /* Sources */,
@@ -238,9 +234,9 @@
 			);
 			dependencies = (
 			);
-			name = Thanos;
+			name = Lucient;
 			productName = Thanos;
-			productReference = ACB706012676AE2000521E7E /* Thanos.dylib */;
+			productReference = ACB706012676AE2000521E7E /* Lucient.dylib */;
 			productType = "com.apple.product-type.library.dynamic";
 		};
 /* End PBXNativeTarget section */
@@ -257,7 +253,7 @@
 					};
 				};
 			};
-			buildConfigurationList = ACB705FC2676AE2000521E7E /* Build configuration list for PBXProject "Thanos" */;
+			buildConfigurationList = ACB705FC2676AE2000521E7E /* Build configuration list for PBXProject "Lucient" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -270,7 +266,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				ACB706002676AE2000521E7E /* Thanos */,
+				ACB706002676AE2000521E7E /* Lucient */,
 			);
 		};
 /* End PBXProject section */
@@ -460,7 +456,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "Thanos-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Lucient-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
@@ -492,7 +488,7 @@
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_OBJC_BRIDGING_HEADER = "Thanos-Bridging-Header.h";
+				SWIFT_OBJC_BRIDGING_HEADER = "Lucient-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
@@ -500,7 +496,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		ACB705FC2676AE2000521E7E /* Build configuration list for PBXProject "Thanos" */ = {
+		ACB705FC2676AE2000521E7E /* Build configuration list for PBXProject "Lucient" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				ACB706032676AE2000521E7E /* Debug */,
@@ -509,7 +505,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		ACB706052676AE2000521E7E /* Build configuration list for PBXNativeTarget "Thanos" */ = {
+		ACB706052676AE2000521E7E /* Build configuration list for PBXNativeTarget "Lucient" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				ACB706062676AE2000521E7E /* Debug */,

@@ -15,9 +15,9 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "ACB706002676AE2000521E7E"
-               BuildableName = "Thanos.dylib"
-               BlueprintName = "Thanos"
-               ReferencedContainer = "container:Thanos.xcodeproj">
+               BuildableName = "Lucient.dylib"
+               BlueprintName = "Lucient"
+               ReferencedContainer = "container:Lucient.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -51,9 +51,9 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "ACB706002676AE2000521E7E"
-            BuildableName = "Thanos.dylib"
-            BlueprintName = "Thanos"
-            ReferencedContainer = "container:Thanos.xcodeproj">
+            BuildableName = "Lucient.dylib"
+            BlueprintName = "Lucient"
+            ReferencedContainer = "container:Lucient.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
    </ProfileAction>
