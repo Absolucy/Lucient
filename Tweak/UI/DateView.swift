@@ -16,16 +16,11 @@ internal struct DateView: View {
 		return formatter
 	}()
 
-	private let screenObserver = NotificationCenter.default.publisher(for: Notification.Name("me.aspenuwu.thanos.screen"))
-	private let oneSecondObserver = NotificationCenter.default.publisher(for: Notification.Name("me.aspenuwu.thanos.1s"))
-	private let tenSecondObserver = NotificationCenter.default.publisher(for: Notification.Name("me.aspenuwu.thanos.10s"))
+	private let timeObserver = NotificationCenter.default.publisher(for: NSNotification.Name("me.aspenuwu.lucient.time"))
+	private let weatherObserver = NotificationCenter.default.publisher(for: NSNotification.Name("me.aspenuwu.lucient.weather"))
 
 	@State private var date = Date()
 	@ObservedObject private var shared = SharedData.global
-
-	func updateTimeDate() {
-		date = Date()
-	}
 
 	var body: some View {
 		VStack(alignment: .leading) {
@@ -45,12 +40,18 @@ internal struct DateView: View {
 		}
 		.animation(.easeInOut)
 		.transition(.move(edge: .top))
+		.onReceive(timeObserver) { _ in
+			date = Date()
+		}
+		.onReceive(weatherObserver) { _ in
+			shared.updateWeather()
+		}
 	}
 }
 
 @_cdecl("makeDateView")
 public dynamic func makeDateView() -> UIViewController? {
-	UIHostingController(rootView: DateView())
+	UIHostingController(rootView: DateView.view)
 }
 
 struct DateView_Previews: PreviewProvider {

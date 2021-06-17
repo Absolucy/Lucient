@@ -20,21 +20,18 @@ internal final class SharedData: ObservableObject {
 	final func startTimers() {
 		stopTimers()
 		timeTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-			self.updateTime()
+			NotificationCenter.default.post(name: NSNotification.Name("me.aspenuwu.lucient.time"), object: nil)
 		}
 		weatherTimer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { _ in
-			self.updateWeather()
+			NotificationCenter.default.post(name: NSNotification.Name("me.aspenuwu.lucient.weather"), object: nil)
 		}
 	}
 
 	final func stopTimers() {
 		timeTimer?.invalidate()
+		timeTimer = nil
 		weatherTimer?.invalidate()
-	}
-
-	final func updateTime() {
-		TimeView.view.updateTimeDate()
-		DateView.view.updateTimeDate()
+		weatherTimer = nil
 	}
 
 	final func updateNotificationVisibility(_: Bool) {
@@ -72,7 +69,6 @@ public dynamic func setNotifsVisible(_ visible: Bool) {
 
 @_cdecl("setScreenOn")
 public dynamic func setScreenOn(_ status: Bool) {
-	SharedData.global.updateScreen(status)
-	SharedData.global.updateTime()
-	SharedData.global.updateWeather()
+	NotificationCenter.default.post(name: NSNotification.Name("me.aspenuwu.lucient.time"), object: nil)
+	NotificationCenter.default.post(name: NSNotification.Name("me.aspenuwu.lucient.weather"), object: nil)
 }

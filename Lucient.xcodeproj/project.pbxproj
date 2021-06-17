@@ -168,8 +168,8 @@
 		ACB705F82676AE2000521E7E = {
 			isa = PBXGroup;
 			children = (
-				AC11749E2676AEDC00847450 /* Lucient-Bridging-Header.h */,
 				AC9F29CF2676D77400278CAE /* libpddokdo.h */,
+				AC11749E2676AEDC00847450 /* Lucient-Bridging-Header.h */,
 				ACCA8C1A2677674600C6142F /* libpddokdo.m */,
 				AC9F29C62676C2A600278CAE /* Frameworks */,
 				AC4192852677639D00797FE0 /* NomaePreferences */,
