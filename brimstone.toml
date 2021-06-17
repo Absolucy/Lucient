@@ -1,0 +1,39 @@
+[info]
+bundles = ["Lucient.dylib"]
+ctor = true
+
+[protection]
+anti-debug = true
+faro-shuffle = true
+encryption = true
+dpkg-check = false
+garbage-asm = true
+
+[targets.arm64]
+arch = "arm64"
+target = "arm64-apple-ios"
+sysroot = "/Users/Lucy/Library/Theos/sdks/iPhoneOS14.4.sdk"
+
+[targets.arm64e]
+arch = "arm64e"
+target = "arm64e-apple-ios"
+sysroot = "/Users/Lucy/Library/Theos/sdks/iPhoneOS14.4.sdk"
+
+[dpkg]
+bad = [
+	"/var/lib/dpkg/info/org.mr.lucient.list",
+	"/var/lib/dpkg/info/ru.rejail.lucient.list",
+	"/var/lib/dpkg/info/ru.rj.lucient.list",
+	"/var/lib/dpkg/info/org.hackyouriphone.lucient.list",
+]
+good = ["/var/lib/dpkg/info/me.aspenuwu.lucient.list"]
+
+[sections]
+strtab = "__DATA,__brimstonestrtb"
+strtab-toc = "__DATA,__brimstonetoc"
+strtab-keys = "__TEXT,__brimstonedk"
+jmp = "__TEXT,__brimstonecrc"
+jmp-key = "__TEXT,__brimstonehka"
+code-key = "__TEXT,__brimstonekay"
+code-decrypt = "__TEXT,__brimstoneldr"
+dpkg-hash = "__TEXT,__brimstoneapk"
