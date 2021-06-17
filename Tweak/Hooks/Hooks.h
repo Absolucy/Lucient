@@ -11,33 +11,9 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import <objc/runtime.h>
-
-@interface CSCoverSheetView : UIView
-@end
-
-@interface CSCoverSheetViewController : UIViewController
-- (void)setPasscodeLockVisible:(BOOL)arg1 animated:(BOOL)arg2;
-- (void)activatePage:(unsigned long long)arg1 animated:(BOOL)arg2 withCompletion:(/*^block*/ id)arg3;
-@end
-
-@interface CSQuickActionsViewController : UIViewController
-@end
-
-@interface CSProudLockViewController : UIViewController
-@end
-
-@interface CSQuickActionsButton : UIControl
-@end
-
-@interface NCNotificationStructuredListViewController : UIViewController
-- (BOOL)hasVisibleContent;
-@end
+#import "../Tweak.h"
 
 // the actual hooks
-
-extern CSCoverSheetView* coverSheetView;
-extern UIViewController* thanosDateView;
-extern UIViewController* thanosTimeView;
 
 extern id (*orig_CSCoverSheetView_initWithFrame)(CSCoverSheetView* self, SEL cmd, CGRect frame);
 extern id hook_CSCoverSheetView_initWithFrame(CSCoverSheetView* self, SEL cmd, CGRect frame);

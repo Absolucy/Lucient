@@ -6,13 +6,11 @@
 //
 
 #import "Hooks.h"
+#import "../Tweak.h"
+#import "../Globals.h"
 
 extern UIViewController* makeDateView(void);
 extern UIViewController* makeTimeView(void);
-
-CSCoverSheetView* coverSheetView = nil;
-UIViewController* thanosDateView = nil;
-UIViewController* thanosTimeView = nil;
 
 id (*orig_CSCoverSheetView_initWithFrame)(CSCoverSheetView* self, SEL cmd, CGRect frame);
 id hook_CSCoverSheetView_initWithFrame(CSCoverSheetView* self, SEL cmd, CGRect frame) {
@@ -26,27 +24,27 @@ void (*orig_CSCoverSheetView_didMoveToWindow)(CSCoverSheetView* self, SEL cmd);
 void hook_CSCoverSheetView_didMoveToWindow(CSCoverSheetView* self, SEL cmd) {
 	orig_CSCoverSheetView_didMoveToWindow(self, cmd);
 
-	if (!thanosTimeView) {
-		thanosTimeView = makeTimeView();
-		thanosTimeView.view.backgroundColor = UIColor.clearColor;
+	if (!timeView) {
+		timeView = makeTimeView();
+		timeView.view.backgroundColor = UIColor.clearColor;
 	}
-	thanosTimeView.view.frame = self.frame;
-	thanosTimeView.view.translatesAutoresizingMaskIntoConstraints = NO;
-	[self addSubview:thanosTimeView.view];
+	timeView.view.frame = self.frame;
+	timeView.view.translatesAutoresizingMaskIntoConstraints = NO;
+	[self addSubview:timeView.view];
 	[NSLayoutConstraint activateConstraints:@[
-		[thanosTimeView.view.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
-		[thanosTimeView.view.centerYAnchor constraintEqualToAnchor:self.centerYAnchor]
+		[timeView.view.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
+		[timeView.view.centerYAnchor constraintEqualToAnchor:self.centerYAnchor]
 	]];
 
-	if (!thanosDateView) {
-		thanosDateView = makeDateView();
-		thanosDateView.view.backgroundColor = UIColor.clearColor;
+	if (!dateView) {
+		dateView = makeDateView();
+		dateView.view.backgroundColor = UIColor.clearColor;
 	}
-	thanosDateView.view.frame = self.frame;
-	thanosDateView.view.translatesAutoresizingMaskIntoConstraints = NO;
-	[self addSubview:thanosDateView.view];
+	dateView.view.frame = self.frame;
+	dateView.view.translatesAutoresizingMaskIntoConstraints = NO;
+	[self addSubview:dateView.view];
 	[NSLayoutConstraint activateConstraints:@[
-		[thanosDateView.view.leftAnchor constraintEqualToAnchor:self.leftAnchor constant:30.0],
-		[thanosDateView.view.bottomAnchor constraintEqualToAnchor:thanosTimeView.view.topAnchor constant:-32.0]
+		[dateView.view.leftAnchor constraintEqualToAnchor:self.leftAnchor constant:30.0],
+		[dateView.view.bottomAnchor constraintEqualToAnchor:timeView.view.topAnchor constant:-32.0]
 	]];
 }

@@ -3,3 +3,4 @@
 //
 
 #import "libpddokdo.h"
+#import "Tweak/Globals.h"

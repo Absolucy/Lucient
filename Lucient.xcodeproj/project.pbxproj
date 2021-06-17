@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		8D301954267ABED1008A4F96 /* Tweak.h in Headers */ = {isa = PBXBuildFile; fileRef = 8D301953267ABED1008A4F96 /* Tweak.h */; };
+		8D97EB2E267B81C200847B7F /* Globals.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D97EB2D267B81C200847B7F /* Globals.m */; };
 		AC1174A42676AF2B00847450 /* TimeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1174A32676AF2B00847450 /* TimeView.swift */; };
 		AC1174A62676B29C00847450 /* DateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1174A52676B29C00847450 /* DateView.swift */; };
 		AC1174A82676B3B300847450 /* CSCoverSheetView.m in Sources */ = {isa = PBXBuildFile; fileRef = AC1174A72676B3B300847450 /* CSCoverSheetView.m */; };
@@ -40,6 +41,8 @@
 
 /* Begin PBXFileReference section */
 		8D301953267ABED1008A4F96 /* Tweak.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Tweak.h; sourceTree = "<group>"; };
+		8D97EB2C267B812900847B7F /* Globals.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Globals.h; sourceTree = "<group>"; };
+		8D97EB2D267B81C200847B7F /* Globals.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Globals.m; sourceTree = "<group>"; };
 		AC11749E2676AEDC00847450 /* Lucient-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Lucient-Bridging-Header.h"; sourceTree = "<group>"; };
 		AC1174A32676AF2B00847450 /* TimeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeView.swift; sourceTree = "<group>"; };
 		AC1174A52676B29C00847450 /* DateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateView.swift; sourceTree = "<group>"; };
@@ -190,7 +193,9 @@
 		ACFF8B71267760C2009CC786 /* Tweak */ = {
 			isa = PBXGroup;
 			children = (
+				8D97EB2C267B812900847B7F /* Globals.h */,
 				8D301953267ABED1008A4F96 /* Tweak.h */,
+				8D97EB2D267B81C200847B7F /* Globals.m */,
 				AC9F29C22676C09700278CAE /* Tweak.m */,
 				AC9F29CB2676CE3500278CAE /* SharedData.swift */,
 				AC1174A22676AEFD00847450 /* Hooks */,
@@ -292,6 +297,7 @@
 				AC1174A42676AF2B00847450 /* TimeView.swift in Sources */,
 				AC4192952677639D00797FE0 /* Header.swift in Sources */,
 				AC1174B72676B7A300847450 /* CSQuickActionsButton.m in Sources */,
+				8D97EB2E267B81C200847B7F /* Globals.m in Sources */,
 				AC1174AB2676B5C600847450 /* SBUIProudLockIconView.m in Sources */,
 				ACCA8C1B2677674600C6142F /* libpddokdo.m in Sources */,
 				AC9F29D32676DDE500278CAE /* CSCoverSheetViewController.m in Sources */,
