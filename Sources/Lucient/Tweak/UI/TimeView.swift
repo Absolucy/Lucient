@@ -16,14 +16,20 @@ internal struct TimeView: View {
 		formatter.dateFormat = "hh\nmm"
 		return formatter
 	}()
-	private let timeObserver = NotificationCenter.default.publisher(for: NSNotification.Name("me.aspenuwu.lucient.time"))
 
-    @Preference("mode", identifier: "me.aspenuwu.lucient") var mode = false
+	private let timeObserver = NotificationCenter.default.publisher(for: NSNotification.Name("moe.absolucy.lucient.time"))
+
+	@Preference("appearance", identifier: "moe.absolucy.lucient") var appearance = 0
 	@State private var date = Date()
-    
-    private func font() -> Font {
-        Font.system(size: 128, weight: .thin, design: .rounded)
-    }
+
+	private func font() -> Font {
+		_ = FontRegistration.register
+		if appearance == 2 {
+			return Font.custom("Roboto", size: 128)
+		} else {
+			return Font.system(size: 128, weight: .thin, design: .rounded)
+		}
+	}
 
 	var body: some View {
 		Text(fmt.string(from: date))

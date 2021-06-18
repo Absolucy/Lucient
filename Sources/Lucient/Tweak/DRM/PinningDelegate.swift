@@ -18,8 +18,8 @@ internal final class PinningDelegate: NSObject, URLSessionDelegate {
 	private static let pubkey = getData(DRM_PINNED_TLS_PUBLIC_KEY)
 
 	final func urlSession(_: URLSession,
-	                didReceive challenge: URLAuthenticationChallenge,
-	                completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void)
+	                      didReceive challenge: URLAuthenticationChallenge,
+	                      completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void)
 	{
 		guard let serverTrust = challenge.protectionSpace.serverTrust else {
 			completionHandler(.cancelAuthenticationChallenge, nil)

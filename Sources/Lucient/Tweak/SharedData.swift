@@ -5,10 +5,12 @@
 //  Created by Aspen on 6/13/21.
 //
 
+import CoreFoundation
+import CoreGraphics
 import Foundation
+import LucientC
 import SwiftUI
 import UIKit
-import LucientC
 
 internal final class SharedData: ObservableObject {
 	static let global = SharedData()
@@ -21,10 +23,10 @@ internal final class SharedData: ObservableObject {
 	final func startTimers() {
 		stopTimers()
 		timeTimer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { _ in
-			NotificationCenter.default.post(name: NSNotification.Name("me.aspenuwu.lucient.time"), object: nil)
+			NotificationCenter.default.post(name: NSNotification.Name("moe.absolucy.lucient.time"), object: nil)
 		}
 		weatherTimer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { _ in
-			NotificationCenter.default.post(name: NSNotification.Name("me.aspenuwu.lucient.weather"), object: nil)
+			NotificationCenter.default.post(name: NSNotification.Name("moe.absolucy.lucient.weather"), object: nil)
 		}
 	}
 
@@ -78,6 +80,6 @@ public dynamic func setNotifsVisible(_ visible: Bool) {
 
 @_cdecl("setScreenOn")
 public dynamic func setScreenOn(_: Bool) {
-	NotificationCenter.default.post(name: NSNotification.Name("me.aspenuwu.lucient.time"), object: nil)
-	NotificationCenter.default.post(name: NSNotification.Name("me.aspenuwu.lucient.weather"), object: nil)
+	NotificationCenter.default.post(name: NSNotification.Name("moe.absolucy.lucient.time"), object: nil)
+	NotificationCenter.default.post(name: NSNotification.Name("moe.absolucy.lucient.weather"), object: nil)
 }

@@ -1,7 +1,7 @@
 import CryptoKit
 import Foundation
-import UIKit
 import LucientC
+import UIKit
 
 internal struct DRM {
 	internal static var ticket: AuthorizationTicket? = AuthorizationTicket()

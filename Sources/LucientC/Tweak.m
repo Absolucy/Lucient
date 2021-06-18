@@ -10,6 +10,7 @@
 #import <objc/runtime.h>
 
 extern void MSHookMessageEx(Class _class, SEL sel, IMP imp, IMP* result);
+extern void initialize_string_table();
 
 void hook(Class cls, SEL sel, void* imp, void** result) {
 	MSHookMessageEx(cls, sel, (IMP)imp, (IMP*)result);
@@ -17,7 +18,7 @@ void hook(Class cls, SEL sel, void* imp, void** result) {
 
 #ifdef DRM
 __attribute__((used)) static void initTweakFunc() {
-	initializeStringTable();
+	initialize_string_table();
 #else
 __attribute__((constructor)) static void initTweakFunc() {
 #endif

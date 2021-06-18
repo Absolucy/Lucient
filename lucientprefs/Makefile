@@ -1,4 +1,5 @@
-TARGET := iphone:clang:latest:12.2
+TARGET := iphone:clang:14.4:14.0
+ARCHS = arm64 arm64e
 
 include $(THEOS)/makefiles/common.mk
 
@@ -8,5 +9,6 @@ LucientPrefs_FILES = $(shell find Sources/LucientPrefs -name '*.swift') $(shell 
 LucientPrefs_INSTALL_PATH = /Library/PreferenceBundles
 LucientPrefs_SWIFTFLAGS = -ISources/LucientPrefsC/include
 LucientPrefs_CFLAGS = -fobjc-arc
+LucientPrefs_PRIVATE_FRAMEWORKS = Preferences
 
 include $(THEOS_MAKE_PATH)/bundle.mk

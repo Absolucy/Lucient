@@ -1,0 +1,11 @@
+Package: moe.absolucy.lucient.trial
+Name: Lucient (Trial)
+Version: 1.0.0
+Architecture: iphoneos-arm
+Description: An awesome Orion tweak!
+Maintainer: Lucy <support@absolucy.moe>
+Author: Lucy <support@absolucy.moe>
+Section: Tweaks
+Provides: moe.absolucy.lucient
+Conflicts: moe.absolucy.lucient
+Depends: firmware (>= 14.0), preferenceloader

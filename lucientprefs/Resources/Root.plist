@@ -2,44 +2,54 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>title</key>
+	<string>Lucient</string>
 	<key>items</key>
 	<array>
-		<dict>
-			<key>cell</key>
-			<string>PSGroupCell</string>
-			<key>label</key>
-			<string>Lucient</string>
-		</dict>
 		<dict>
 			<key>cell</key>
 			<string>PSSwitchCell</string>
 			<key>default</key>
 			<true/>
 			<key>defaults</key>
-			<string>me.aspenuwu.lucientprefs</string>
+			<string>moe.absolucy.lucient</string>
 			<key>key</key>
 			<string>enabled</string>
 			<key>label</key>
 			<string>Enabled</string>
 		</dict>
 		<dict>
-			<key>validValues</key>
-			<array>
-				<string>iOS</string>
-				<string>Android 12</string>
-			</array>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Appearance Mode</string>
+		</dict>
+		<dict>
 			<key>cell</key>
 			<string>PSSegmentCell</string>
-			<key>staticTextMessage</key>
-			<string>Appearances</string>
-			<key>shortTitles</key>
+			<key>key</key>
+			<string>appearance</string>
+			<key>defaults</key>
+			<string>moe.absolucy.lucient</string>
+			<key>default</key>
+			<integer>0</integer>
+			<key>validValues</key>
+			<array>
+				<integer>1</integer>
+				<integer>2</integer>
+			</array>
+			<key>validTitles</key>
 			<array>
 				<string>iOS</string>
 				<string>Android 12</string>
 			</array>
 		</dict>
+		<dict>
+			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>label</key>
+			<string>Credits</string>
+		</dict>
 	</array>
-	<key>title</key>
-	<string>Lucient</string>
 </dict>
 </plist>

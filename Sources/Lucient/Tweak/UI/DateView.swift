@@ -5,39 +5,46 @@
 //  Created by Aspen on 6/13/21.
 //
 
-import SwiftUI
 import LucientC
+import SwiftUI
 
 internal struct DateView: View {
 	static var view = DateView()
-    
+
 	private let dateFmt: DateFormatter = {
 		let formatter = DateFormatter()
 		formatter.dateFormat = "E, MMM d"
 		return formatter
 	}()
+
 	private let timeFmt: DateFormatter = {
 		let formatter = DateFormatter()
 		formatter.dateFormat = "hh:mm"
 		return formatter
 	}()
-	private let timeObserver = NotificationCenter.default.publisher(for: NSNotification.Name("me.aspenuwu.lucient.time"))
-	private let weatherObserver = NotificationCenter.default
-		.publisher(for: NSNotification.Name("me.aspenuwu.lucient.weather"))
 
-    @Preference("mode", identifier: "me.aspenuwu.lucient") var mode = false
+	private let timeObserver = NotificationCenter.default.publisher(for: NSNotification.Name("moe.absolucy.lucient.time"))
+	private let weatherObserver = NotificationCenter.default
+		.publisher(for: NSNotification.Name("moe.absolucy.lucient.weather"))
+
+	@Preference("appearance", identifier: "moe.absolucy.lucient") var appearance = 0
 	@State private var date = Date()
 	@ObservedObject private var shared = SharedData.global
-    
-    private func font() -> Font {
-        Font.system(size: 72, weight: .light, design: .rounded)
-    }
+
+	private func font(_ size: CGFloat) -> Font {
+		_ = FontRegistration.register
+		if appearance == 2 {
+			return Font.custom("Roboto", size: size)
+		} else {
+			return Font.system(size: size, weight: .light, design: .rounded)
+		}
+	}
 
 	var body: some View {
 		VStack(alignment: .leading) {
 			if shared.notifsVisible {
 				Text(timeFmt.string(from: date))
-					.font(font())
+					.font(font(72))
 					.padding(.bottom, 5)
 					.animation(.easeInOut)
 					.transition(
@@ -48,7 +55,7 @@ internal struct DateView: View {
 					)
 			}
 			Text(dateFmt.string(from: date))
-				.font(.system(size: 24, weight: .light, design: .rounded))
+				.font(font(24))
 			if let temperature = shared.temperature, let image = shared.weatherImage {
 				HStack {
 					image
@@ -56,7 +63,7 @@ internal struct DateView: View {
 						.scaledToFit()
 						.frame(width: 48, height: 48)
 					Text(temperature)
-						.font(.system(size: 24, weight: .light, design: .rounded))
+						.font(font(24))
 					Spacer()
 				}
 			}
