@@ -2,78 +2,78 @@
 // Do not modify, changes will be overwritten next compile.
 
 // DRM->ASN.1 DER ECC header
-#define DRM_ASN_1_DER_ECC_HEADER (0)
+#define	DRM_ASN_1_DER_ECC_HEADER			(0)
 // DRM->Endpoint
-#define DRM_ENDPOINT (1)
+#define	DRM_ENDPOINT			(1)
 // DRM->Hostname
-#define DRM_HOSTNAME (2)
+#define	DRM_HOSTNAME			(2)
 // DRM->Pinned TLS Public Key
-#define DRM_PINNED_TLS_PUBLIC_KEY (3)
+#define	DRM_PINNED_TLS_PUBLIC_KEY			(3)
 // DRM->Public ed25519 Signing Key
-#define DRM_PUBLIC_ED25519_SIGNING_KEY (4)
+#define	DRM_PUBLIC_ED25519_SIGNING_KEY			(4)
 // Formatting->ISO time
-#define FORMATTING_ISO_TIME (5)
+#define	FORMATTING_ISO_TIME			(5)
 // Formatting->Locale
-#define FORMATTING_LOCALE (6)
+#define	FORMATTING_LOCALE			(6)
 // Formatting->User Agent
-#define FORMATTING_USER_AGENT (7)
+#define	FORMATTING_USER_AGENT			(7)
 // Formatting->iOS x.x
-#define FORMATTING_IOS_X_X (8)
+#define	FORMATTING_IOS_X_X			(8)
 // Formatting->iOS x.x.x
-#define FORMATTING_IOS_X_X_X (9)
+#define	FORMATTING_IOS_X_X_X			(9)
 // Jailbreak Info->Names
-#define JAILBREAK_INFO_NAMES (10)
+#define	JAILBREAK_INFO_NAMES			(10)
 // Jailbreak Info->Paths
-#define JAILBREAK_INFO_PATHS (11)
+#define	JAILBREAK_INFO_PATHS			(11)
 // Keys->getDeviceAD->Model
-#define KEYS_GETDEVICEAD_MODEL (12)
+#define	KEYS_GETDEVICEAD_MODEL			(12)
 // Keys->getDeviceAD->UDID
-#define KEYS_GETDEVICEAD_UDID (13)
+#define	KEYS_GETDEVICEAD_UDID			(13)
 // Keys->getDeviceAD->XOR
-#define KEYS_GETDEVICEAD_XOR (14)
+#define	KEYS_GETDEVICEAD_XOR			(14)
 // Keys->getDeviceKey->Model
-#define KEYS_GETDEVICEKEY_MODEL (15)
+#define	KEYS_GETDEVICEKEY_MODEL			(15)
 // Keys->getDeviceKey->UDID
-#define KEYS_GETDEVICEKEY_UDID (16)
+#define	KEYS_GETDEVICEKEY_UDID			(16)
 // Keys->getDeviceKey->XOR
-#define KEYS_GETDEVICEKEY_XOR (17)
+#define	KEYS_GETDEVICEKEY_XOR			(17)
 // Paths->Encrypted Ticket
-#define PATHS_ENCRYPTED_TICKET (18)
+#define	PATHS_ENCRYPTED_TICKET			(18)
 // Paths->Encrypted Ticket Folder
-#define PATHS_ENCRYPTED_TICKET_FOLDER (19)
+#define	PATHS_ENCRYPTED_TICKET_FOLDER			(19)
 // Paths->killall
-#define PATHS_KILLALL (20)
+#define	PATHS_KILLALL			(20)
 // Paths->killall arguments
-#define PATHS_KILLALL_ARGUMENTS (21)
+#define	PATHS_KILLALL_ARGUMENTS			(21)
 // Paths->sbreload
-#define PATHS_SBRELOAD (22)
+#define	PATHS_SBRELOAD			(22)
 // Tweak
-#define TWEAK (23)
+#define	TWEAK			(23)
 // UI->DRM->Error
-#define UI_DRM_ERROR (24)
+#define	UI_DRM_ERROR			(24)
 // UI->DRM->Exit
-#define UI_DRM_EXIT (25)
+#define	UI_DRM_EXIT			(25)
 // UI->DRM->Header
-#define UI_DRM_HEADER (26)
+#define	UI_DRM_HEADER			(26)
 // UI->DRM->In Progress
-#define UI_DRM_IN_PROGRESS (27)
+#define	UI_DRM_IN_PROGRESS			(27)
 // UI->DRM->Pirated
-#define UI_DRM_PIRATED (28)
+#define	UI_DRM_PIRATED			(28)
 // UI->DRM->Success
-#define UI_DRM_SUCCESS (29)
+#define	UI_DRM_SUCCESS			(29)
 // UI->DRM->Trial->Expired
-#define UI_DRM_TRIAL_EXPIRED (30)
+#define	UI_DRM_TRIAL_EXPIRED			(30)
 // UI->DRM->Trial->Failed
-#define UI_DRM_TRIAL_FAILED (31)
+#define	UI_DRM_TRIAL_FAILED			(31)
 // UI->DRM->Trial->In Progress
-#define UI_DRM_TRIAL_IN_PROGRESS (32)
+#define	UI_DRM_TRIAL_IN_PROGRESS			(32)
 // UI->DRM->Trial->Watermark
-#define UI_DRM_TRIAL_WATERMARK (33)
+#define	UI_DRM_TRIAL_WATERMARK			(33)
 // UI->Unlock Button->Expired Font
-#define UI_UNLOCK_BUTTON_EXPIRED_FONT (34)
+#define	UI_UNLOCK_BUTTON_EXPIRED_FONT			(34)
 // UI->Unlock Button->Respring
-#define UI_UNLOCK_BUTTON_RESPRING (35)
+#define	UI_UNLOCK_BUTTON_RESPRING			(35)
 // UI->Unlock Button->Unlock
-#define UI_UNLOCK_BUTTON_UNLOCK (36)
+#define	UI_UNLOCK_BUTTON_UNLOCK			(36)
 // Version
-#define VERSION (37)
+#define	VERSION			(37)

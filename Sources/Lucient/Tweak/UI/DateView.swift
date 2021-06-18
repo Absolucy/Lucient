@@ -34,7 +34,7 @@ internal struct DateView: View {
 	private func font(_ size: CGFloat) -> Font {
 		_ = FontRegistration.register
 		if appearance == 2 {
-			return Font.custom("Roboto", size: size)
+			return Font.custom("Roboto-Regular", size: size)
 		} else {
 			return Font.system(size: size, weight: .light, design: .rounded)
 		}

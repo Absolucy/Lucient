@@ -25,7 +25,7 @@ internal struct TimeView: View {
 	private func font() -> Font {
 		_ = FontRegistration.register
 		if appearance == 2 {
-			return Font.custom("Roboto", size: 128)
+			return Font.custom("Roboto-Regular", size: 128)
 		} else {
 			return Font.system(size: 128, weight: .thin, design: .rounded)
 		}

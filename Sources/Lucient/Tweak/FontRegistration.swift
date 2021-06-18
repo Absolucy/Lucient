@@ -32,6 +32,8 @@ final class FontRegistration {
 		if !CTFontManagerRegisterGraphicsFont(font, &error) {
 			NSLog("[Lucient] failed to register Roboto")
 		}
+		let x = font.postScriptName
+		NSLog("[Lucient] \(x!)")
 		if let error = error?.takeRetainedValue() {
 			guard let errorDescription = CFErrorCopyDescription(error) else { return }
 			NSLog("[Lucient] registering Roboto font errored: \(errorDescription)")
