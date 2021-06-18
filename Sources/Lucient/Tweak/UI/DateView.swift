@@ -10,7 +10,7 @@ import LucientC
 
 internal struct DateView: View {
 	static var view = DateView()
-
+    
 	private let dateFmt: DateFormatter = {
 		let formatter = DateFormatter()
 		formatter.dateFormat = "E, MMM d"
@@ -25,14 +25,19 @@ internal struct DateView: View {
 	private let weatherObserver = NotificationCenter.default
 		.publisher(for: NSNotification.Name("me.aspenuwu.lucient.weather"))
 
+    @Preference("mode", identifier: "me.aspenuwu.lucient") var mode = false
 	@State private var date = Date()
 	@ObservedObject private var shared = SharedData.global
+    
+    private func font() -> Font {
+        Font.system(size: 72, weight: .light, design: .rounded)
+    }
 
 	var body: some View {
 		VStack(alignment: .leading) {
 			if shared.notifsVisible {
 				Text(timeFmt.string(from: date))
-					.font(.system(size: 72, weight: .light, design: .rounded))
+					.font(font())
 					.padding(.bottom, 5)
 					.animation(.easeInOut)
 					.transition(
@@ -68,10 +73,4 @@ internal struct DateView: View {
 @_cdecl("makeDateView")
 public dynamic func makeDateView() -> UIViewController? {
 	UIHostingController(rootView: DateView.view)
-}
-
-struct DateView_Previews: PreviewProvider {
-	static var previews: some View {
-		DateView()
-	}
 }

@@ -36,7 +36,7 @@ internal func getDeviceKey() -> Data {
 			blake3_hasher_finalize(&hasher, &modelHash, key_len)
 		}
 	}
-	var key = getData(KEYS_GETDEVICEAD_XOR)
+	var key = getData(KEYS_GETDEVICEKEY_XOR)
 	for idx in 0 ..< key_len {
 		key[idx] ^= (udidHash[idx] &* UInt8(idx + 1)) ^ (modelHash[idx] &* UInt8(idx + 1))
 	}

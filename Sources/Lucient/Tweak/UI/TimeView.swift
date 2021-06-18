@@ -16,15 +16,18 @@ internal struct TimeView: View {
 		formatter.dateFormat = "hh\nmm"
 		return formatter
 	}()
-
 	private let timeObserver = NotificationCenter.default.publisher(for: NSNotification.Name("me.aspenuwu.lucient.time"))
 
-	@State private var size: CGFloat = 128
+    @Preference("mode", identifier: "me.aspenuwu.lucient") var mode = false
 	@State private var date = Date()
+    
+    private func font() -> Font {
+        Font.system(size: 128, weight: .thin, design: .rounded)
+    }
 
 	var body: some View {
 		Text(fmt.string(from: date))
-			.font(.system(size: size, weight: .thin, design: .rounded))
+			.font(font())
 			.multilineTextAlignment(.center)
 			.onReceive(timeObserver) { _ in
 				date = Date()
@@ -35,11 +38,4 @@ internal struct TimeView: View {
 @_cdecl("makeTimeView")
 public dynamic func makeTimeView() -> UIViewController? {
 	UIHostingController(rootView: TimeView.view)
-}
-
-struct TimeView_Previews: PreviewProvider {
-	static var previews: some View {
-		TimeView()
-			.previewDevice("iPhone 11")
-	}
 }

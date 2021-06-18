@@ -6,4 +6,4 @@ Description: An awesome Orion tweak!
 Maintainer: Lucy
 Author: Lucy
 Section: Tweaks
-Depends: firmware (>= 14.0)
+Depends: firmware (>= 14.0), preferenceloader
