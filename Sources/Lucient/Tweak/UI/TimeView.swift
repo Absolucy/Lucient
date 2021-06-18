@@ -19,7 +19,7 @@ internal struct TimeView: View {
 
 	private let timeObserver = NotificationCenter.default.publisher(for: NSNotification.Name("moe.absolucy.lucient.time"))
 
-	@Preference("appearance", identifier: "moe.absolucy.lucient") var appearance = 0
+	@Preference("appearance", identifier: "moe.absolucy.lucient") var appearance = 1
 	@State private var date = Date()
 
 	private func font() -> Font {

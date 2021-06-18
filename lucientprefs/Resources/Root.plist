@@ -8,6 +8,14 @@
 	<array>
 		<dict>
 			<key>cell</key>
+			<string>PSGroupCell</string>
+			<key>headerCellClass</key>
+			<string>HBPackageNameHeaderCell</string>
+			<key>packageIdentifier</key>
+			<string>moe.absolucy.lucient</string>
+		</dict>
+		<dict>
+			<key>cell</key>
 			<string>PSSwitchCell</string>
 			<key>default</key>
 			<true/>
@@ -22,7 +30,10 @@
 			<key>cell</key>
 			<string>PSGroupCell</string>
 			<key>label</key>
-			<string>Appearance Mode</string>
+			<string>Style</string>
+			<key>footerText</key>
+			<string>This simply changes the font used for the lock screen.
+Changes will apply immediately, no respring needed.</string>
 		</dict>
 		<dict>
 			<key>cell</key>
@@ -49,6 +60,36 @@
 			<string>PSGroupCell</string>
 			<key>label</key>
 			<string>Credits</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTwitterCell</string>
+			<key>label</key>
+			<string>Lucy</string>
+			<key>user</key>
+			<string>Absolucyyy</string>
+			<key>userID</key>
+			<string>1265822802554368000</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTwitterCell</string>
+			<key>label</key>
+			<string>Amy</string>
+			<key>user</key>
+			<string>elihwyma</string>
+			<key>userID</key>
+			<string>1003029994682150912</string>
+		</dict>
+		<dict>
+			<key>cellClass</key>
+			<string>HBTwitterCell</string>
+			<key>label</key>
+			<string>Alpha</string>
+			<key>user</key>
+			<string>Kutarin_</string>
+			<key>userID</key>
+			<string>1153937887</string>
 		</dict>
 	</array>
 </dict>

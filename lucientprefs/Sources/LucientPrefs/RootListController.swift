@@ -1,7 +1,8 @@
 import LucientPrefsC
 import Preferences
+import CepheiPrefs
 
-class RootListController: PSListController {
+class RootListController: HBRootListController {
 	override var specifiers: NSMutableArray? {
 		get {
 			if let specifiers = value(forKey: "_specifiers") as? NSMutableArray {

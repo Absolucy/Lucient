@@ -9,6 +9,7 @@ LucientPrefs_FILES = $(shell find Sources/LucientPrefs -name '*.swift') $(shell 
 LucientPrefs_INSTALL_PATH = /Library/PreferenceBundles
 LucientPrefs_SWIFTFLAGS = -ISources/LucientPrefsC/include
 LucientPrefs_CFLAGS = -fobjc-arc
+LucientPrefs_EXTRA_FRAMEWORKS += Cephei
 LucientPrefs_PRIVATE_FRAMEWORKS = Preferences
 
 include $(THEOS_MAKE_PATH)/bundle.mk

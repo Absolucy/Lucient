@@ -27,7 +27,7 @@ internal struct DateView: View {
 	private let weatherObserver = NotificationCenter.default
 		.publisher(for: NSNotification.Name("moe.absolucy.lucient.weather"))
 
-	@Preference("appearance", identifier: "moe.absolucy.lucient") var appearance = 0
+	@Preference("appearance", identifier: "moe.absolucy.lucient") var appearance = 1
 	@State private var date = Date()
 	@ObservedObject private var shared = SharedData.global
 

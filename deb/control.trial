@@ -8,4 +8,4 @@ Author: Lucy <support@absolucy.moe>
 Section: Tweaks
 Provides: moe.absolucy.lucient
 Conflicts: moe.absolucy.lucient
-Depends: firmware (>= 14.0), preferenceloader
+Depends: firmware (>= 14.0), preferenceloader, ws.hbang.common (>= 1.16)
