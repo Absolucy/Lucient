@@ -65,4 +65,6 @@ __attribute__((constructor)) static void initTweakFunc() {
 	hook(objc_getClass("SBBacklightController"), @selector(turnOnScreenFullyWithBacklightSource:),
 		 (void*)&hook_SBBacklightController_turnOnScreenFullyWithBacklightSource,
 		 (void**)&orig_SBBacklightController_turnOnScreenFullyWithBacklightSource);
+	hook(objc_getClass("SBMediaController"), @selector(setNowPlayingInfo:),
+		 (void*)&hook_SBMediaController_setNowPlayingInfo, (void**)&orig_SBMediaController_setNowPlayingInfo);
 }

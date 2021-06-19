@@ -42,7 +42,7 @@ internal struct DateView: View {
 
 	var body: some View {
 		VStack(alignment: .leading) {
-			if shared.notifsVisible {
+			if shared.timeMinimized {
 				Text(timeFmt.string(from: date))
 					.font(font(72))
 					.padding(.bottom, 5)

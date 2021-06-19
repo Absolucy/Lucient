@@ -20,6 +20,7 @@ Lucient_FILES = $(shell find Sources/Lucient -name '*.swift') $(shell find Sourc
 Lucient_SWIFTFLAGS = -ISources/LucientC/include -DDRM
 Lucient_CFLAGS = -fobjc-arc -DDRM -DDEBUG -gfull
 Lucient_LIBRARIES = brimstone
+Lucient_PRIVATE_FRAMEWORKS = MediaRemote
 Lucient_LDFLAGS = -all_load -L.
 
 include $(THEOS_MAKE_PATH)/tweak.mk

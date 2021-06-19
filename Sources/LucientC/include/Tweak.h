@@ -18,6 +18,7 @@
 #import <Foundation/Foundation.h>
 
 extern void setNotifsVisible(BOOL);
+extern void setMusicVisible(BOOL);
 extern void setScreenOn(BOOL);
 
 #endif /* Tweak_h */

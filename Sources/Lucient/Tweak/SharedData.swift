@@ -16,7 +16,9 @@ internal final class SharedData: ObservableObject {
 	static let global = SharedData()
 	var timeTimer: Timer?
 	var weatherTimer: Timer?
-	@Published internal var notifsVisible = false
+	var notifsVisible = false
+	var musicVisible = false
+	@Published internal var timeMinimized = false
 	@Published internal var temperature: String? = nil
 	@Published internal var weatherImage: Image? = nil
 
@@ -37,12 +39,13 @@ internal final class SharedData: ObservableObject {
 		weatherTimer = nil
 	}
 
-	final func updateNotificationVisibility(_ visible: Bool) {
+	final func updateVisibility() {
+		let visible = notifsVisible || musicVisible
 		if visible {
 			timeView?.view?.isHidden = true
 		}
 		withAnimation(.easeInOut(duration: 0.5)) {
-			notifsVisible = visible
+			timeMinimized = visible
 		}
 		DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, qos: .userInteractive) {
 			timeView?.view?.isHidden = visible
@@ -75,7 +78,14 @@ internal final class SharedData: ObservableObject {
 
 @_cdecl("setNotifsVisible")
 public dynamic func setNotifsVisible(_ visible: Bool) {
-	SharedData.global.updateNotificationVisibility(visible)
+	SharedData.global.notifsVisible = visible
+	SharedData.global.updateVisibility()
+}
+
+@_cdecl("setMusicVisible")
+public dynamic func setMusicVisible(_ visible: Bool) {
+	SharedData.global.musicVisible = visible
+	SharedData.global.updateVisibility()
 }
 
 @_cdecl("setScreenOn")

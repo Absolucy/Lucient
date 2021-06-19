@@ -1,6 +1,6 @@
+import CepheiPrefs
 import LucientPrefsC
 import Preferences
-import CepheiPrefs
 
 class RootListController: HBRootListController {
 	override var specifiers: NSMutableArray? {

@@ -70,4 +70,7 @@ extern void hook_SBLockScreenManager_lockUIFromSource(UIView* self, SEL cmd, int
 extern void (*orig_SBBacklightController_turnOnScreenFullyWithBacklightSource)(UIView* self, SEL cmd, long long arg1);
 extern void hook_SBBacklightController_turnOnScreenFullyWithBacklightSource(UIView* self, SEL cmd, long long arg1);
 
+extern void (*orig_SBMediaController_setNowPlayingInfo)(NSObject* self, SEL cmd, id arg1);
+extern void hook_SBMediaController_setNowPlayingInfo(NSObject* self, SEL cmd, id arg1);
+
 #endif /* Hooks_h */
