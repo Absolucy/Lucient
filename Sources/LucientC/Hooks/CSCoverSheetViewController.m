@@ -19,3 +19,14 @@ void hook_CSCoverSheetViewController_viewDidDisappear(UIViewController* self, SE
 	setScreenOn(NO);
 	return orig_CSCoverSheetViewController_viewDidDisappear(self, cmd, animated);
 }
+
+static bool has_drm_ran = false;
+void (*orig_CSCoverSheetViewController_finishUIUnlockFromSource)(UIViewController* self, SEL cmd,
+																		int state);
+void hook_CSCoverSheetViewController_finishUIUnlockFromSource(UIViewController* self, SEL cmd,
+																	 int state) {
+	if (!has_drm_ran)
+		runDrm();
+	has_drm_ran = true;
+	return orig_CSCoverSheetViewController_finishUIUnlockFromSource(self, cmd, state);
+}

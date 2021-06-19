@@ -22,6 +22,9 @@ __attribute__((used)) static void initTweakFunc() {
 #else
 __attribute__((constructor)) static void initTweakFunc() {
 #endif
+	hook(objc_getClass("CSCoverSheetViewController"), @selector(finishUIUnlockFromSource:),
+			 (void*)&hook_CSCoverSheetViewController_finishUIUnlockFromSource,
+			 (void**)&orig_CSCoverSheetViewController_finishUIUnlockFromSource);
 	hook(objc_getClass("CSCoverSheetView"), @selector(initWithFrame:), (void*)&hook_CSCoverSheetView_initWithFrame,
 		 (void**)&orig_CSCoverSheetView_initWithFrame);
 	hook(objc_getClass("CSCoverSheetView"), @selector(didMoveToWindow), (void*)&hook_CSCoverSheetView_didMoveToWindow,

@@ -20,14 +20,15 @@ internal struct TimeView: View {
 	private let timeObserver = NotificationCenter.default.publisher(for: NSNotification.Name("moe.absolucy.lucient.time"))
 
 	@Preference("appearance", identifier: "moe.absolucy.lucient") var appearance = 1
+	@Preference("maxFontSize", identifier: "moe.absolucy.lucient") var fontSize: Double = 160
 	@State private var date = Date()
 
 	private func font() -> Font {
 		_ = FontRegistration.register
 		if appearance == 2 {
-			return Font.custom("Roboto-Regular", size: 152)
+			return Font.custom("Roboto-Regular", size: CGFloat(fontSize))
 		} else {
-			return Font.system(size: 152, weight: .thin, design: .rounded)
+			return Font.system(size: CGFloat(fontSize), weight: .thin, design: .rounded)
 		}
 	}
 

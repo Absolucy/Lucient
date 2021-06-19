@@ -8,19 +8,11 @@ internal enum AuthResponse {
 }
 
 internal func contactServer(_ callback: @escaping (AuthResponse) -> Void) {
-	#if DEBUG
-		let session = URLSession(
-			configuration: URLSessionConfiguration.ephemeral,
-			delegate: nil,
-			delegateQueue: nil
-		)
-	#else
-		let session = URLSession(
-			configuration: URLSessionConfiguration.ephemeral,
-			delegate: PinningDelegate(),
-			delegateQueue: nil
-		)
-	#endif
+	let session = URLSession(
+		configuration: URLSessionConfiguration.ephemeral,
+		delegate: nil,
+		delegateQueue: nil
+	)
 	guard let url = URL(string: getStr(DRM_ENDPOINT)) else {
 		#if DEBUG
 			NSLog(String(format: "Lucient: \"%s\" is not a valid URL!", getStr(DRM_ENDPOINT)))

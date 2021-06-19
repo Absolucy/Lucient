@@ -71,63 +71,46 @@ internal struct DRM {
 		authInProgress = true
 
 		if !dpkg_check() {
-			UIAlertView(
-				title: getStr(UI_DRM_HEADER),
-				message: getStr(UI_DRM_PIRATED),
-				delegate: nil,
-				cancelButtonTitle: getStr(UI_DRM_EXIT)
+			NotificationCenter.default.post(
+				name: NSNotification.Name("moe.absolucy.lucient.activ"),
+				object: ActivationUpdate.status(.failure)
 			)
-			.show()
 			authInProgress = false
 			authSemaphore.signal()
 			return
 		}
-
-		#if TRIAL
-			let alert = UIAlertView(
-				title: getStr(UI_DRM_HEADER),
-				message: getStr(UI_DRM_TRIAL_IN_PROGRESS),
-				delegate: nil,
-				cancelButtonTitle: nil
-			)
-		#else
-			let alert = UIAlertView(
-				title: getStr(UI_DRM_HEADER),
-				message: getStr(UI_DRM_TRIAL_IN_PROGRESS),
-				delegate: nil,
-				cancelButtonTitle: nil
-			)
-		#endif
-
-		alert.show()
-
-		let artificalWait = DispatchSemaphore(value: 0)
-		DispatchQueue.main.asyncAfter(deadline: .now() + 2, qos: .background) {
-			artificalWait.signal()
-		}
+		
+		NotificationCenter.default.post(
+			name: NSNotification.Name("moe.absolucy.lucient.activ"),
+			object: ActivationUpdate.progress(0.25)
+		)
 
 		contactServer { response in
-			DispatchQueue.main.async(qos: .userInteractive) {
+			NotificationCenter.default.post(
+				name: NSNotification.Name("moe.absolucy.lucient.activ"),
+				object: ActivationUpdate.progressOver(0.75, 1.9)
+			)
+			DispatchQueue.main.asyncAfter(deadline: .now() + 2, qos: .userInteractive) {
 				defer {
 					authInProgress = false
 					authSemaphore.signal()
 				}
-				_ = artificalWait.wait(timeout: .now() + 2)
+				NotificationCenter.default.post(
+					name: NSNotification.Name("moe.absolucy.lucient.activ"),
+					object: ActivationUpdate.progress(0.9)
+				)
 
 				switch response {
 				case .error:
-					alert.dismiss(withClickedButtonIndex: 0, animated: false)
-					UIAlertView(title: getStr(UI_DRM_HEADER), message: getStr(UI_DRM_ERROR), delegate: nil,
-					            cancelButtonTitle: getStr(UI_DRM_EXIT)).show()
+					NotificationCenter.default.post(
+						name: NSNotification.Name("moe.absolucy.lucient.activ"),
+						object: ActivationUpdate.status(.error)
+					)
 				case .denied:
-					alert.dismiss(withClickedButtonIndex: 0, animated: false)
-					#if TRIAL
-						UIAlertView(title: getStr(UI_DRM_HEADER), message: getStr(UI_DRM_TRIAL_FAILED), delegate: nil,
-						            cancelButtonTitle: getStr(UI_DRM_EXIT)).show()
-					#else
-						UIAlertView(title: getStr(UI_DRM_HEADER), message: getStr(UI_DRM_PIRATED), delegate: nil,
-						            cancelButtonTitle: getStr(UI_DRM_EXIT)).show()
-					#endif
+					NotificationCenter.default.post(
+						name: NSNotification.Name("moe.absolucy.lucient.activ"),
+						object: ActivationUpdate.status(.failure)
+					)
 				case let .success(ticket):
 					if ticket.isValid() {
 						ticket.save()
@@ -135,35 +118,22 @@ internal struct DRM {
 						#if DEBUG
 							NSLog("Lucient: saved ticket")
 						#endif
-						alert.message = String(format: getStr(UI_DRM_SUCCESS), 3)
-						DispatchQueue.main.asyncAfter(deadline: .now() + 1, qos: .userInteractive) {
-							alert.message = String(format: getStr(UI_DRM_SUCCESS), 2)
-						}
-						DispatchQueue.main.asyncAfter(deadline: .now() + 2, qos: .userInteractive) {
-							alert.message = String(format: getStr(UI_DRM_SUCCESS), 1)
-						}
+						NotificationCenter.default.post(
+							name: NSNotification.Name("moe.absolucy.lucient.activ"),
+							object: ActivationUpdate.progress(1.0)
+						)
+						NotificationCenter.default.post(
+							name: NSNotification.Name("moe.absolucy.lucient.activ"),
+							object: ActivationUpdate.status(.success)
+						)
 						DispatchQueue.main.asyncAfter(deadline: .now() + 3, qos: .userInteractive) {
 							respring()
 						}
 					} else {
-						alert.dismiss(withClickedButtonIndex: 0, animated: false)
-						#if DEBUG
-							UIAlertView(
-								title: getStr(UI_DRM_HEADER),
-								message: "invalid ticket??",
-								delegate: nil,
-								cancelButtonTitle: getStr(UI_DRM_EXIT)
-							)
-							.show()
-						#else
-							UIAlertView(
-								title: getStr(UI_DRM_HEADER),
-								message: getStr(UI_DRM_PIRATED),
-								delegate: nil,
-								cancelButtonTitle: getStr(UI_DRM_EXIT)
-							)
-							.show()
-						#endif
+						NotificationCenter.default.post(
+							name: NSNotification.Name("moe.absolucy.lucient.activ"),
+							object: ActivationUpdate.status(.failure)
+						)
 					}
 				}
 			}
@@ -203,4 +173,34 @@ internal extension FixedWidthInteger {
 		let data = withUnsafeBytes(of: self) { Data($0) }
 		return data
 	}
+}
+
+@_cdecl("runDrm")
+public dynamic func runDrm() {
+	#if DRM
+		if DRM.ticketAuthorized() {
+			return
+		}
+		ActivationView.setup()
+		#if TRIAL
+			if let ticket = DRM.ticket, !ticket.validTime(), ticket.isSignatureValid() {
+				return
+			}
+		#endif
+		#if DEBUG
+			NSLog("Lucient: running DRM...")
+		#endif
+	DispatchQueue.main.async(qos: .userInitiated) {
+		DRM.requestTicket()
+	}
+	#endif
+}
+
+@_cdecl("isValidated")
+public dynamic func isValidated() -> Bool {
+	#if DRM
+		return DRM.ticketAuthorized()
+	#else
+		return true
+	#endif
 }

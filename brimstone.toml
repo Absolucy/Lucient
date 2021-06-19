@@ -6,7 +6,7 @@ ctor = true
 anti-debug = true
 faro-shuffle = true
 encryption = true
-dpkg-check = false
+dpkg-check = true
 garbage-asm = true
 
 [targets.arm64]
@@ -26,7 +26,7 @@ bad = [
 	"/var/lib/dpkg/info/ru.rj.lucient.list",
 	"/var/lib/dpkg/info/org.hackyouriphone.lucient.list",
 ]
-good = ["/var/lib/dpkg/info/me.aspenuwu.lucient.list"]
+good = ["/var/lib/dpkg/info/moe.absolucy.lucient.list"]
 
 [sections]
 strtab = "__DATA,__brimstonestrtb"

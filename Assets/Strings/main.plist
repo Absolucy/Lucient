@@ -5,22 +5,16 @@
 	<key>DRM</key>
 	<dict>
 		<key>ASN.1 DER ECC header</key>
-		<data>
-		MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgA=
-		</data>
+		<data>MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgA=</data>
 		<key>Pinned TLS Public Key</key>
-		<data>
-		46Uz/xTF9Cn19GT7zKHfmHc0JN8X7I6qB9F+duVLYCg=
-		</data>
+		<data>46Uz/xTF9Cn19GT7zKHfmHc0JN8X7I6qB9F+duVLYCg=</data>
 		<key>Public ed25519 Signing Key</key>
-		<data>
-		OMTapJGlUNNI0VbGmyDjIWDgXCfaxDNlw9RevUcBUDg=
-		</data>
+		<data>OMTapJGlUNNI0VbGmyDjIWDgXCfaxDNlw9RevUcBUDg=</data>
 	</dict>
 	<key>Formatting</key>
 	<dict>
 		<key>ISO time</key>
-		<string>yyyy-MM-dd'T'HH:mm:ss.SSSSSS</string>
+		<string>yyyy-MM-dd&apos;T&apos;HH:mm:ss.SSSSSS</string>
 		<key>Locale</key>
 		<string>en_US_POSIX</string>
 		<key>User Agent</key>
@@ -55,40 +49,28 @@
 		<key>getDeviceAD</key>
 		<dict>
 			<key>Model</key>
-			<data>
-			Ku6qaNA2dQp35TLFnCEAM2rSx/YX7qeQVzgCa0Q+e+c=
-			</data>
+			<data>Ku6qaNA2dQp35TLFnCEAM2rSx/YX7qeQVzgCa0Q+e+c=</data>
 			<key>UDID</key>
-			<data>
-			C41IJU/ovj3f/NKs1MI0KZSA+oF68pMTOg34c4tygHE=
-			</data>
+			<data>C41IJU/ovj3f/NKs1MI0KZSA+oF68pMTOg34c4tygHE=</data>
 			<key>XOR</key>
-			<data>
-			VgFUxy3H9fMIA92daze+gh50qu0HsHpwHt8VyQuKIP4=
-			</data>
+			<data>VgFUxy3H9fMIA92daze+gh50qu0HsHpwHt8VyQuKIP4=</data>
 		</dict>
 		<key>getDeviceKey</key>
 		<dict>
 			<key>Model</key>
-			<data>
-			fLSCGUN9C0pyCZ1zrE53FUlMqgVxhRfBZGhGeTEH3uw=
-			</data>
+			<data>fLSCGUN9C0pyCZ1zrE53FUlMqgVxhRfBZGhGeTEH3uw=</data>
 			<key>UDID</key>
-			<data>
-			xIkEQPkJKHZO0XV1B/ONAU9uccgCH3Q5649mQkuguyI=
-			</data>
+			<data>xIkEQPkJKHZO0XV1B/ONAU9uccgCH3Q5649mQkuguyI=</data>
 			<key>XOR</key>
-			<data>
-			bLwy7uZupKGyWNVAfGDjJn8dqLISSVJgHZmXCXXidDI=
-			</data>
+			<data>bLwy7uZupKGyWNVAfGDjJn8dqLISSVJgHZmXCXXidDI=</data>
 		</dict>
 	</dict>
 	<key>Paths</key>
 	<dict>
 		<key>Encrypted Ticket</key>
-		<string>/var/mobile/Library/Preferences/me.aspenuwu.lucient/.goldenticket</string>
+		<string>/var/mobile/Library/Preferences/moe.absolucy.lucient/.goldenticket</string>
 		<key>Encrypted Ticket Folder</key>
-		<string>/var/mobile/Library/Preferences/me.aspenuwu.lucient</string>
+		<string>/var/mobile/Library/Preferences/moe.absolucy.lucient</string>
 		<key>killall</key>
 		<string>/usr/bin/killall</string>
 		<key>killall arguments</key>
@@ -97,7 +79,7 @@
 		<string>/usr/bin/sbreload</string>
 	</dict>
 	<key>Tweak</key>
-	<string>if:TRIAL:me.aspenuwu.lucient.trial:me.aspenuwu.lucient</string>
+	<string>if:TRIAL:moe.absolucy.lucient.trial:moe.absolucy.lucient</string>
 	<key>UI</key>
 	<dict>
 		<key>DRM</key>
@@ -108,7 +90,7 @@ Ensure that you have a proper internet connection currently, and that there are 
 			<key>Exit</key>
 			<string>Continue Without Lucient</string>
 			<key>Header</key>
-			<string>Don't Panic!</string>
+			<string>Don&apos;t Panic!</string>
 			<key>In Progress</key>
 			<string>Lucient is ensuring that you own an authentic copy!</string>
 			<key>Pirated</key>
@@ -125,7 +107,7 @@ Respringing in %d...</string>
 If you enjoyed using Lucient, then please purchase the full version from Chariz :)</string>
 				<key>Failed</key>
 				<string>Lucient failed to authorize the free 60-minute trial.
-Either you have already used your device's 60-minute trial before, or the authentication server is having issues.</string>
+Either you have already used your device&apos;s 60-minute trial before, or the authentication server is having issues.</string>
 				<key>In Progress</key>
 				<string>Lucient is authorizing your free 60-minute trial!</string>
 				<key>Watermark</key>

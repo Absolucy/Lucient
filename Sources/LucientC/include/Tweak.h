@@ -20,5 +20,8 @@
 extern void setNotifsVisible(BOOL);
 extern void setMusicVisible(BOOL);
 extern void setScreenOn(BOOL);
+extern void showActivationWindow(void);
+extern void runDrm(void);
+extern BOOL isValidated(void);
 
 #endif /* Tweak_h */

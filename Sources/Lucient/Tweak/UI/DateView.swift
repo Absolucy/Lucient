@@ -28,15 +28,17 @@ internal struct DateView: View {
 		.publisher(for: NSNotification.Name("moe.absolucy.lucient.weather"))
 
 	@Preference("appearance", identifier: "moe.absolucy.lucient") var appearance = 1
+	@Preference("minFontSize", identifier: "moe.absolucy.lucient") var timeFontSize: Double = 72
+	@Preference("dateFontSize", identifier: "moe.absolucy.lucient") var dateFontSize: Double = 24
 	@State private var date = Date()
 	@ObservedObject private var shared = SharedData.global
 
-	private func font(_ size: CGFloat) -> Font {
+	private func font(_ size: Double) -> Font {
 		_ = FontRegistration.register
 		if appearance == 2 {
-			return Font.custom("Roboto-Regular", size: size)
+			return Font.custom("Roboto-Regular", size: CGFloat(size))
 		} else {
-			return Font.system(size: size, weight: .light, design: .rounded)
+			return Font.system(size: CGFloat(size), weight: .light, design: .rounded)
 		}
 	}
 
@@ -44,7 +46,7 @@ internal struct DateView: View {
 		VStack(alignment: .leading) {
 			if shared.timeMinimized {
 				Text(timeFmt.string(from: date))
-					.font(font(72))
+					.font(font(timeFontSize))
 					.padding(.bottom, 5)
 					.animation(.easeInOut)
 					.transition(
@@ -55,15 +57,15 @@ internal struct DateView: View {
 					)
 			}
 			Text(dateFmt.string(from: date))
-				.font(font(24))
+				.font(font(dateFontSize))
 			if let temperature = shared.temperature, let image = shared.weatherImage {
 				HStack {
 					image
 						.resizable()
 						.scaledToFit()
-						.frame(width: 48, height: 48)
+						.frame(width: CGFloat(dateFontSize * 2), height: CGFloat(dateFontSize * 2))
 					Text(temperature)
-						.font(font(24))
+						.font(font(dateFontSize))
 					Spacer()
 				}
 			}
