@@ -11,9 +11,14 @@ import UIKit
 internal struct TimeView: View {
 	static var view = TimeView()
 
-	private let fmt: DateFormatter = {
+	private let hourFmt: DateFormatter = {
 		let formatter = DateFormatter()
-		formatter.dateFormat = "hh\nmm"
+		formatter.dateFormat = "hh"
+		return formatter
+	}()
+	private let minuteFmt: DateFormatter = {
+		let formatter = DateFormatter()
+		formatter.dateFormat = "mm"
 		return formatter
 	}()
 
@@ -37,12 +42,22 @@ internal struct TimeView: View {
 	}
 
 	var body: some View {
-		Text(fmt.string(from: date))
-			.font(font())
-			.multilineTextAlignment(.center)
-			.onReceive(timeObserver) { _ in
-				date = Date()
-			}
+		VStack(alignment: .center, spacing: 0) {
+			Text(hourFmt.string(from: date))
+				.font(font())
+				.lineLimit(1)
+				.offset(x: 0, y: 15)
+				.onReceive(timeObserver) { _ in
+					date = Date()
+				}
+			Text(minuteFmt.string(from: date))
+				.font(font())
+				.lineLimit(1)
+				.offset(x: 0, y: -15)
+				.onReceive(timeObserver) { _ in
+					date = Date()
+				}
+		}
 	}
 }
 
