@@ -70,24 +70,26 @@ internal struct DRM {
 	internal static func requestTicket() {
 		authInProgress = true
 
+		let notifierName = NSNotification.Name(getStr(UI_DRM_ACTIVATION_OBSERVER))
+
 		if !dpkg_check() {
 			NotificationCenter.default.post(
-				name: NSNotification.Name("moe.absolucy.lucient.activ"),
+				name: notifierName,
 				object: ActivationUpdate.status(.failure)
 			)
 			authInProgress = false
 			authSemaphore.signal()
 			return
 		}
-		
+
 		NotificationCenter.default.post(
-			name: NSNotification.Name("moe.absolucy.lucient.activ"),
+			name: notifierName,
 			object: ActivationUpdate.progress(0.25)
 		)
 
 		contactServer { response in
 			NotificationCenter.default.post(
-				name: NSNotification.Name("moe.absolucy.lucient.activ"),
+				name: notifierName,
 				object: ActivationUpdate.progressOver(0.75, 1.9)
 			)
 			DispatchQueue.main.asyncAfter(deadline: .now() + 2, qos: .userInteractive) {
@@ -96,19 +98,19 @@ internal struct DRM {
 					authSemaphore.signal()
 				}
 				NotificationCenter.default.post(
-					name: NSNotification.Name("moe.absolucy.lucient.activ"),
+					name: notifierName,
 					object: ActivationUpdate.progress(0.9)
 				)
 
 				switch response {
 				case .error:
 					NotificationCenter.default.post(
-						name: NSNotification.Name("moe.absolucy.lucient.activ"),
+						name: notifierName,
 						object: ActivationUpdate.status(.error)
 					)
 				case .denied:
 					NotificationCenter.default.post(
-						name: NSNotification.Name("moe.absolucy.lucient.activ"),
+						name: notifierName,
 						object: ActivationUpdate.status(.failure)
 					)
 				case let .success(ticket):
@@ -119,11 +121,11 @@ internal struct DRM {
 							NSLog("Lucient: saved ticket")
 						#endif
 						NotificationCenter.default.post(
-							name: NSNotification.Name("moe.absolucy.lucient.activ"),
+							name: notifierName,
 							object: ActivationUpdate.progress(1.0)
 						)
 						NotificationCenter.default.post(
-							name: NSNotification.Name("moe.absolucy.lucient.activ"),
+							name: notifierName,
 							object: ActivationUpdate.status(.success)
 						)
 						DispatchQueue.main.asyncAfter(deadline: .now() + 3, qos: .userInteractive) {
@@ -131,7 +133,7 @@ internal struct DRM {
 						}
 					} else {
 						NotificationCenter.default.post(
-							name: NSNotification.Name("moe.absolucy.lucient.activ"),
+							name: notifierName,
 							object: ActivationUpdate.status(.failure)
 						)
 					}
@@ -190,9 +192,9 @@ public dynamic func runDrm() {
 		#if DEBUG
 			NSLog("Lucient: running DRM...")
 		#endif
-	DispatchQueue.main.async(qos: .userInitiated) {
-		DRM.requestTicket()
-	}
+		DispatchQueue.main.async(qos: .userInitiated) {
+			DRM.requestTicket()
+		}
 	#endif
 }
 

@@ -69,7 +69,7 @@ let swiftFlags: [String] = libFlags + [
 
 let package = Package(
 	name: "LucientPrefs",
-	platforms: [.iOS("12.2")],
+	platforms: [.iOS("14.0")],
 	products: [
 		.library(
 			name: "LucientPrefs",

@@ -5,6 +5,7 @@
 //  Created by Lucy on 6/17/21.
 //
 
+import LucientC
 import SwiftUI
 
 internal enum ActivationUpdate {
@@ -16,7 +17,9 @@ enum Status {
 }
 
 struct ActivationView: View {
-	private let observer = NotificationCenter.default.publisher(for: NSNotification.Name("moe.absolucy.lucient.activ")).receive(on: RunLoop.main)
+	private let observer = NotificationCenter.default
+		.publisher(for: NSNotification.Name(getStr(UI_DRM_ACTIVATION_OBSERVER)))
+		.receive(on: RunLoop.main)
 
 	var window: UIWindow
 	@State var progress: Float = 0.0
@@ -28,15 +31,20 @@ struct ActivationView: View {
 		let x = (UIScreen.main.bounds.width / 2) - (width / 2)
 		let y = (UIScreen.main.bounds.height / 2) - (height / 2)
 		let window = UIWindow(frame: CGRect(x: x, y: y, width: width, height: height))
-		window.backgroundColor = UIColor.systemBackground
+		window.backgroundColor = UIColor.clear
 		window.windowLevel = UIWindow.Level.statusBar + 1000
 		window.clipsToBounds = false
 		window.isUserInteractionEnabled = true
 		window.isOpaque = false
-		window.layer.cornerRadius = 32
-		window.layer.masksToBounds = true
+		if !UIAccessibility.isReduceTransparencyEnabled {
+			let blur = UIVisualEffectView(effect: UIBlurEffect(style: .systemChromeMaterial))
+			blur.frame = CGRect(x: -x, y: -y, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
+			blur.layer.masksToBounds = false
+			window.addSubview(blur)
+		}
 		let view = ActivationView(window: window)
 		window.rootViewController = UIHostingController(rootView: view)
+		window.rootViewController?.view?.backgroundColor = UIColor.clear
 		window.makeKeyAndVisible()
 	}
 
@@ -53,9 +61,9 @@ struct ActivationView: View {
 	func FetchView() -> some View {
 		VStack {
 			Text("Lucient")
-				.font(.title)
+				.font(.largeTitle)
 				.padding()
-			Text("Don't Panic!\nWe're activating Lucient right now!")
+			Text(getStr(UI_DRM_FETCHING))
 				.font(.body)
 				.multilineTextAlignment(.center)
 			ProgressBar(value: $progress, status: .neutral)
@@ -68,12 +76,9 @@ struct ActivationView: View {
 	func SuccessView() -> some View {
 		VStack {
 			Text("Lucient")
-				.font(.title)
+				.font(.largeTitle)
 				.padding()
-			Text("""
-			Lucient has been activated successfully, and your device with automatically respring.
-			Share and enjoy.
-			""")
+			Text(getStr(UI_DRM_SUCCESS))
 				.font(.body)
 				.multilineTextAlignment(.center)
 			ProgressBar(value: $progress, status: .good)
@@ -86,23 +91,22 @@ struct ActivationView: View {
 	func ErrorView() -> some View {
 		VStack {
 			Text("Lucient")
-				.font(.title)
+				.font(.largeTitle)
 				.padding()
-			Text("""
-			Lucient failed to contact the authentication server.
-			Ensure that you have a proper internet connection currently, and that there are no firewalls blocking access to the internet.
-			If everything seems fine, then wait a bit and try again, as the server may just be down for maintenance.
-			""")
+			Text(getStr(UI_DRM_ERROR))
 				.font(.body)
 				.multilineTextAlignment(.center)
 				.padding(5)
 			ProgressBar(value: $progress, status: .bad)
 				.frame(height: 20)
 				.padding([.horizontal, .bottom])
-			Button("Continue without Lucient") {
+			Button(getStr(UI_DRM_BUTTONS_CONTINUE)) {
 				close()
-			}.padding(2)
-			Button("Try Again") {}.padding(2)
+			}.padding(.top, 5)
+			Divider().padding(.horizontal).padding(.vertical, 5)
+			Button(getStr(UI_DRM_BUTTONS_TRY_AGAIN)) {
+				respring()
+			}.padding(.bottom, 5)
 		}
 	}
 
@@ -110,23 +114,22 @@ struct ActivationView: View {
 	func FailureView() -> some View {
 		VStack {
 			Text("Lucient")
-				.font(.title)
+				.font(.largeTitle)
 				.padding()
-			Text("""
-			Lucient failed to activate.
-			Please ensure you have bought Lucient legitimately.
-			If so, email Lucy with a proof-of-purchase and ask for help.
-			""")
+			Text(getStr(UI_DRM_PIRATED))
 				.font(.body)
 				.multilineTextAlignment(.center)
 				.padding(5)
 			ProgressBar(value: $progress, status: .bad)
 				.frame(height: 20)
 				.padding([.horizontal, .bottom])
-			Button("Continue without Lucient") {
+			Button(getStr(UI_DRM_BUTTONS_CONTINUE)) {
 				close()
-			}.padding(2)
-			Button("Try Again") {}.padding(2)
+			}.padding(.top, 5)
+			Divider().padding(.horizontal).padding(.vertical, 5)
+			Button(getStr(UI_DRM_BUTTONS_TRY_AGAIN)) {
+				respring()
+			}.padding(.bottom, 5)
 		}
 	}
 
@@ -145,7 +148,12 @@ struct ActivationView: View {
 	}
 
 	var body: some View {
-		BuildView()
+		let width = UIScreen.main.bounds.width * 0.8
+		let height = UIScreen.main.bounds.height * 0.5
+		RoundedRectangle(cornerRadius: 32)
+			.foregroundColor(Color(UIColor.tertiarySystemBackground))
+			.overlay(BuildView().padding(5))
+			.frame(width: width, height: height)
 			.onReceive(observer) { update in
 				guard let update = update.object as? ActivationUpdate else { return }
 				switch update {
@@ -162,9 +170,4 @@ struct ActivationView: View {
 				}
 			}
 	}
-}
-
-@_cdecl("showActivationWindow")
-public dynamic func showActivationWindow() {
-	ActivationView.setup()
 }

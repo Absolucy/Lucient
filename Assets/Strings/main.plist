@@ -4,17 +4,15 @@
 <dict>
 	<key>DRM</key>
 	<dict>
-		<key>ASN.1 DER ECC header</key>
-		<data>MFkwEwYHKoZIzj0CAQYIKoZIzj0DAQcDQgA=</data>
-		<key>Pinned TLS Public Key</key>
-		<data>46Uz/xTF9Cn19GT7zKHfmHc0JN8X7I6qB9F+duVLYCg=</data>
 		<key>Public ed25519 Signing Key</key>
-		<data>OMTapJGlUNNI0VbGmyDjIWDgXCfaxDNlw9RevUcBUDg=</data>
+		<data>
+		OMTapJGlUNNI0VbGmyDjIWDgXCfaxDNlw9RevUcBUDg=
+		</data>
 	</dict>
 	<key>Formatting</key>
 	<dict>
 		<key>ISO time</key>
-		<string>yyyy-MM-dd&apos;T&apos;HH:mm:ss.SSSSSS</string>
+		<string>yyyy-MM-dd'T'HH:mm:ss.SSSSSS</string>
 		<key>Locale</key>
 		<string>en_US_POSIX</string>
 		<key>User Agent</key>
@@ -49,20 +47,32 @@
 		<key>getDeviceAD</key>
 		<dict>
 			<key>Model</key>
-			<data>Ku6qaNA2dQp35TLFnCEAM2rSx/YX7qeQVzgCa0Q+e+c=</data>
+			<data>
+			Ku6qaNA2dQp35TLFnCEAM2rSx/YX7qeQVzgCa0Q+e+c=
+			</data>
 			<key>UDID</key>
-			<data>C41IJU/ovj3f/NKs1MI0KZSA+oF68pMTOg34c4tygHE=</data>
+			<data>
+			C41IJU/ovj3f/NKs1MI0KZSA+oF68pMTOg34c4tygHE=
+			</data>
 			<key>XOR</key>
-			<data>VgFUxy3H9fMIA92daze+gh50qu0HsHpwHt8VyQuKIP4=</data>
+			<data>
+			VgFUxy3H9fMIA92daze+gh50qu0HsHpwHt8VyQuKIP4=
+			</data>
 		</dict>
 		<key>getDeviceKey</key>
 		<dict>
 			<key>Model</key>
-			<data>fLSCGUN9C0pyCZ1zrE53FUlMqgVxhRfBZGhGeTEH3uw=</data>
+			<data>
+			fLSCGUN9C0pyCZ1zrE53FUlMqgVxhRfBZGhGeTEH3uw=
+			</data>
 			<key>UDID</key>
-			<data>xIkEQPkJKHZO0XV1B/ONAU9uccgCH3Q5649mQkuguyI=</data>
+			<data>
+			xIkEQPkJKHZO0XV1B/ONAU9uccgCH3Q5649mQkuguyI=
+			</data>
 			<key>XOR</key>
-			<data>bLwy7uZupKGyWNVAfGDjJn8dqLISSVJgHZmXCXXidDI=</data>
+			<data>
+			bLwy7uZupKGyWNVAfGDjJn8dqLISSVJgHZmXCXXidDI=
+			</data>
 		</dict>
 	</dict>
 	<key>Paths</key>
@@ -84,44 +94,29 @@
 	<dict>
 		<key>DRM</key>
 		<dict>
+			<key>Activation Observer</key>
+			<string>moe.absolucy.lucient.activ</string>
+			<key>Buttons</key>
+			<dict>
+				<key>Continue</key>
+				<string>Continue without Lucient</string>
+				<key>Try Again</key>
+				<string>Try Again</string>
+			</dict>
 			<key>Error</key>
 			<string>Lucient failed to contact the authentication server.
-Ensure that you have a proper internet connection currently, and that there are no firewalls blocking access to the internet.</string>
-			<key>Exit</key>
-			<string>Continue Without Lucient</string>
-			<key>Header</key>
-			<string>Don&apos;t Panic!</string>
-			<key>In Progress</key>
-			<string>Lucient is ensuring that you own an authentic copy!</string>
+Ensure that you have a proper internet connection currently, and that there are no firewalls blocking access to the internet.
+If everything seems fine, then wait a bit and try again, as the server may just be down for maintenance.</string>
+			<key>Fetching</key>
+			<string>Don't Panic!
+We're activating Lucient right now!</string>
 			<key>Pirated</key>
-			<string>Lucient failed to verify itself as an authentic copy.
-If you have legitimately obtained Lucient, try reinstalling or respringing; if that does not work, please report this as a bug, with some sort of proof-of-purchase.
-If you have pirated Lucient, please buy it, as tweak development is my only source of decent money :(</string>
+			<string>Lucient failed to activate.
+Please ensure you have bought Lucient legitimately.
+If so, email Lucy with a proof-of-purchase and ask for help.</string>
 			<key>Success</key>
-			<string>Lucient has been successfully verified!
-Respringing in %d...</string>
-			<key>Trial</key>
-			<dict>
-				<key>Expired</key>
-				<string>Your free 60-minute trial of Lucient has expired!
-If you enjoyed using Lucient, then please purchase the full version from Chariz :)</string>
-				<key>Failed</key>
-				<string>Lucient failed to authorize the free 60-minute trial.
-Either you have already used your device&apos;s 60-minute trial before, or the authentication server is having issues.</string>
-				<key>In Progress</key>
-				<string>Lucient is authorizing your free 60-minute trial!</string>
-				<key>Watermark</key>
-				<string>TRIAL VERSION (%d minutes left)</string>
-			</dict>
-		</dict>
-		<key>Unlock Button</key>
-		<dict>
-			<key>Expired Font</key>
-			<string>ChalkboardSE-Regular</string>
-			<key>Respring</key>
-			<string>Respring</string>
-			<key>Unlock</key>
-			<string>Unlock</string>
+			<string>Lucient has been activated successfully, and your device will automatically respring.
+Share and enjoy.</string>
 		</dict>
 	</dict>
 	<key>Version</key>

@@ -21,12 +21,16 @@ internal struct TimeView: View {
 
 	@Preference("appearance", identifier: "moe.absolucy.lucient") var appearance = 1
 	@Preference("maxFontSize", identifier: "moe.absolucy.lucient") var fontSize: Double = 160
+	@Preference("customFont",
+	            identifier: "moe.absolucy.lucient") var customFont = "/Library/Lucy/LucientResources.bundle/Roboto.ttf"
 	@State private var date = Date()
 
 	private func font() -> Font {
 		_ = FontRegistration.register
 		if appearance == 2 {
 			return Font.custom("Roboto-Regular", size: CGFloat(fontSize))
+		} else if appearance == 3, let fontName = FontRegistration.register(url: URL(fileURLWithPath: customFont)) {
+			return Font.custom(fontName, size: CGFloat(fontSize))
 		} else {
 			return Font.system(size: CGFloat(fontSize), weight: .thin, design: .rounded)
 		}

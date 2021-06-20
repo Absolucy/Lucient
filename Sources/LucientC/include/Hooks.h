@@ -73,9 +73,7 @@ extern void hook_SBBacklightController_turnOnScreenFullyWithBacklightSource(UIVi
 extern void (*orig_SBMediaController_setNowPlayingInfo)(NSObject* self, SEL cmd, id arg1);
 extern void hook_SBMediaController_setNowPlayingInfo(NSObject* self, SEL cmd, id arg1);
 
-extern void (*orig_CSCoverSheetViewController_finishUIUnlockFromSource)(UIViewController* self, SEL cmd,
-																		int state);
-extern void hook_CSCoverSheetViewController_finishUIUnlockFromSource(UIViewController* self, SEL cmd,
-															  int state);
+extern void (*orig_CSCoverSheetViewController_finishUIUnlockFromSource)(UIViewController* self, SEL cmd, int state);
+extern void hook_CSCoverSheetViewController_finishUIUnlockFromSource(UIViewController* self, SEL cmd, int state);
 
 #endif /* Hooks_h */
