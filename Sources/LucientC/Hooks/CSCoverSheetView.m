@@ -23,6 +23,18 @@ id hook_CSCoverSheetView_initWithFrame(CSCoverSheetView* self, SEL cmd, CGRect f
 void (*orig_CSCoverSheetView_didMoveToWindow)(CSCoverSheetView* self, SEL cmd);
 void hook_CSCoverSheetView_didMoveToWindow(CSCoverSheetView* self, SEL cmd) {
 	orig_CSCoverSheetView_didMoveToWindow(self, cmd);
+	
+	if (!isValidated()) {
+		if (timeView) {
+			[timeView.view removeFromSuperview];
+			timeView = nil;
+		}
+		if (dateView) {
+			[dateView.view removeFromSuperview];
+			dateView = nil;
+		}
+		return;
+	}
 
 	if (!timeView) {
 		timeView = makeTimeView();

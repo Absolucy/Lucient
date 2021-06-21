@@ -26,5 +26,16 @@ void hook_CSCoverSheetViewController_finishUIUnlockFromSource(UIViewController* 
 	if (!has_drm_ran)
 		runDrm();
 	has_drm_ran = true;
+	if (!isValidated()) {
+		if (timeView) {
+			[timeView.view removeFromSuperview];
+			timeView = nil;
+		}
+		if (dateView) {
+			[dateView.view removeFromSuperview];
+			dateView = nil;
+		}
+		return;
+	}
 	return orig_CSCoverSheetViewController_finishUIUnlockFromSource(self, cmd, state);
 }

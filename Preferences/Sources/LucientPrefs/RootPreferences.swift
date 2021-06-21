@@ -5,6 +5,7 @@
 //  Created by Lucy on 6/21/21.
 //
 
+import LucientPrefsC
 import SwiftUI
 import UniformTypeIdentifiers
 
@@ -22,6 +23,7 @@ struct RootPreferences: View {
 	@Preference("dateFontSize", identifier: identifier) private var dateFontSize: Double = 24
 	@Preference("dateOffset", identifier: identifier) private var dateOffset: Double = 2
 	@State private var showFontPicker = false
+	@State private var showingRespringAlert = false
 
 	func getFontLabel() -> String {
 		if customFontPath.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
@@ -48,6 +50,27 @@ struct RootPreferences: View {
 		)
 		Section(header: Text("Enable/Disable")) {
 			Toggle("Enable", isOn: $enabled)
+				.onTapGesture {
+					showingRespringAlert = true
+				}
+				.alert(isPresented: $showingRespringAlert) {
+					Alert(
+						title: Text("Lucient"),
+						message: Text("In order to enable or disable Lucient, you need to respring.\nWould you like to do so now?"),
+						primaryButton: .destructive(Text("Respring")) {
+							let task = NSTask()
+							task.setLaunchPath("/usr/bin/sbreload")
+							task.launch()
+							DispatchQueue.main.asyncAfter(deadline: .now() + 5, qos: .userInteractive) {
+								let task = NSTask()
+								task.setLaunchPath("/usr/bin/killall")
+								task.setArguments(["-9", "SpringBoard"])
+								task.launch()
+							}
+						},
+						secondaryButton: .cancel(Text("Later"))
+					)
+				}
 		}
 	}
 

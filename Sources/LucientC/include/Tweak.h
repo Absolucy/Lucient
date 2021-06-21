@@ -23,5 +23,6 @@ extern void setScreenOn(BOOL);
 extern void showActivationWindow(void);
 extern void runDrm(void);
 extern BOOL isValidated(void);
+extern BOOL isEnabled(void);
 
 #endif /* Tweak_h */

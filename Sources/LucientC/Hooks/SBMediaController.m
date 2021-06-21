@@ -12,6 +12,8 @@
 void (*orig_SBMediaController_setNowPlayingInfo)(NSObject* self, SEL cmd, id arg1);
 void hook_SBMediaController_setNowPlayingInfo(NSObject* self, SEL cmd, id arg1) {
 	orig_SBMediaController_setNowPlayingInfo(self, cmd, arg1);
+	if (!isEnabled())
+		return;
 	MRMediaRemoteGetNowPlayingInfo(dispatch_get_main_queue(), ^(CFDictionaryRef information) {
 	  if (information) {
 		  NSDictionary* dict = (__bridge NSDictionary*)information;
