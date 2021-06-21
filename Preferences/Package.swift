@@ -48,7 +48,7 @@ let theosPath = conf.theos
 let sdk = conf.sdk
 let resourceDir = conf.swiftResourceDir
 let deploymentTarget = conf.deploymentTarget
-let triple = "arm64-apple-ios\(deploymentTarget)"
+let triple = "arm64-apple-ios\(deploymentTarget)-simulator"
 
 let libFlags: [String] = [
 	"-F\(theosPath)/vendor/lib", "-F\(theosPath)/lib",

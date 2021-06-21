@@ -1,0 +1,282 @@
+//
+//  Preference.swift
+//  NomaePreferences
+//
+//  Created by Eamon Tracey.
+//  Copyright © 2021 Eamon Tracey. All rights reserved.
+//
+// The majority of code in this file is from https://github.com/xavierLowmiller/AppStorage
+// The following changes have been made:
+//      - `AppStorage` renamed to `Preference` (typealias removed).
+//      - Rather than initializing with a UserDefaults object, a `String` identifier is used.
+//          UserDefaults with suite name "/var/mobile/Library/Preferences/\(identifier).plist"
+//          is created. Due to cfprefsd internals and because we provided an absolute path as
+//          the suite name, the given file path will be used to store preferences. Thus, the
+//          preferences can be accessed in any process.
+//      - Support storing `Numeric`s rather than only `Int`s and `Double`s.
+//      - Added support for storing `Array`-like objects.
+//
+
+import Combine
+import SwiftUI
+
+/// A property wrapper type that reflects a value from `UserDefaults` and
+/// invalidates a view on a change in value in that user default.
+///
+/// Example usage:
+///
+///     let identifier = "com.somedomain.sometweak"
+///
+///     struct RootPreferences: View {
+///         @Preference("enabled", identifier: identifier) var enabled = true
+///
+///         var body: some View {
+///             Form {
+///                 Toggle("Enabled", isOn: $enabled)
+///             }
+///             .navigationBarTitle("SomeTweak")
+///         }
+///     }
+@frozen @propertyWrapper public struct Preference<Value>: DynamicProperty {
+	@ObservedObject private var _value: Storage<Value>
+	private let saveValue: (Value) -> Void
+
+	private init(
+		value: Value,
+		store: UserDefaults,
+		key: String,
+		transform: @escaping (Any?) -> Value?,
+		saveValue: @escaping (Value) -> Void
+	) {
+		_value = Storage(value: value, store: store, key: key, transform: transform)
+		self.saveValue = saveValue
+	}
+
+	public var wrappedValue: Value {
+		get {
+			_value.value
+		}
+		nonmutating set {
+			saveValue(newValue)
+			_value.value = newValue
+		}
+	}
+
+	public var projectedValue: Binding<Value> {
+		Binding(
+			get: { self.wrappedValue },
+			set: { self.wrappedValue = $0 }
+		)
+	}
+}
+
+@usableFromInline
+class Storage<Value>: NSObject, ObservableObject {
+	@Published var value: Value
+	private let defaultValue: Value
+	private let store: UserDefaults
+	private let keyPath: String
+	private let transform: (Any?) -> Value?
+
+	init(value: Value, store: UserDefaults, key: String, transform: @escaping (Any?) -> Value?) {
+		self.value = value
+		defaultValue = value
+		self.store = store
+		keyPath = key
+		self.transform = transform
+		super.init()
+
+		store.addObserver(self, forKeyPath: key, options: [.new], context: nil)
+	}
+
+	deinit {
+		store.removeObserver(self, forKeyPath: keyPath)
+	}
+
+	override func observeValue(
+		forKeyPath _: String?,
+		of _: Any?,
+		change: [NSKeyValueChangeKey: Any]?,
+		context _: UnsafeMutableRawPointer?
+	) {
+		value = change?[.newKey].flatMap(transform) ?? defaultValue
+	}
+}
+
+public extension Preference where Value == Bool {
+	/// Creates a property that can read and write to a `Bool` user default.
+	///
+	/// - Parameters:
+	///   - wrappedValue: The default value if a `Bool` value is not specified for the given key.
+	///   - key: The key to read and write the value to in the `UserDefaults` store.
+	///   - identifier: The identifier used for the `UserDefaults` suite and cfprefsd plist path.
+	init(wrappedValue: Value, _ key: String, identifier: String) {
+		let store = UserDefaults(suiteName: "/var/mobile/Library/Preferences/\(identifier).plist")!
+		let initialValue = store.object(forKey: key) as? Bool ?? wrappedValue
+		self.init(value: initialValue, store: store, key: key, transform: {
+			$0 as? Bool
+		}, saveValue: { newValue in
+			store.set(newValue, forKey: key)
+		})
+	}
+}
+
+public extension Preference where Value: Numeric {
+	/// Creates a property that can read and write to a `Numeric` user default.
+	///
+	/// - Parameters:
+	///   - wrappedValue: The default value if a `Numeric` value is not specified for the given key.
+	///   - key: The key to read and write the value to in the `UserDefaults` store.
+	///   - identifier: The identifier used for the `UserDefaults` suite and cfprefsd plist path.
+	init(wrappedValue: Value, _ key: String, identifier: String) {
+		let store = UserDefaults(suiteName: "/var/mobile/Library/Preferences/\(identifier).plist")!
+		let initialValue = store.object(forKey: key) as? Value ?? wrappedValue
+		self.init(value: initialValue, store: store, key: key, transform: {
+			$0 as? Value
+		}, saveValue: { newValue in
+			store.set(newValue, forKey: key)
+		})
+	}
+}
+
+public extension Preference where Value == String {
+	/// Creates a property that can read and write to a `String` user default.
+	///
+	/// - Parameters:
+	///   - wrappedValue: The default value if a `String` value is not specified for the given key.
+	///   - key: The key to read and write the value to in the `UserDefaults` store.
+	///   - identifier: The identifier used for the `UserDefaults` suite and cfprefsd plist path.
+	init(wrappedValue: Value, _ key: String, identifier: String) {
+		let store = UserDefaults(suiteName: "/var/mobile/Library/Preferences/\(identifier).plist")!
+		let initialValue = store.object(forKey: key) as? String ?? wrappedValue
+		self.init(value: initialValue, store: store, key: key, transform: {
+			$0 as? String
+		}, saveValue: { newValue in
+			store.set(newValue, forKey: key)
+		})
+	}
+}
+
+public extension Preference where Value == Data {
+	/// Creates a property that can read and write to a `Data` user default.
+	///
+	/// - Parameters:
+	///   - wrappedValue: The default value if a `Data` value is not specified for the given key.
+	///   - key: The key to read and write the value to in the `UserDefaults` store.
+	///   - identifier: The identifier used for the `UserDefaults` suite and cfprefsd plist path.
+	init(wrappedValue: Value, _ key: String, identifier: String) {
+		let store = UserDefaults(suiteName: "/var/mobile/Library/Preferences/\(identifier).plist")!
+		let initialValue = store.object(forKey: key) as? Data ?? wrappedValue
+		self.init(value: initialValue, store: store, key: key, transform: {
+			$0 as? Data
+		}, saveValue: { newValue in
+			store.set(newValue, forKey: key)
+		})
+	}
+}
+
+public extension Preference where Value == Date {
+	/// Creates a property that can read and write to a `Date` user default.
+	///
+	/// - Parameters:
+	///   - wrappedValue: The default value if a `Date` value is not specified for the given key.
+	///   - key: The key to read and write the value to in the `UserDefaults` store.
+	///   - identifier: The identifier used for the `UserDefaults` suite and cfprefsd plist path.
+	init(wrappedValue: Value, _ key: String, identifier: String) {
+		let store = UserDefaults(suiteName: "/var/mobile/Library/Preferences/\(identifier).plist")!
+		let initialValue = store.object(forKey: key) as? Date ?? wrappedValue
+		self.init(value: initialValue, store: store, key: key, transform: {
+			$0 as? Date
+		}, saveValue: { newValue in
+			store.set(newValue, forKey: key)
+		})
+	}
+}
+
+public extension Preference where Value == URL {
+	/// Creates a property that can read and write to a `URL` user default.
+	///
+	/// - Parameters:
+	///   - wrappedValue: The default value if a `URL` value is not specified for the given key.
+	///   - key: The key to read and write the value to in the `UserDefaults` store.
+	///   - identifier: The identifier used for the `UserDefaults` suite and cfprefsd plist path.
+	init(wrappedValue: Value, _ key: String, identifier: String) {
+		let store = UserDefaults(suiteName: "/var/mobile/Library/Preferences/\(identifier).plist")!
+		let initialValue = store.object(forKey: key) as? URL ?? wrappedValue
+		self.init(value: initialValue, store: store, key: key, transform: {
+			($0 as? String).flatMap(URL.init)
+		}, saveValue: { newValue in
+			store.set(newValue.absoluteString, forKey: key)
+		})
+	}
+}
+
+public extension Preference where Value: RawRepresentable, Value.RawValue: Numeric {
+	/// Creates a property that can read and write to a `Numeric` user default,
+	/// transforming that to `RawRepresentable` data type.
+	///
+	/// A common usage is with enumerations:
+	///
+	///     enum SomeEnum: Int {
+	///         case a
+	///         case b
+	///         case c
+	///     }
+	///
+	///     struct RootPreferences: View {
+	///         @Preference("someEnumValue") private var value = SomeEnum.a
+	///
+	///         var body: some View { ... }
+	///     }
+	///
+	/// - Parameters:
+	///   - wrappedValue: The default value if a `Numeric` `RawRepresentable` value is
+	///     not specified for the given key.
+	///   - key: The key to read and write the value to in the `UserDefaults` store.
+	///   - identifier: The identifier used for the `UserDefaults` suite and cfprefsd plist path.
+	init(wrappedValue: Value, _ key: String, identifier: String) {
+		let store = UserDefaults(suiteName: "/var/mobile/Library/Preferences/\(identifier).plist")!
+		let rawValue = store.object(forKey: key) as? Value.RawValue
+		let initialValue = rawValue.flatMap(Value.init) ?? wrappedValue
+		self.init(value: initialValue, store: store, key: key, transform: {
+			($0 as? Value.RawValue).flatMap(Value.init)
+		}, saveValue: { newValue in
+			store.set(newValue.rawValue, forKey: key)
+		})
+	}
+}
+
+public extension Preference where Value: RawRepresentable, Value.RawValue == String {
+	/// Creates a property that can read and write to a `String` user default,
+	/// transforming that to `RawRepresentable` data type.
+	///
+	/// This allows for storing `Color`s and using `ColorPicker`:
+	///
+	///     struct RootPreferences: View {
+	///         @Preference("someColor") private var color = Color.white
+	///
+	///         var body: some View {
+	///             Form {
+	///                 ColorPicker("Color", selection: $color)
+	///             }
+	///         }
+	///     }
+	///
+	/// This also allows for storing `Application`s.
+	///
+	/// - Parameters:
+	///   - wrappedValue: The default value if a `String` `RawRepresentable` value is
+	///     not specified for the given key.
+	///   - key: The key to read and write the value to in the `UserDefaults` store.
+	///   - identifier: The identifier used for the `UserDefaults` suite and cfprefsd plist path.
+	init(wrappedValue: Value, _ key: String, identifier: String) {
+		let store = UserDefaults(suiteName: "/var/mobile/Library/Preferences/\(identifier).plist")!
+		let rawValue = store.object(forKey: key) as? String
+		let initialValue = rawValue.flatMap(Value.init) ?? wrappedValue
+		self.init(value: initialValue, store: store, key: key, transform: {
+			($0 as? String).flatMap(Value.init)
+		}, saveValue: { newValue in
+			store.set(newValue.rawValue, forKey: key)
+		})
+	}
+}

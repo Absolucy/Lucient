@@ -27,9 +27,11 @@ internal struct DateView: View {
 	private let weatherObserver = NotificationCenter.default
 		.publisher(for: NSNotification.Name("moe.absolucy.lucient.weather"))
 
-	@Preference("appearance", identifier: "moe.absolucy.lucient") var appearance = 1
-	@Preference("minFontSize", identifier: "moe.absolucy.lucient") var timeFontSize: Double = 72
-	@Preference("dateFontSize", identifier: "moe.absolucy.lucient") var dateFontSize: Double = 24
+	@Preference("appearance", identifier: "moe.absolucy.lucient") private var style = 2
+	@Preference("showWeather", identifier: "moe.absolucy.lucient") private var showWeather = true
+	@Preference("minTimeSize", identifier: "moe.absolucy.lucient") private var timeSize: Double = 24
+	@Preference("dateFontSize", identifier: "moe.absolucy.lucient") private var fontSize: Double = 24
+	@Preference("dateOffset", identifier: "moe.absolucy.lucient") private var offset: Double = 2
 	@Preference("customFont",
 	            identifier: "moe.absolucy.lucient") var customFont = "/Library/Lucy/LucientResources.bundle/Roboto.ttf"
 	@State private var date = Date()
@@ -37,9 +39,9 @@ internal struct DateView: View {
 
 	private func font(_ size: Double) -> Font {
 		_ = FontRegistration.register
-		if appearance == 2 {
+		if style == 2 {
 			return Font.custom("Roboto-Regular", size: CGFloat(size))
-		} else if appearance == 3, let fontName = FontRegistration.register(url: URL(fileURLWithPath: customFont)) {
+		} else if style == 3, let fontName = FontRegistration.register(url: URL(fileURLWithPath: customFont)) {
 			return Font.custom(fontName, size: CGFloat(size))
 		} else {
 			return Font.system(size: CGFloat(size), weight: .light, design: .rounded)
@@ -50,7 +52,7 @@ internal struct DateView: View {
 		VStack(alignment: .leading, spacing: 0) {
 			if shared.timeMinimized {
 				Text(timeFmt.string(from: date))
-					.font(font(timeFontSize))
+					.font(font(timeSize))
 					.padding(.bottom, 5)
 					.animation(.easeInOut)
 					.transition(
@@ -61,17 +63,18 @@ internal struct DateView: View {
 					)
 			}
 			Text(dateFmt.string(from: date))
-				.font(font(dateFontSize))
-			if let temperature = shared.temperature, let image = shared.weatherImage {
+				.font(font(fontSize))
+				.offset(x: 0, y: CGFloat(offset))
+			if showWeather, let temperature = shared.temperature, let image = shared.weatherImage {
 				HStack {
 					image
 						.resizable()
 						.scaledToFit()
-						.frame(width: CGFloat(dateFontSize * 2), height: CGFloat(dateFontSize * 2))
+						.frame(width: CGFloat(fontSize * 2), height: CGFloat(fontSize * 2))
 					Text(temperature)
-						.font(font(dateFontSize))
+						.font(font(fontSize))
 					Spacer()
-				}
+				}.offset(x: 0, y: CGFloat(-offset))
 			}
 		}
 		.onReceive(timeObserver) { _ in

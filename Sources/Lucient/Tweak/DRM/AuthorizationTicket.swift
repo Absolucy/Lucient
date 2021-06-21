@@ -4,13 +4,13 @@ import LucientC
 
 internal final class Valhalla {
 	static var instance = Valhalla()
-	
+
 	private final var verify = true
-	
+
 	final func shouldVerify() -> Bool {
-		return verify
+		verify
 	}
-	
+
 	final func doNotVerify() {
 		verify = false
 	}
