@@ -1,9 +1,11 @@
-Package: me.aspenuwu.lucient
+Package: moe.absolucy.lucient
 Name: Lucient
 Version: 1.0.0
 Architecture: iphoneos-arm
 Description: An awesome Orion tweak!
-Maintainer: Lucy
-Author: Lucy
+Maintainer: Lucy <support@absolucy.moe>
+Author: Lucy <support@absolucy.moe>
 Section: Tweaks
-Depends: firmware (>= 14.0), preferenceloader
+Replaces: moe.absolucy.lucient.trial
+Conflicts: moe.absolucy.lucient.trial
+Depends: firmware (>= 14.0), preferenceloader, ws.hbang.common (>= 1.16)
