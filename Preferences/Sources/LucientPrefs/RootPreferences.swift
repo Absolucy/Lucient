@@ -41,7 +41,11 @@ struct RootPreferences: View {
 
 	@ViewBuilder
 	func HeaderSection() -> some View {
-		Header("Lucient", icon: Image(systemName: "lock.square.stack"), subtitle: "by Lucy")
+		Header(
+			"Lucient",
+			icon: Image(systemName: "lock.square.stack").resizable().padding(16).aspectRatio(contentMode: .fit),
+			subtitle: "by Lucy"
+		)
 		Section(header: Text("Enable/Disable")) {
 			Toggle("Enable", isOn: $enabled)
 		}
@@ -80,7 +84,7 @@ struct RootPreferences: View {
 		}
 	}
 
-	@ViewBuilder	
+	@ViewBuilder
 	func SizeOption(name: String, option: Binding<Double>, min: Double, max: Double,
 	                default defaultOption: Double) -> some View
 	{
@@ -129,6 +133,46 @@ struct RootPreferences: View {
 		}
 	}
 
+	@ViewBuilder
+	func Credit(name: String, role: String, username: String) -> some View {
+		HStack {
+			AsyncImage(
+				url: URL(string: "https://unavatar.now.sh/twitter/\(username)")!,
+				placeholder: { ProgressView().progressViewStyle(CircularProgressViewStyle()) },
+				image: { Image(uiImage: $0).resizable() }
+			)
+			.aspectRatio(contentMode: .fit)
+			.frame(width: 58, height: 58)
+			.clipShape(Capsule())
+			.padding([.vertical, .trailing])
+			VStack(alignment: .leading, spacing: 5) {
+				Text(name)
+					.font(.system(.title3, design: .rounded))
+				Text(role)
+					.font(.system(.caption, design: .rounded))
+			}
+		}
+		.onTapGesture {
+			let appURL = URL(string: "twitter://user?screen_name=\(username)")!
+			let webURL = URL(string: "https://twitter.com/\(username)")!
+			let application = UIApplication.shared
+			if application.canOpenURL(appURL as URL) {
+				application.open(appURL as URL)
+			} else {
+				application.open(webURL as URL)
+			}
+		}
+	}
+
+	@ViewBuilder
+	func CreditsSection() -> some View {
+		Section(header: Text("Credits")) {
+			Credit(name: "Lucy", role: "Developer", username: "Absolucyyy")
+			Credit(name: "Alpha", role: "Logo Designer", username: "Kutarin_")
+			Credit(name: "Emma", role: "Tester", username: "emiyl0")
+		}
+	}
+
 	var body: some View {
 		Form {
 			HeaderSection()
@@ -136,6 +180,7 @@ struct RootPreferences: View {
 				StyleSection()
 				ClockCustomizationSection()
 				DateCustomizationSection()
+				CreditsSection()
 			}
 		}
 	}
