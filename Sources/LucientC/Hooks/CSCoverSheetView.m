@@ -36,18 +36,6 @@ void hook_CSCoverSheetView_didMoveToWindow(CSCoverSheetView* self, SEL cmd) {
 		return;
 	}
 
-	if (!timeView) {
-		timeView = makeTimeView();
-		timeView.view.backgroundColor = UIColor.clearColor;
-	}
-	timeView.view.translatesAutoresizingMaskIntoConstraints = NO;
-	timeView.view.frame = self.frame;
-	[self addSubview:timeView.view];
-	[NSLayoutConstraint activateConstraints:@[
-		[timeView.view.centerXAnchor constraintEqualToAnchor:self.centerXAnchor],
-		[timeView.view.centerYAnchor constraintEqualToAnchor:self.centerYAnchor]
-	]];
-
 	if (!dateView) {
 		dateView = makeDateView();
 		dateView.view.backgroundColor = UIColor.clearColor;
@@ -57,6 +45,22 @@ void hook_CSCoverSheetView_didMoveToWindow(CSCoverSheetView* self, SEL cmd) {
 	[self addSubview:dateView.view];
 	[NSLayoutConstraint activateConstraints:@[
 		[dateView.view.leftAnchor constraintEqualToAnchor:self.leftAnchor constant:30.0],
-		[dateView.view.bottomAnchor constraintEqualToAnchor:timeView.view.topAnchor constant:-32.0]
+		[dateView.view.topAnchor constraintEqualToAnchor:self.topAnchor constant:175.0]
 	]];
+	
+	if (!timeView) {
+		timeView = makeTimeView();
+		timeView.view.backgroundColor = UIColor.clearColor;
+	}
+	timeView.view.translatesAutoresizingMaskIntoConstraints = NO;
+	timeView.view.frame = self.frame;
+	[self addSubview:timeView.view];
+	timeConstraintCx = [timeView.view.centerXAnchor constraintEqualToAnchor:self.centerXAnchor];
+	timeConstraintCy = [timeView.view.centerYAnchor constraintEqualToAnchor:self.centerYAnchor];
+	timeConstraintCx.active = true;
+	timeConstraintCy.active = true;
+	timeConstraintDateLeft = [timeView.view.leftAnchor constraintEqualToAnchor:dateView.view.leftAnchor];
+	timeConstraintRight = [timeView.view.rightAnchor constraintEqualToAnchor:self.rightAnchor];
+	timeConstraintDateTop = [timeView.view.topAnchor constraintEqualToAnchor:dateView.view.topAnchor constant:-32];
+	timeConstraintDateBottom = [timeView.view.bottomAnchor constraintEqualToAnchor:dateView.view.topAnchor];
 }

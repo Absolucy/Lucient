@@ -19,9 +19,10 @@ struct RootPreferences: View {
 	@Preference("maxTimeSize", identifier: identifier) private var maxTimeSize: Double = 160
 	@Preference("minTimeSize", identifier: identifier) private var minTimeSize: Double = 72
 	@Preference("timeOffset", identifier: identifier) private var timeOffset: Double = 15
+	@Preference("timeOnTheRight", identifier: identifier) private var timeOnTheRight = false
 	@Preference("showWeather", identifier: identifier) private var showWeather = true
 	@Preference("dateFontSize", identifier: identifier) private var dateFontSize: Double = 24
-	@Preference("dateOffset", identifier: identifier) private var dateOffset: Double = 2
+	@Preference("dateOffset", identifier: identifier) private var dateOffset: Double = 0
 	@State private var showFontPicker = false
 	@State private var showingRespringAlert = false
 
@@ -78,9 +79,9 @@ struct RootPreferences: View {
 	func StyleSection() -> some View {
 		Section(header: Text("Style")) {
 			Picker(selection: $appearance, label: EmptyView()) {
-				Text("iOS").tag(0)
-				Text("Android 12").tag(1)
-				Text("Custom").tag(2)
+				Text("iOS").tag(1)
+				Text("Android 12").tag(2)
+				Text("Custom").tag(3)
 			}.pickerStyle(SegmentedPickerStyle())
 			if appearance == 2 {
 				HStack {
@@ -135,6 +136,10 @@ struct RootPreferences: View {
 	@ViewBuilder
 	func ClockCustomizationSection() -> some View {
 		Section(header: Text("Clock")) {
+			Picker(selection: $timeOnTheRight, label: EmptyView()) {
+				Text("Left").tag(false)
+				Text("Right").tag(true)
+			}.pickerStyle(SegmentedPickerStyle())
 			SizeOption(name: "Large Clock Size", option: $maxTimeSize, min: 64, max: 256, default: 160)
 				.padding(.bottom, 4)
 			SizeOption(name: "Large Clock Offset", option: $timeOffset, min: 0, max: 128, default: 15)

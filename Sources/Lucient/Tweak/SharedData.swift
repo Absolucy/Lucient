@@ -41,15 +41,17 @@ internal final class SharedData: ObservableObject {
 
 	final func updateVisibility() {
 		let visible = notifsVisible || musicVisible
-		if visible {
-			timeView?.view?.isHidden = true
-		}
-		withAnimation(.easeInOut(duration: 0.5)) {
-			timeMinimized = visible
-		}
-		DispatchQueue.main.asyncAfter(deadline: .now() + 0.4, qos: .userInteractive) {
-			timeView?.view?.isHidden = visible
-		}
+		let leftOrRight = UserDefaults(suiteName: "/var/mobile/Library/Preferences/moe.absolucy.lucient.plist")?
+			.object(forKey: "timeOnTheRight") as? Bool ?? false
+		timeConstraintCx?.isActive = !visible
+		timeConstraintCy?.isActive = !visible
+		timeConstraintDateLeft?.isActive = visible && !leftOrRight
+		timeConstraintRight?.isActive = visible && leftOrRight
+		timeConstraintDateBottom?.isActive = visible && !leftOrRight
+		timeConstraintDateTop?.isActive = visible && leftOrRight
+		timeView?.view?.setNeedsLayout()
+		timeView?.view?.layoutIfNeeded()
+		timeMinimized = visible
 	}
 
 	final func updateScreen(_ status: Bool) {

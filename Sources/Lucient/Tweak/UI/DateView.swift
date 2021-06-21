@@ -31,7 +31,7 @@ internal struct DateView: View {
 	@Preference("showWeather", identifier: "moe.absolucy.lucient") private var showWeather = true
 	@Preference("minTimeSize", identifier: "moe.absolucy.lucient") private var timeSize: Double = 24
 	@Preference("dateFontSize", identifier: "moe.absolucy.lucient") private var fontSize: Double = 24
-	@Preference("dateOffset", identifier: "moe.absolucy.lucient") private var offset: Double = 2
+	@Preference("dateOffset", identifier: "moe.absolucy.lucient") private var offset: Double = 0
 	@Preference("customFont",
 	            identifier: "moe.absolucy.lucient") var customFont = "/Library/Lucy/LucientResources.bundle/Roboto.ttf"
 	@State private var date = Date()
@@ -50,18 +50,18 @@ internal struct DateView: View {
 
 	var body: some View {
 		VStack(alignment: .leading, spacing: 0) {
-			if shared.timeMinimized {
-				Text(timeFmt.string(from: date))
-					.font(font(timeSize))
-					.padding(.bottom, 5)
-					.animation(.easeInOut)
-					.transition(
-						.offset(
-							x: coverSheetView.center.x - dateView.view.frame.maxX,
-							y: coverSheetView.center.y - dateView.view.frame.maxY
-						)
-					)
-			}
+			/* if shared.timeMinimized {
+			 	Text(timeFmt.string(from: date))
+			 		.font(font(timeSize))
+			 		.padding(.bottom, 5)
+			 		.animation(.easeInOut)
+			 		.transition(
+			 			.offset(
+			 				x: coverSheetView.center.x - dateView.view.frame.maxX,
+			 				y: coverSheetView.center.y - dateView.view.frame.maxY
+			 			)
+			 		)
+			 } */
 			Text(dateFmt.string(from: date))
 				.font(font(fontSize))
 				.offset(x: 0, y: CGFloat(offset))

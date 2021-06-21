@@ -11,8 +11,15 @@
 #import "CSCoverSheetView.h"
 #import <UIKit/UIKit.h>
 
-extern UIViewController* dateView;
 extern UIViewController* timeView;
+extern NSLayoutConstraint* timeConstraintCx;
+extern NSLayoutConstraint* timeConstraintCy;
+extern NSLayoutConstraint* timeConstraintDateTop;
+extern NSLayoutConstraint* timeConstraintDateBottom;
+extern NSLayoutConstraint* timeConstraintDateLeft;
+extern NSLayoutConstraint* timeConstraintRight;
+
+extern UIViewController* dateView;
 extern CSCoverSheetView* coverSheetView;
 
 #endif /* Globals_h */

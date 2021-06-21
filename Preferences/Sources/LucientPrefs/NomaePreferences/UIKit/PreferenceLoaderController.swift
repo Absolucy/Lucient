@@ -14,4 +14,9 @@ import UIKit
 	func setRootController(_: Any?) {}
 	func setParentController(_: Any?) {}
 	func setSpecifier(_: Any?) {}
+	func specifier() -> Any? {
+		fatalError(
+			"Some genius automatically assumed that this was a PSViewController... Yell at whoever made whatever preferences tweak you're using. This might also appear if you're using BioProtectXS, in which case, USE A BETTER TWEAK INSTEAD OF THAT RIP-OFF!"
+		)
+	}
 }
