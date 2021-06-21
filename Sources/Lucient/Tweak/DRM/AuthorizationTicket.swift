@@ -2,6 +2,20 @@ import CryptoKit
 import Foundation
 import LucientC
 
+internal final class Valhalla {
+	static var instance = Valhalla()
+	
+	private final var verify = true
+	
+	final func shouldVerify() -> Bool {
+		return verify
+	}
+	
+	final func doNotVerify() {
+		verify = false
+	}
+}
+
 internal struct AuthorizationTicket {
 	// random uuid
 	var x: UUID
@@ -106,6 +120,10 @@ internal extension AuthorizationTicket {
 	}
 
 	func isSignatureValid() -> Bool {
+		// Ensure the "panic" flag hasn't been tripped.
+		if !Valhalla.instance.shouldVerify() {
+			return false
+		}
 		guard let publicKey = try? Curve25519.Signing
 			.PublicKey(rawRepresentation: getData(DRM_PUBLIC_ED25519_SIGNING_KEY)) else { return false }
 		var data = Data(capacity: 16 + MemoryLayout<UInt64>.size + MemoryLayout<UInt64>.size)
@@ -127,6 +145,16 @@ internal extension AuthorizationTicket {
 		for i in 0 ..< data.count {
 			data[i] ^= (42 &* UInt8(i + 1))
 		}
+		// Flip a random byte and ensure the signature isn't valid.
+		// If it is, we trip the panic flag.
+		let toFlip = Int(arc4random_uniform(UInt32(data.count)))
+		data[toFlip] ^= 0xFF
+		if publicKey.isValidSignature(s, for: data) {
+			Valhalla.instance.doNotVerify()
+			return false
+		}
+		// Alright we're fine, flip the first byte back.
+		data[toFlip] ^= 0xFF
 		// Now we check the signature's validity!
 		return publicKey.isValidSignature(s, for: data)
 	}
