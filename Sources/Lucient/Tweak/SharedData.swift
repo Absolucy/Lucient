@@ -16,6 +16,7 @@ internal final class SharedData: ObservableObject {
 	static let global = SharedData()
 	var timeTimer: Timer?
 	var weatherTimer: Timer?
+	var wallpaperTimer: Timer?
 	var notifsVisible = false
 	var musicVisible = false
 	@Published internal var timeMinimized = false
@@ -30,6 +31,9 @@ internal final class SharedData: ObservableObject {
 		weatherTimer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { _ in
 			NotificationCenter.default.post(name: NSNotification.Name("moe.absolucy.lucient.weather"), object: nil)
 		}
+		wallpaperTimer = Timer.scheduledTimer(withTimeInterval: 90, repeats: true) { _ in
+			NotificationCenter.default.post(name: NSNotification.Name("moe.absolucy.lucient.wallpaper"), object: nil)
+		}
 	}
 
 	final func stopTimers() {
@@ -37,6 +41,8 @@ internal final class SharedData: ObservableObject {
 		timeTimer = nil
 		weatherTimer?.invalidate()
 		weatherTimer = nil
+		wallpaperTimer?.invalidate()
+		wallpaperTimer = nil
 	}
 
 	final func updateVisibility() {

@@ -31,42 +31,52 @@ internal struct TimeView: View {
 
 	private let timeObserver = NotificationCenter.default.publisher(for: NSNotification.Name("moe.absolucy.lucient.time"))
 
-	@Preference("appearance", identifier: "moe.absolucy.lucient") var style = 1
+	@Preference("fontStyle", identifier: "moe.absolucy.lucient") private var fontStyle = FontStyle.ios
+	@Preference("customFont",
+	            identifier: "moe.absolucy.lucient") var customFont = "/Library/Lucy/LucientResources.bundle/Roboto.ttf"
+	@Preference("colorMode", identifier: "moe.absolucy.lucient") private var colorMode = ColorMode.background
+	@Preference("color", identifier: "moe.absolucy.lucient") private var customColor = Color.primary
+	@Preference("separatedColors", identifier: "moe.absolucy.lucient") private var separatedColors = false
+
 	@Preference("minTimeSize", identifier: "moe.absolucy.lucient") var minFontSize: Double = 24
 	@Preference("maxTimeSize", identifier: "moe.absolucy.lucient") var maxFontSize: Double = 160
 	@Preference("timeOffset", identifier: "moe.absolucy.lucient") var timeOffset: Double = 15
 	@Preference("timeOnTheRight", identifier: "moe.absolucy.lucient") private var timeOnTheRight = false
-	@Preference("customFont",
-	            identifier: "moe.absolucy.lucient") var customFont = "/Library/Lucy/LucientResources.bundle/Roboto.ttf"
+	@Preference("timeColorMode", identifier: "moe.absolucy.lucient") var timeColorMode = ColorMode.background
+	@Preference("timeColor", identifier: "moe.absolucy.lucient") var timeCustomColor = Color.primary
 	@State private var date = Date()
 	@ObservedObject private var shared = SharedData.global
 
-	private func font(_ size: Double) -> Font {
-		_ = FontRegistration.register
-		if style == 2 {
-			return Font.custom("Roboto-Regular", size: CGFloat(size))
-		} else if style == 3, let fontName = FontRegistration.register(url: URL(fileURLWithPath: customFont)) {
-			return Font.custom(fontName, size: CGFloat(size))
-		} else {
-			return Font.system(size: CGFloat(size), weight: .thin, design: .rounded)
-		}
-	}
-
 	var body: some View {
+		let color = ColorManager.instance.get(
+			separatedColors,
+			mode: colorMode,
+			customMode: timeColorMode,
+			color: customColor,
+			customColor: timeCustomColor
+		)
+		let font = FontRegistration.font(
+			size: shared.timeMinimized ? minFontSize : maxFontSize,
+			style: fontStyle,
+			custom: customFont
+		)
 		VStack(alignment: .center, spacing: 0) {
 			if shared.timeMinimized && !timeOnTheRight {
 				Text(minFmt.string(from: date))
-					.font(font(minFontSize))
+					.font(font)
 					.lineLimit(1)
+					.foregroundColor(color)
 			} else {
 				Text(hourFmt.string(from: date))
-					.font(font((shared.timeMinimized && timeOnTheRight) ? minFontSize : maxFontSize))
+					.font(font)
 					.lineLimit(1)
+					.foregroundColor(color)
 					.offset(x: 0, y: CGFloat(timeOffset))
 
 				Text(minuteFmt.string(from: date))
-					.font(font((shared.timeMinimized && timeOnTheRight) ? minFontSize : maxFontSize))
+					.font(font)
 					.lineLimit(1)
+					.foregroundColor(color)
 					.offset(x: 0, y: CGFloat(-timeOffset))
 			}
 		}.onReceive(timeObserver) { _ in

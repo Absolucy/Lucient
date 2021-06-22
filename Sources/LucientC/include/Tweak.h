@@ -25,4 +25,7 @@ extern void runDrm(void);
 extern BOOL isValidated(void);
 extern BOOL isEnabled(void);
 
+UIColor* getColorFromImage(UIImage* image, int calculation, int dimension, int flexibility, int range);
+UIImage* lockScreenWallpaper();
+
 #endif /* Tweak_h */

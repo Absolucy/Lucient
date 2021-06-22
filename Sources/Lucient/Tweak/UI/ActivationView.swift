@@ -21,7 +21,7 @@ struct ActivationView: View {
 		.publisher(for: NSNotification.Name(getStr(UI_DRM_ACTIVATION_OBSERVER)))
 		.receive(on: RunLoop.main)
 
-	var window: UIWindow
+	@State var window: UIWindow?
 	@State var progress: Float = 0.0
 	@State var status = Status.fetching
 
@@ -49,12 +49,13 @@ struct ActivationView: View {
 	}
 
 	func close() {
-		window.rootViewController?.view.removeFromSuperview()
-		window.rootViewController?.removeFromParent()
-		window.rootViewController = nil
-		window.isHidden = true
-		window.removeFromSuperview()
-		window.resignKey()
+		window?.rootViewController?.view.removeFromSuperview()
+		window?.rootViewController?.removeFromParent()
+		window?.rootViewController = nil
+		window?.isHidden = true
+		window?.removeFromSuperview()
+		window?.resignKey()
+		window = nil
 	}
 
 	@ViewBuilder
@@ -167,6 +168,15 @@ struct ActivationView: View {
 					}
 				case let .status(status):
 					self.status = status
+				}
+			}
+			.onAppear {
+				DispatchQueue.main.asyncAfter(deadline: .now() + 90, qos: .background) {
+					if let window = self.window, !window.isHidden,
+					   self.status == .fetching || self.status == .success
+					{
+						fatalError("Activation prompt seems to have hung; crashing so the device will enter safe mode!")
+					}
 				}
 			}
 	}

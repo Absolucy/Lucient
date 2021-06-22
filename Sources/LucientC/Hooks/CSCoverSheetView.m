@@ -23,7 +23,7 @@ id hook_CSCoverSheetView_initWithFrame(CSCoverSheetView* self, SEL cmd, CGRect f
 void (*orig_CSCoverSheetView_didMoveToWindow)(CSCoverSheetView* self, SEL cmd);
 void hook_CSCoverSheetView_didMoveToWindow(CSCoverSheetView* self, SEL cmd) {
 	orig_CSCoverSheetView_didMoveToWindow(self, cmd);
-	
+
 	if (!isValidated()) {
 		if (timeView) {
 			[timeView.view removeFromSuperview];
@@ -47,7 +47,7 @@ void hook_CSCoverSheetView_didMoveToWindow(CSCoverSheetView* self, SEL cmd) {
 		[dateView.view.leftAnchor constraintEqualToAnchor:self.leftAnchor constant:30.0],
 		[dateView.view.topAnchor constraintEqualToAnchor:self.topAnchor constant:175.0]
 	]];
-	
+
 	if (!timeView) {
 		timeView = makeTimeView();
 		timeView.view.backgroundColor = UIColor.clearColor;

@@ -9,6 +9,7 @@ import CoreFoundation
 import CoreGraphics
 import CoreText
 import Foundation
+import SwiftUI
 
 final class FontRegistration {
 	static let register: Void = {
@@ -16,6 +17,21 @@ final class FontRegistration {
 	}()
 
 	static var registered: [URL: String] = [:]
+
+	static func font(size: Double, style: FontStyle, custom: String) -> Font {
+		switch style {
+		case .android:
+			_ = register
+			return Font.custom("Roboto-Regular", size: CGFloat(size))
+		case .custom:
+			if let fontName = register(url: URL(fileURLWithPath: custom)) {
+				return Font.custom(fontName, size: CGFloat(size))
+			}
+		default:
+			break
+		}
+		return Font.system(size: CGFloat(size), weight: .thin, design: .rounded)
+	}
 
 	static func register(url: URL) -> String? {
 		if let fontName = registered[url] {

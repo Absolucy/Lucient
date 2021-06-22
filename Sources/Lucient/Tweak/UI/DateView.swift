@@ -5,6 +5,7 @@
 //  Created by Aspen on 6/13/21.
 //
 
+import EventKit
 import LucientC
 import SwiftUI
 
@@ -26,44 +27,50 @@ internal struct DateView: View {
 	private let timeObserver = NotificationCenter.default.publisher(for: NSNotification.Name("moe.absolucy.lucient.time"))
 	private let weatherObserver = NotificationCenter.default
 		.publisher(for: NSNotification.Name("moe.absolucy.lucient.weather"))
+	private let ekStore = EKEventStore()
 
-	@Preference("appearance", identifier: "moe.absolucy.lucient") private var style = 2
+	@Preference("fontStyle", identifier: "moe.absolucy.lucient") private var fontStyle = FontStyle.ios
+	@Preference("customFont",
+	            identifier: "moe.absolucy.lucient") var customFont = "/Library/Lucy/LucientResources.bundle/Roboto.ttf"
+	@Preference("colorMode", identifier: "moe.absolucy.lucient") private var colorMode = ColorMode.background
+	@Preference("color", identifier: "moe.absolucy.lucient") private var customColor = Color.primary
+	@Preference("separatedColors", identifier: "moe.absolucy.lucient") private var separatedColors = false
+
 	@Preference("showWeather", identifier: "moe.absolucy.lucient") private var showWeather = true
 	@Preference("minTimeSize", identifier: "moe.absolucy.lucient") private var timeSize: Double = 24
 	@Preference("dateFontSize", identifier: "moe.absolucy.lucient") private var fontSize: Double = 24
 	@Preference("dateOffset", identifier: "moe.absolucy.lucient") private var offset: Double = 0
-	@Preference("customFont",
-	            identifier: "moe.absolucy.lucient") var customFont = "/Library/Lucy/LucientResources.bundle/Roboto.ttf"
+	@Preference("dateColorMode", identifier: "moe.absolucy.lucient") var dateColorMode = ColorMode.background
+	@Preference("dateColor", identifier: "moe.absolucy.lucient") var dateCustomColor = Color.primary
 	@State private var date = Date()
 	@ObservedObject private var shared = SharedData.global
 
-	private func font(_ size: Double) -> Font {
-		_ = FontRegistration.register
-		if style == 2 {
-			return Font.custom("Roboto-Regular", size: CGFloat(size))
-		} else if style == 3, let fontName = FontRegistration.register(url: URL(fileURLWithPath: customFont)) {
-			return Font.custom(fontName, size: CGFloat(size))
-		} else {
-			return Font.system(size: CGFloat(size), weight: .light, design: .rounded)
+	init() {
+		ekStore.requestAccess(to: .event) { _, error in
+			if let error = error {
+				NSLog("[Lucient] failed to get access to events: \(error)")
+			}
+		}
+		ekStore.requestAccess(to: .reminder) { _, error in
+			if let error = error {
+				NSLog("[Lucient] failed to get access to reminders: \(error)")
+			}
 		}
 	}
 
 	var body: some View {
+		let color = ColorManager.instance.get(
+			separatedColors,
+			mode: colorMode,
+			customMode: dateColorMode,
+			color: customColor,
+			customColor: dateCustomColor
+		)
+		let font = FontRegistration.font(size: fontSize, style: fontStyle, custom: customFont)
 		VStack(alignment: .leading, spacing: 0) {
-			/* if shared.timeMinimized {
-			 	Text(timeFmt.string(from: date))
-			 		.font(font(timeSize))
-			 		.padding(.bottom, 5)
-			 		.animation(.easeInOut)
-			 		.transition(
-			 			.offset(
-			 				x: coverSheetView.center.x - dateView.view.frame.maxX,
-			 				y: coverSheetView.center.y - dateView.view.frame.maxY
-			 			)
-			 		)
-			 } */
 			Text(dateFmt.string(from: date))
-				.font(font(fontSize))
+				.font(font)
+				.foregroundColor(color)
 				.offset(x: 0, y: CGFloat(offset))
 			if showWeather, let temperature = shared.temperature, let image = shared.weatherImage {
 				HStack {
@@ -72,7 +79,8 @@ internal struct DateView: View {
 						.scaledToFit()
 						.frame(width: CGFloat(fontSize * 2), height: CGFloat(fontSize * 2))
 					Text(temperature)
-						.font(font(fontSize))
+						.font(font)
+						.foregroundColor(color)
 					Spacer()
 				}.offset(x: 0, y: CGFloat(-offset))
 			}

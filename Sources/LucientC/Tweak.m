@@ -25,13 +25,14 @@ enum LIBHOOKER_ERR
 	LIBHOOKER_ERR_NO_SYMBOL = 5
 };
 
-static void (*MSHookMessageEx)(Class _class, SEL sel, IMP imp, IMP* result);
-static enum LIBHOOKER_ERR (*LBHookMessage)(Class _class, SEL sel, void* replacement, void* old_ptr);
+static enum LIBHOOKER_ERR (*LBHookMessage)(Class class, SEL sel, void* replacement, void* old_ptr);
 static const char* (*LHStrError)(enum LIBHOOKER_ERR err);
+static void (*HookMessageEx)(Class class, SEL sel, IMP imp, IMP* result);
 
 static void* libhooker;
 static void* libblackjack;
 static void* substrate;
+static void* substitute;
 
 extern void initialize_string_table();
 
@@ -57,13 +58,25 @@ void setupHookingLib() {
 			libblackjack = NULL;
 		}
 	}
-	if ((substrate = dlopen("/Library/Frameworks/CydiaSubstrate.framework/CydiaSubstrate", RTLD_LAZY)) != NULL) {
-		if ((MSHookMessageEx = dlsym(substrate, "MSHookMessageEx")) != NULL) {
-			NSLog(@"[Lucient] using substrate");
+	if ((substitute = dlopen("/usr/lib/libsubstitute.dylib", RTLD_LAZY)) != NULL) {
+		if ((HookMessageEx = dlsym(substitute, "SubHookMessageEx")) != NULL) {
+			NSLog(@"[Lucient] using Substitute");
 			return;
 		}
 		// Failed to get the proper symbols, clean up
-		MSHookMessageEx = NULL;
+		HookMessageEx = NULL;
+		if (substitute) {
+			dlclose(substitute);
+			substitute = NULL;
+		}
+	}
+	if ((substrate = dlopen("/Library/Frameworks/CydiaSubstrate.framework/CydiaSubstrate", RTLD_LAZY)) != NULL) {
+		if ((HookMessageEx = dlsym(substrate, "MSHookMessageEx")) != NULL) {
+			NSLog(@"[Lucient] using Substrate");
+			return;
+		}
+		// Failed to get the proper symbols, clean up
+		HookMessageEx = NULL;
 		if (substrate) {
 			dlclose(substrate);
 			substrate = NULL;
@@ -73,7 +86,7 @@ void setupHookingLib() {
 }
 
 void hook(Class cls, SEL sel, void* imp, void** result) {
-	if (!MSHookMessageEx && !(LBHookMessage && LHStrError))
+	if (!(LBHookMessage && LHStrError) && !HookMessageEx)
 		setupHookingLib();
 	if (LBHookMessage && LHStrError) {
 		enum LIBHOOKER_ERR ret = LBHookMessage(cls, sel, imp, result);
@@ -81,8 +94,8 @@ void hook(Class cls, SEL sel, void* imp, void** result) {
 			const char* err = LHStrError(ret);
 			NSLog(@"[Lucient] failed to hook -[%@ %@]: %s", NSStringFromClass(cls), NSStringFromSelector(sel), err);
 		}
-	} else if (MSHookMessageEx) {
-		MSHookMessageEx(cls, sel, imp, (IMP*)result);
+	} else if (HookMessageEx) {
+		HookMessageEx(cls, sel, imp, (IMP*)result);
 	} else {
 		NSLog(@"[Lucient] no hooking library present???");
 	}
@@ -161,4 +174,36 @@ __attribute__((constructor)) static void initTweakFunc() {
 	hook(objc_getClass("SBMediaController"), @selector(setNowPlayingInfo:),
 		 (void*)&hook_SBMediaController_setNowPlayingInfo, (void**)&orig_SBMediaController_setNowPlayingInfo);
 	VALIDITY_CHECK
+}
+
+__attribute__((destructor)) static void cleanup() {
+	if (timeView) {
+		[timeView.view removeFromSuperview];
+		[timeView removeFromParentViewController];
+		timeView = NULL;
+	}
+	if (dateView) {
+		[dateView.view removeFromSuperview];
+		[dateView removeFromParentViewController];
+		dateView = NULL;
+	}
+	if (libhooker) {
+		LHStrError = NULL;
+		dlclose(libhooker);
+		libhooker = NULL;
+	}
+	if (libblackjack) {
+		LBHookMessage = NULL;
+		dlclose(libblackjack);
+		libblackjack = NULL;
+	}
+	HookMessageEx = NULL;
+	if (substitute) {
+		dlclose(substitute);
+		substitute = NULL;
+	}
+	if (substrate) {
+		dlclose(substrate);
+		substrate = NULL;
+	}
 }

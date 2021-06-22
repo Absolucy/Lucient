@@ -26,10 +26,11 @@ public struct Header<Icon: View>: View {
 				.padding(.trailing)
 			VStack(alignment: .leading) {
 				Text(packageName)
-					.font(.largeTitle)
+					.font(.system(.largeTitle, design: .rounded))
 				subtitle.map { subtitle in
 					Text(subtitle)
-						.font(.callout)
+						.font(.system(.callout, design: .rounded))
+						.fontWeight(.light)
 						.foregroundColor(.gray)
 				}
 			}
