@@ -16,7 +16,7 @@ struct RootPreferences: View {
 	@Preference("fontStyle", identifier: identifier) private var fontStyle = FontStyle.ios
 	@Preference("customFont",
 	            identifier: identifier) private var customFontPath = "/Library/Lucy/LucientResources.bundle/Roboto.ttf"
-	@Preference("colorMode", identifier: identifier) private var colorMode = ColorMode.background
+	@Preference("colorMode", identifier: identifier) private var colorMode = ColorMode.secondary
 	@Preference("color", identifier: identifier) private var color = Color.primary
 	@Preference("separatedColors", identifier: identifier) private var separatedColors = false
 
@@ -25,14 +25,15 @@ struct RootPreferences: View {
 	@Preference("minTimeSize", identifier: identifier) private var minTimeSize: Double = 72
 	@Preference("timeOffset", identifier: identifier) private var timeOffset: Double = 15
 	@Preference("timeOnTheRight", identifier: identifier) private var timeOnTheRight = false
-	@Preference("timeColorMode", identifier: identifier) private var timeColorMode = ColorMode.background
+	@Preference("timeColorMode", identifier: identifier) private var timeColorMode = ColorMode.secondary
 	@Preference("timeColor", identifier: identifier) private var timeColor = Color.primary
+	@Preference("time24hr", identifier: identifier) var time24Hour = false
 
 	// Date/Weather
 	@Preference("showWeather", identifier: identifier) private var showWeather = true
 	@Preference("dateFontSize", identifier: identifier) private var dateFontSize: Double = 24
 	@Preference("dateOffset", identifier: identifier) private var dateOffset: Double = 0
-	@Preference("dateColorMode", identifier: identifier) private var dateColorMode = ColorMode.background
+	@Preference("dateColorMode", identifier: identifier) private var dateColorMode = ColorMode.secondary
 	@Preference("dateColor", identifier: identifier) private var dateColor = Color.primary
 	@State private var showFontPicker = false
 	@State private var showingRespringAlert = false
@@ -143,7 +144,7 @@ struct RootPreferences: View {
 					Text("Background Primary").tag(ColorMode.primary)
 					Text("Background Secondary").tag(ColorMode.secondary)
 					Text("Background Color").tag(ColorMode.background)
-				}.pickerStyle(InlinePickerStyle())
+				}
 				if colorMode == .custom {
 					ColorPicker("Custom Color", selection: $color)
 				}
@@ -171,7 +172,7 @@ struct RootPreferences: View {
 					.font(.caption2)
 			}
 		}
-		.onTapGesture(count: 2) {
+		.onLongPressGesture {
 			option.wrappedValue = defaultOption
 		}
 	}
@@ -179,17 +180,21 @@ struct RootPreferences: View {
 	@ViewBuilder
 	func ClockCustomizationSection() -> some View {
 		Section(header: Text("Clock")) {
-			Picker(selection: $timeOnTheRight, label: EmptyView()) {
-				Text("Left").tag(false)
-				Text("Right").tag(true)
-			}.pickerStyle(SegmentedPickerStyle()).padding(.bottom, 4)
+			Toggle(time24Hour ? "24-hour time" : "12-hour time", isOn: $time24Hour)
+			VStack(spacing: 0) {
+				Text("Small Clock Position").padding(.vertical, 5)
+				Picker(selection: $timeOnTheRight, label: EmptyView()) {
+					Text("Left").tag(false)
+					Text("Right").tag(true)
+				}.pickerStyle(SegmentedPickerStyle()).padding(.bottom, 4)
+			}
 			if separatedColors {
 				Picker(selection: $timeColorMode, label: Text("Color")) {
 					Text("Custom").tag(ColorMode.custom)
 					Text("Background Primary").tag(ColorMode.primary)
 					Text("Background Secondary").tag(ColorMode.secondary)
 					Text("Background Color").tag(ColorMode.background)
-				}.pickerStyle(InlinePickerStyle()).padding(.vertical, 4)
+				}.padding(.vertical, 4)
 				if timeColorMode == .custom {
 					ColorPicker("Custom Color", selection: $timeColor).padding(.vertical, 4)
 				}
@@ -214,7 +219,7 @@ struct RootPreferences: View {
 					Text("Background Primary").tag(ColorMode.primary)
 					Text("Background Secondary").tag(ColorMode.secondary)
 					Text("Background Color").tag(ColorMode.background)
-				}.pickerStyle(InlinePickerStyle()).padding(.vertical, 4)
+				}.padding(.vertical, 4)
 				if dateColorMode == .custom {
 					ColorPicker("Custom Color", selection: $dateColor).padding(.vertical, 4)
 				}
@@ -259,24 +264,127 @@ struct RootPreferences: View {
 	}
 
 	@ViewBuilder
+	func TweakAdvertisement(name: String, description: String, package: String, image: Image) -> some View {
+		Button(action: {
+			openPackage(name: name, package: package)
+		}) {
+			HStack {
+				image
+					.resizable()
+					.frame(width: 48, height: 48)
+					.clipShape(Capsule())
+					.padding([.vertical, .trailing], 5)
+				VStack(alignment: .leading, spacing: 5) {
+					Text("Buy \(name)")
+						.font(.system(.body, design: .rounded))
+					Text(description)
+						.font(.system(.caption, design: .rounded))
+				}
+			}
+		}
+	}
+
+	@ViewBuilder
+	func AboutMeSection() -> some View {
+		Section(header: Text("About Me")) {
+			Credit(name: "Lucy", role: "Developer", username: "Absolucyyy")
+			Button(action: {
+				if let url = URL(string: "mailto:support@absolucy.moe") {
+					UIApplication.shared.open(url)
+				}
+			}) {
+				HStack {
+					Image(systemName: "envelope.fill")
+						.resizable()
+						.scaledToFit()
+						.frame(width: 29, height: 29)
+						.padding(.vertical, 5)
+						.padding(.horizontal, 11)
+					VStack(alignment: .leading, spacing: 5) {
+						Text("Support Email")
+							.font(.system(.body, design: .rounded))
+						Text("support@absolucy.moe")
+							.font(.system(.caption, design: .rounded))
+					}
+				}
+			}
+			TweakAdvertisement(
+				name: "Xenon",
+				description: "Easily share files between iOS and a PC over your network!",
+				package: "me.aspenuwu.xenon",
+				image: UIImage(contentsOfFile: "/Library/Lucy/LucientResources.bundle/xenon.png")
+					.map(Image.init) ?? Image(systemName: "externaldrive.fill.badge.wifi")
+			)
+			TweakAdvertisement(
+				name: "Zinnia",
+				description: "Who doesn't love neon? Why not put it on your lockscreen?",
+				package: "me.aspenuwu.zinnia",
+				image: UIImage(contentsOfFile: "/Library/Lucy/LucientResources.bundle/zinnia.png")
+					.map(Image.init) ?? Image(systemName: "lightbulb.fill")
+			)
+		}
+	}
+
+	@ViewBuilder
 	func CreditsSection() -> some View {
 		Section(header: Text("Credits")) {
-			Credit(name: "Lucy", role: "Developer", username: "Absolucyyy")
 			Credit(name: "Alpha", role: "Logo Designer", username: "Kutarin_")
 			Credit(name: "Emma", role: "Tester", username: "emiyl0")
+			Credit(name: "Litten", role: "libkitten developer", username: "schneelittchen")
 		}
 	}
 
 	var body: some View {
-		Form {
-			HeaderSection()
-			if enabled {
-				StyleSection()
-				ClockCustomizationSection()
-				DateCustomizationSection()
-				CreditsSection()
+		VStack {
+			Form {
+				HeaderSection()
+				if enabled {
+					StyleSection()
+					ClockCustomizationSection()
+					DateCustomizationSection()
+					AboutMeSection()
+					CreditsSection()
+				}
 			}
+			Text("Some options can be reset to default by long-pressing!")
+				.font(.system(.caption2, design: .rounded))
+				.fontWeight(.light)
+				.padding()
 		}
+	}
+}
+
+private func openPackage(name: String, package: String) {
+	if let sileoUrl = URL(string: "sileo://package/\(package)") {
+		if UIApplication.shared.canOpenURL(sileoUrl) {
+			UIApplication.shared.open(sileoUrl)
+			return
+		}
+	}
+	if let zebraUrl = URL(string: "zbra://packages/\(package)?source=https://repo.chariz.com") {
+		if UIApplication.shared.canOpenURL(zebraUrl) {
+			UIApplication.shared.open(zebraUrl)
+			return
+		}
+	}
+	if let installerUrl =
+		URL(string: "installer://show/shared=Installer&name=\(package)&bundleid=\(package)&repo=https://repo.chariz.com")
+	{
+		if UIApplication.shared.canOpenURL(installerUrl) {
+			UIApplication.shared.open(installerUrl)
+			return
+		}
+	}
+	if let cydiaUrl =
+		URL(string: "cydia://url/https://cydia.saurik.com/api/share#?source=https://repo.chariz.com&package=\(package)")
+	{
+		if UIApplication.shared.canOpenURL(cydiaUrl) {
+			UIApplication.shared.open(cydiaUrl)
+			return
+		}
+	}
+	if let url = URL(string: "https://chariz.com/buy/\(name.lowercased())") {
+		UIApplication.shared.open(url)
 	}
 }
 

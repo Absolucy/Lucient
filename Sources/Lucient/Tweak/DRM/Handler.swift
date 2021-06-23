@@ -75,43 +75,29 @@ internal struct DRM {
 		if !dpkg_check() {
 			NotificationCenter.default.post(
 				name: notifierName,
-				object: ActivationUpdate.status(.failure)
+				object: Status.failure
 			)
 			authInProgress = false
 			authSemaphore.signal()
 			return
 		}
 
-		NotificationCenter.default.post(
-			name: notifierName,
-			object: ActivationUpdate.progress(0.25)
-		)
-
 		contactServer { response in
-			NotificationCenter.default.post(
-				name: notifierName,
-				object: ActivationUpdate.progressOver(0.75, 1.9)
-			)
 			DispatchQueue.main.asyncAfter(deadline: .now() + 2, qos: .userInteractive) {
 				defer {
 					authInProgress = false
 					authSemaphore.signal()
 				}
-				NotificationCenter.default.post(
-					name: notifierName,
-					object: ActivationUpdate.progress(0.9)
-				)
-
 				switch response {
 				case .error:
 					NotificationCenter.default.post(
 						name: notifierName,
-						object: ActivationUpdate.status(.error)
+						object: Status.error
 					)
 				case .denied:
 					NotificationCenter.default.post(
 						name: notifierName,
-						object: ActivationUpdate.status(.failure)
+						object: Status.failure
 					)
 				case let .success(ticket):
 					if ticket.isValid() {
@@ -122,11 +108,7 @@ internal struct DRM {
 						#endif
 						NotificationCenter.default.post(
 							name: notifierName,
-							object: ActivationUpdate.progress(1.0)
-						)
-						NotificationCenter.default.post(
-							name: notifierName,
-							object: ActivationUpdate.status(.success)
+							object: Status.success
 						)
 						DispatchQueue.main.asyncAfter(deadline: .now() + 3, qos: .userInteractive) {
 							respring()
@@ -134,7 +116,7 @@ internal struct DRM {
 					} else {
 						NotificationCenter.default.post(
 							name: notifierName,
-							object: ActivationUpdate.status(.failure)
+							object: Status.failure
 						)
 					}
 				}
@@ -178,7 +160,7 @@ internal extension FixedWidthInteger {
 }
 
 @_cdecl("runDrm")
-public dynamic func runDrm() {
+internal func runDrm() {
 	#if DRM
 		if DRM.ticketAuthorized() {
 			return
@@ -199,7 +181,7 @@ public dynamic func runDrm() {
 }
 
 @_cdecl("isValidated")
-public dynamic func isValidated() -> Bool {
+internal func isValidated() -> Bool {
 	#if DRM
 		return DRM.ticketAuthorized()
 	#else

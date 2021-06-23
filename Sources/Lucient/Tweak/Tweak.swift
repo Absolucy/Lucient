@@ -8,7 +8,7 @@
 import Foundation
 
 @_cdecl("isEnabled")
-public dynamic func isEnabled() -> Bool {
+internal func isEnabled() -> Bool {
 	guard let defaults = UserDefaults(suiteName: "/var/mobile/Library/Preferences/moe.absolucy.lucient.plist") else {
 		return true
 	}

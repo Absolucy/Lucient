@@ -32,7 +32,7 @@ internal struct DateView: View {
 	@Preference("fontStyle", identifier: "moe.absolucy.lucient") private var fontStyle = FontStyle.ios
 	@Preference("customFont",
 	            identifier: "moe.absolucy.lucient") var customFont = "/Library/Lucy/LucientResources.bundle/Roboto.ttf"
-	@Preference("colorMode", identifier: "moe.absolucy.lucient") private var colorMode = ColorMode.background
+	@Preference("colorMode", identifier: "moe.absolucy.lucient") private var colorMode = ColorMode.secondary
 	@Preference("color", identifier: "moe.absolucy.lucient") private var customColor = Color.primary
 	@Preference("separatedColors", identifier: "moe.absolucy.lucient") private var separatedColors = false
 
@@ -40,7 +40,7 @@ internal struct DateView: View {
 	@Preference("minTimeSize", identifier: "moe.absolucy.lucient") private var timeSize: Double = 24
 	@Preference("dateFontSize", identifier: "moe.absolucy.lucient") private var fontSize: Double = 24
 	@Preference("dateOffset", identifier: "moe.absolucy.lucient") private var offset: Double = 0
-	@Preference("dateColorMode", identifier: "moe.absolucy.lucient") var dateColorMode = ColorMode.background
+	@Preference("dateColorMode", identifier: "moe.absolucy.lucient") var dateColorMode = ColorMode.secondary
 	@Preference("dateColor", identifier: "moe.absolucy.lucient") var dateCustomColor = Color.primary
 	@State private var date = Date()
 	@ObservedObject private var shared = SharedData.global
@@ -95,6 +95,6 @@ internal struct DateView: View {
 }
 
 @_cdecl("makeDateView")
-public dynamic func makeDateView() -> UIViewController? {
+internal func makeDateView() -> UIViewController? {
 	UIHostingController(rootView: DateView.view)
 }

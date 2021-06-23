@@ -85,19 +85,19 @@ internal final class SharedData: ObservableObject {
 }
 
 @_cdecl("setNotifsVisible")
-public dynamic func setNotifsVisible(_ visible: Bool) {
+internal func setNotifsVisible(_ visible: Bool) {
 	SharedData.global.notifsVisible = visible
 	SharedData.global.updateVisibility()
 }
 
 @_cdecl("setMusicVisible")
-public dynamic func setMusicVisible(_ visible: Bool) {
+internal func setMusicVisible(_ visible: Bool) {
 	SharedData.global.musicVisible = visible
 	SharedData.global.updateVisibility()
 }
 
 @_cdecl("setScreenOn")
-public dynamic func setScreenOn(_: Bool) {
+internal func setScreenOn(_: Bool) {
 	NotificationCenter.default.post(name: NSNotification.Name("moe.absolucy.lucient.time"), object: nil)
 	NotificationCenter.default.post(name: NSNotification.Name("moe.absolucy.lucient.weather"), object: nil)
 }

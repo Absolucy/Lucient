@@ -8,10 +8,6 @@
 import LucientC
 import SwiftUI
 
-internal enum ActivationUpdate {
-	case progress(Float), progressOver(Float, Double), status(Status)
-}
-
 enum Status {
 	case fetching, success, error, failure
 }
@@ -67,9 +63,8 @@ struct ActivationView: View {
 			Text(getStr(UI_DRM_FETCHING))
 				.font(.body)
 				.multilineTextAlignment(.center)
-			ProgressBar(value: $progress, status: .neutral)
-				.frame(height: 20)
-				.padding(.horizontal)
+			ProgressView()
+				.padding()
 		}
 	}
 
@@ -82,9 +77,13 @@ struct ActivationView: View {
 			Text(getStr(UI_DRM_SUCCESS))
 				.font(.body)
 				.multilineTextAlignment(.center)
-			ProgressBar(value: $progress, status: .good)
-				.frame(height: 20)
-				.padding([.horizontal, .bottom])
+			Image(systemName: "face.smiling")
+				.resizable()
+				.renderingMode(.template)
+				.scaledToFit()
+				.foregroundColor(Color.green)
+				.frame(width: 48, height: 48)
+				.padding()
 		}
 	}
 
@@ -98,9 +97,13 @@ struct ActivationView: View {
 				.font(.body)
 				.multilineTextAlignment(.center)
 				.padding(5)
-			ProgressBar(value: $progress, status: .bad)
-				.frame(height: 20)
-				.padding([.horizontal, .bottom])
+			Image(systemName: "wifi.exclamationmark")
+				.resizable()
+				.renderingMode(.template)
+				.scaledToFit()
+				.foregroundColor(Color.red)
+				.frame(width: 48, height: 48)
+				.padding()
 			Button(getStr(UI_DRM_BUTTONS_CONTINUE)) {
 				close()
 			}.padding(.top, 5)
@@ -121,9 +124,13 @@ struct ActivationView: View {
 				.font(.body)
 				.multilineTextAlignment(.center)
 				.padding(5)
-			ProgressBar(value: $progress, status: .bad)
-				.frame(height: 20)
-				.padding([.horizontal, .bottom])
+			Image(systemName: "person.crop.circle.badge.exclamationmark")
+				.resizable()
+				.renderingMode(.template)
+				.scaledToFit()
+				.foregroundColor(Color.red)
+				.frame(width: 48, height: 48)
+				.padding()
 			Button(getStr(UI_DRM_BUTTONS_CONTINUE)) {
 				close()
 			}.padding(.top, 5)
@@ -156,19 +163,8 @@ struct ActivationView: View {
 			.overlay(BuildView().padding(5))
 			.frame(width: width, height: height)
 			.onReceive(observer) { update in
-				guard let update = update.object as? ActivationUpdate else { return }
-				switch update {
-				case let .progress(progress):
-					withAnimation(.linear(duration: 1)) {
-						self.progress = progress
-					}
-				case let .progressOver(progress, duration):
-					withAnimation(.linear(duration: duration)) {
-						self.progress = progress
-					}
-				case let .status(status):
-					self.status = status
-				}
+				guard let status = update.object as? Status else { return }
+				self.status = status
 			}
 			.onAppear {
 				DispatchQueue.main.asyncAfter(deadline: .now() + 90, qos: .background) {

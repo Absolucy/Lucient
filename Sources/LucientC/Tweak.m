@@ -177,16 +177,6 @@ __attribute__((constructor)) static void initTweakFunc() {
 }
 
 __attribute__((destructor)) static void cleanup() {
-	if (timeView) {
-		[timeView.view removeFromSuperview];
-		[timeView removeFromParentViewController];
-		timeView = NULL;
-	}
-	if (dateView) {
-		[dateView.view removeFromSuperview];
-		[dateView removeFromParentViewController];
-		dateView = NULL;
-	}
 	if (libhooker) {
 		LHStrError = NULL;
 		dlclose(libhooker);
