@@ -10,10 +10,15 @@ extern BOOL dpkg_check();
 /// Initialize the string table. This should only be run once, during initialization!
 extern void initialize_string_table();
 
+typedef struct {
+	uint32_t length;
+	uint8_t* data;
+} decrypted_data;
+
 /// Get a string from the string table, automatically decrypting it.
 /// You must free() this string later!
 extern char* st_get(uint32_t idx);
 
 /// Get some arbritrary data from the string table, automatically decrypting it.
 /// You must free() this data later!
-extern void st_get_bytes(uint32_t idx, void (^callback)(uint8_t*, size_t));
+extern decrypted_data st_get_bytes(uint32_t idx);

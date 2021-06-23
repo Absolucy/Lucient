@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-public extension Color {
+internal extension Color {
 	/// Initialize a `Color` with a hex string of format `#000000:1.0`
 	init?(hexString: String) {
 		var hexString = hexString

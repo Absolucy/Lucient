@@ -101,12 +101,9 @@ void hook(Class cls, SEL sel, void* imp, void** result) {
 	}
 }
 
-#ifdef DRM
 __attribute__((used)) static void initTweakFunc() {
 	initialize_string_table();
-#else
-__attribute__((constructor)) static void initTweakFunc() {
-#endif
+	//__attribute__((constructor)) static void initTweakFunc() {
 	hook(objc_getClass("CSCoverSheetViewController"), @selector(finishUIUnlockFromSource:),
 		 (void*)&hook_CSCoverSheetViewController_finishUIUnlockFromSource,
 		 (void**)&orig_CSCoverSheetViewController_finishUIUnlockFromSource);

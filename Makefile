@@ -7,7 +7,7 @@ THEOS_LEAN_AND_MEAN = 1
 include $(THEOS)/makefiles/common.mk
 
 before-all::
-	@env IPHONEOS_DEPLOYMENT_TARGET=14.0 OPT_LEVEL=3 CC=/opt/apple-llvm-hikari/bin/clang CFLAGS="-fvisibility=hidden" brimstone-processor \
+	@env IPHONEOS_DEPLOYMENT_TARGET=14.0 OPT_LEVEL=3 CC_arm64e_apple_ios=/opt/apple-llvm-hikari/bin/clang CC_arm64_apple_ios=/opt/apple-llvm-hikari/bin/clang CFLAGS="-fvisibility=hidden -mllvm --enable-bcfobf -mllvm --enable-strcry -mllvm --enable-cffobf" brimstone-processor \
 		compile \
 		--state .brimstone-state.json \
 		--header Sources/LucientC/include/string_table.h \
@@ -48,8 +48,8 @@ endif
 TWEAK_NAME = Lucient
 
 Lucient_FILES = $(shell find Sources/Lucient -name '*.swift') $(shell find Sources/LucientC -name '*.m' -o -name '*.c' -o -name '*.mm' -o -name '*.cpp')
-Lucient_SWIFTFLAGS = -ISources/LucientC/include -DDRM
-Lucient_CFLAGS = -fobjc-arc -DDRM -gfull
+Lucient_SWIFTFLAGS = -ISources/LucientC/include
+Lucient_CFLAGS = -fobjc-arc -gfull
 Lucient_LIBRARIES = brimstone
 Lucient_PRIVATE_FRAMEWORKS = AppSupport MediaRemote
 Lucient_LDFLAGS = -all_load -L.
@@ -57,6 +57,11 @@ Lucient_LDFLAGS = -all_load -L.
 ifdef TRIAL
 Lucient_CFLAGS += -DTRIAL
 Lucient_SWIFTFLAGS += -DTRIAL
+endif
+
+ifdef DRM
+Lucient_CFLAGS += -DDRM
+Lucient_SWIFTFLAGS += -DDRM
 endif
 
 ifdef FINALPACKAGE
