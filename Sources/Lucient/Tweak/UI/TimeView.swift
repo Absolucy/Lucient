@@ -42,7 +42,7 @@ internal struct TimeView: View {
 			return defaults.object(forKey: "time24hr") as? Bool ?? false
 		}()
 		let formatter = DateFormatter()
-		formatter.dateFormat = is24Hr ? "hh" : "HH"
+		formatter.dateFormat = is24Hr ? "HH" : "hh"
 		return formatter
 	}()
 
