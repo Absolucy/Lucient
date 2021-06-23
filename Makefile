@@ -7,7 +7,7 @@ THEOS_LEAN_AND_MEAN = 1
 include $(THEOS)/makefiles/common.mk
 
 before-all::
-	@env IPHONEOS_DEPLOYMENT_TARGET=14.0 OPT_LEVEL=3 CC=/opt/apple-llvm-hikari/bin/clang CFLAGS="-mllvm --enable-bcfobf -mllvm --enable-strcry -fvisibility=hidden" brimstone-processor \
+	@env IPHONEOS_DEPLOYMENT_TARGET=14.0 OPT_LEVEL=3 CC=/opt/apple-llvm-hikari/bin/clang CFLAGS="-fvisibility=hidden" brimstone-processor \
 		compile \
 		--state .brimstone-state.json \
 		--header Sources/LucientC/include/string_table.h \

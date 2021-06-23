@@ -18,6 +18,7 @@ internal struct TimeView: View {
 	}()
 
 	private let timeObserver = NotificationCenter.default.publisher(for: NSNotification.Name("moe.absolucy.lucient.time"))
+		.receive(on: RunLoop.main)
 
 	@Preference("fontStyle", identifier: "moe.absolucy.lucient") private var fontStyle = FontStyle.ios
 	@Preference("customFont",

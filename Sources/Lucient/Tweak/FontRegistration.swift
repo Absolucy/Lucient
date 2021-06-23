@@ -31,6 +31,16 @@ final class FontRegistration {
 			break
 		}
 		return Font.system(size: CGFloat(size), weight: .thin, design: .rounded)
+		/* let font = UIFont.monospacedSystemFont(ofSize: CGFloat(size), weight: .thin)
+		 let fontDescriptor = font.fontDescriptor.withDesign(.rounded)!.addingAttributes([
+		 	.featureSettings: [
+		 		[
+		 			.featureIdentifier: kNumberSpacingType,
+		 			.typeIdentifier: kMonospacedNumbersSelector,
+		 		],
+		 	] as [[UIFontDescriptor.FeatureKey: Int]],
+		 ])
+		 return Font(UIFont(descriptor: fontDescriptor, size: 0)) */
 	}
 
 	static func register(url: URL) -> String? {

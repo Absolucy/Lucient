@@ -16,6 +16,7 @@ internal final class SharedData: ObservableObject {
 	static let global = SharedData()
 	var timeTimer: Timer?
 	var weatherTimer: Timer?
+	var flipTimer: Timer?
 	var wallpaperTimer: Timer?
 	var notifsVisible = false
 	var musicVisible = false
@@ -31,6 +32,9 @@ internal final class SharedData: ObservableObject {
 		weatherTimer = Timer.scheduledTimer(withTimeInterval: 10, repeats: true) { _ in
 			NotificationCenter.default.post(name: NSNotification.Name("moe.absolucy.lucient.weather"), object: nil)
 		}
+		flipTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in
+			NotificationCenter.default.post(name: NSNotification.Name("moe.absolucy.lucient.flip"), object: nil)
+		}
 		wallpaperTimer = Timer.scheduledTimer(withTimeInterval: 90, repeats: true) { _ in
 			NotificationCenter.default.post(name: NSNotification.Name("moe.absolucy.lucient.wallpaper"), object: nil)
 		}
@@ -41,6 +45,8 @@ internal final class SharedData: ObservableObject {
 		timeTimer = nil
 		weatherTimer?.invalidate()
 		weatherTimer = nil
+		flipTimer?.invalidate()
+		flipTimer = nil
 		wallpaperTimer?.invalidate()
 		wallpaperTimer = nil
 	}
@@ -97,7 +103,8 @@ internal func setMusicVisible(_ visible: Bool) {
 }
 
 @_cdecl("setScreenOn")
-internal func setScreenOn(_: Bool) {
+internal func setScreenOn(_ status: Bool) {
+	SharedData.global.updateScreen(status)
 	NotificationCenter.default.post(name: NSNotification.Name("moe.absolucy.lucient.time"), object: nil)
 	NotificationCenter.default.post(name: NSNotification.Name("moe.absolucy.lucient.weather"), object: nil)
 }
