@@ -11,6 +11,11 @@ import UniformTypeIdentifiers
 
 let identifier = "moe.absolucy.lucient"
 
+enum Credit {
+	case twitter(String)
+	case github(String)
+}
+
 struct RootPreferences: View {
 	@Preference("enabled", identifier: identifier) private var enabled = true
 	@Preference("fontStyle", identifier: identifier) private var fontStyle = FontStyle.ios
@@ -232,27 +237,42 @@ struct RootPreferences: View {
 	}
 
 	@ViewBuilder
-	func Credit(name: String, role: String, username: String) -> some View {
+	func Credit(name: String, role: String, username: Credit) -> some View {
+		let pfpUrl: URL = {
+			switch username {
+			case let .twitter(username):
+				return URL(string: "https://unavatar.now.sh/twitter/\(username)")!
+			case let .github(username):
+				return URL(string: "https://github.com/\(username).png")!
+			}
+		}()
 		Button(action: {
-			let appURL = URL(string: "twitter://user?screen_name=\(username)")!
-			let webURL = URL(string: "https://twitter.com/\(username)")!
-			let application = UIApplication.shared
-			if application.canOpenURL(appURL as URL) {
-				application.open(appURL as URL)
-			} else {
-				application.open(webURL as URL)
+			switch username {
+			case let .twitter(username):
+				let appURL = URL(string: "twitter://user?screen_name=\(username)")!
+				let webURL = URL(string: "https://twitter.com/\(username)")!
+				let application = UIApplication.shared
+				if application.canOpenURL(appURL as URL) {
+					application.open(appURL as URL)
+				} else {
+					application.open(webURL as URL)
+				}
+			case let .github(username):
+				let url = URL(string: "https://github.com/\(username)")!
+				UIApplication.shared.open(url)
 			}
 		}, label: {
 			HStack {
 				AsyncImage(
-					url: URL(string: "https://unavatar.now.sh/twitter/\(username)")!,
+					url: pfpUrl,
 					placeholder: { ProgressView().progressViewStyle(CircularProgressViewStyle()) },
 					image: { Image(uiImage: $0).resizable() }
 				)
 				.aspectRatio(contentMode: .fit)
 				.frame(width: 58, height: 58)
 				.clipShape(Capsule())
-				.padding([.vertical, .trailing])
+				.padding(.trailing)
+				.padding(.vertical, 5)
 				VStack(alignment: .leading, spacing: 5) {
 					Text(name)
 						.font(.system(.title3, design: .rounded))
@@ -287,7 +307,7 @@ struct RootPreferences: View {
 	@ViewBuilder
 	func AboutMeSection() -> some View {
 		Section(header: Text("About Me")) {
-			Credit(name: "Lucy", role: "Developer", username: "Absolucyyy")
+			Credit(name: "Lucy", role: "Developer", username: .twitter("Absolucyyy"))
 			Button(action: {
 				if let url = URL(string: "mailto:support@absolucy.moe") {
 					UIApplication.shared.open(url)
@@ -328,9 +348,10 @@ struct RootPreferences: View {
 	@ViewBuilder
 	func CreditsSection() -> some View {
 		Section(header: Text("Credits")) {
-			Credit(name: "Alpha", role: "Logo Designer", username: "Kutarin_")
-			Credit(name: "Emma", role: "Tester", username: "emiyl0")
-			Credit(name: "Litten", role: "libkitten developer", username: "schneelittchen")
+			Credit(name: "Alpha", role: "Logo Designer", username: .twitter("Kutarin_"))
+			Credit(name: "Emma", role: "Tester", username: .twitter("emiyl0"))
+			Credit(name: "Emy", role: "Tester", username: .github("Emy"))
+			Credit(name: "Litten", role: "libkitten developer", username: .twitter("schneelittchen"))
 		}
 	}
 

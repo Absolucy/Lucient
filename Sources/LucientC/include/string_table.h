@@ -2,62 +2,62 @@
 // Do not modify, changes will be overwritten next compile.
 
 // DRM->Endpoint
-#define DRM_ENDPOINT (0)
+#define	DRM_ENDPOINT			(0)
 // DRM->Hostname
-#define DRM_HOSTNAME (1)
+#define	DRM_HOSTNAME			(1)
 // DRM->Public ed25519 Signing Key
-#define DRM_PUBLIC_ED25519_SIGNING_KEY (2)
+#define	DRM_PUBLIC_ED25519_SIGNING_KEY			(2)
 // Formatting->ISO time
-#define FORMATTING_ISO_TIME (3)
+#define	FORMATTING_ISO_TIME			(3)
 // Formatting->Locale
-#define FORMATTING_LOCALE (4)
+#define	FORMATTING_LOCALE			(4)
 // Formatting->User Agent
-#define FORMATTING_USER_AGENT (5)
+#define	FORMATTING_USER_AGENT			(5)
 // Formatting->iOS x.x
-#define FORMATTING_IOS_X_X (6)
+#define	FORMATTING_IOS_X_X			(6)
 // Formatting->iOS x.x.x
-#define FORMATTING_IOS_X_X_X (7)
+#define	FORMATTING_IOS_X_X_X			(7)
 // Jailbreak Info->Names
-#define JAILBREAK_INFO_NAMES (8)
+#define	JAILBREAK_INFO_NAMES			(8)
 // Jailbreak Info->Paths
-#define JAILBREAK_INFO_PATHS (9)
+#define	JAILBREAK_INFO_PATHS			(9)
 // Keys->getDeviceAD->Model
-#define KEYS_GETDEVICEAD_MODEL (10)
+#define	KEYS_GETDEVICEAD_MODEL			(10)
 // Keys->getDeviceAD->UDID
-#define KEYS_GETDEVICEAD_UDID (11)
+#define	KEYS_GETDEVICEAD_UDID			(11)
 // Keys->getDeviceAD->XOR
-#define KEYS_GETDEVICEAD_XOR (12)
+#define	KEYS_GETDEVICEAD_XOR			(12)
 // Keys->getDeviceKey->Model
-#define KEYS_GETDEVICEKEY_MODEL (13)
+#define	KEYS_GETDEVICEKEY_MODEL			(13)
 // Keys->getDeviceKey->UDID
-#define KEYS_GETDEVICEKEY_UDID (14)
+#define	KEYS_GETDEVICEKEY_UDID			(14)
 // Keys->getDeviceKey->XOR
-#define KEYS_GETDEVICEKEY_XOR (15)
+#define	KEYS_GETDEVICEKEY_XOR			(15)
 // Paths->Encrypted Ticket
-#define PATHS_ENCRYPTED_TICKET (16)
+#define	PATHS_ENCRYPTED_TICKET			(16)
 // Paths->Encrypted Ticket Folder
-#define PATHS_ENCRYPTED_TICKET_FOLDER (17)
+#define	PATHS_ENCRYPTED_TICKET_FOLDER			(17)
 // Paths->killall
-#define PATHS_KILLALL (18)
+#define	PATHS_KILLALL			(18)
 // Paths->killall arguments
-#define PATHS_KILLALL_ARGUMENTS (19)
+#define	PATHS_KILLALL_ARGUMENTS			(19)
 // Paths->sbreload
-#define PATHS_SBRELOAD (20)
+#define	PATHS_SBRELOAD			(20)
 // Tweak
-#define TWEAK (21)
+#define	TWEAK			(21)
 // UI->DRM->Activation Observer
-#define UI_DRM_ACTIVATION_OBSERVER (22)
+#define	UI_DRM_ACTIVATION_OBSERVER			(22)
 // UI->DRM->Buttons->Continue
-#define UI_DRM_BUTTONS_CONTINUE (23)
+#define	UI_DRM_BUTTONS_CONTINUE			(23)
 // UI->DRM->Buttons->Try Again
-#define UI_DRM_BUTTONS_TRY_AGAIN (24)
+#define	UI_DRM_BUTTONS_TRY_AGAIN			(24)
 // UI->DRM->Error
-#define UI_DRM_ERROR (25)
+#define	UI_DRM_ERROR			(25)
 // UI->DRM->Fetching
-#define UI_DRM_FETCHING (26)
+#define	UI_DRM_FETCHING			(26)
 // UI->DRM->Pirated
-#define UI_DRM_PIRATED (27)
+#define	UI_DRM_PIRATED			(27)
 // UI->DRM->Success
-#define UI_DRM_SUCCESS (28)
+#define	UI_DRM_SUCCESS			(28)
 // Version
-#define VERSION (29)
+#define	VERSION			(29)

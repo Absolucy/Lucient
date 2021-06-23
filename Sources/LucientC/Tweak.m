@@ -107,6 +107,8 @@ __attribute__((used)) static void initTweakFunc() {
 	hook(objc_getClass("CSCoverSheetViewController"), @selector(finishUIUnlockFromSource:),
 		 (void*)&hook_CSCoverSheetViewController_finishUIUnlockFromSource,
 		 (void**)&orig_CSCoverSheetViewController_finishUIUnlockFromSource);
+	if (!isEnabled())
+		return;
 	VALIDITY_CHECK
 	hook(objc_getClass("CSCoverSheetView"), @selector(initWithFrame:), (void*)&hook_CSCoverSheetView_initWithFrame,
 		 (void**)&orig_CSCoverSheetView_initWithFrame);
