@@ -21,7 +21,7 @@ struct RootPreferences: View {
 	@Preference("fontStyle", identifier: identifier) private var fontStyle = FontStyle.ios
 	@Preference("customFont",
 	            identifier: identifier) private var customFontPath = "/Library/Lucy/LucientResources.bundle/Roboto.ttf"
-	@Preference("colorMode", identifier: identifier) private var colorMode = ColorMode.secondary
+	@Preference("colorMode", identifier: identifier) private var colorMode = ColorMode.distinctive
 	@Preference("color", identifier: identifier) private var color = Color.primary
 	@Preference("separatedColors", identifier: identifier) private var separatedColors = false
 
@@ -33,6 +33,7 @@ struct RootPreferences: View {
 	@Preference("timeColorMode", identifier: identifier) private var timeColorMode = ColorMode.secondary
 	@Preference("timeColor", identifier: identifier) private var timeColor = Color.primary
 	@Preference("time24hr", identifier: identifier) var time24Hour = false
+	@Preference("timeShowAmPm", identifier: "moe.absolucy.lucient") var timeShowAmPm = false
 
 	// Date/Weather
 	@Preference("showWeather", identifier: identifier) private var showWeather = true
@@ -146,6 +147,7 @@ struct RootPreferences: View {
 					.padding(.vertical, 4)
 				Picker(selection: $colorMode, label: Text("Color")) {
 					Text("Custom").tag(ColorMode.custom)
+					Text("Distinctive Color").tag(ColorMode.distinctive)
 					Text("Background Primary").tag(ColorMode.primary)
 					Text("Background Secondary").tag(ColorMode.secondary)
 					Text("Background Color").tag(ColorMode.background)
@@ -186,6 +188,9 @@ struct RootPreferences: View {
 	func ClockCustomizationSection() -> some View {
 		Section(header: Text("Clock")) {
 			Toggle(time24Hour ? "24-hour time" : "12-hour time", isOn: $time24Hour)
+			if !time24Hour {
+				Toggle("Show AM/PM", isOn: $timeShowAmPm)
+			}
 			VStack(spacing: 0) {
 				Text("Small Clock Position").padding(.vertical, 5)
 				Picker(selection: $timeOnTheRight, label: EmptyView()) {
@@ -196,6 +201,7 @@ struct RootPreferences: View {
 			if separatedColors {
 				Picker(selection: $timeColorMode, label: Text("Color")) {
 					Text("Custom").tag(ColorMode.custom)
+					Text("Distinctive Color").tag(ColorMode.distinctive)
 					Text("Background Primary").tag(ColorMode.primary)
 					Text("Background Secondary").tag(ColorMode.secondary)
 					Text("Background Color").tag(ColorMode.background)
@@ -221,6 +227,7 @@ struct RootPreferences: View {
 			if separatedColors {
 				Picker(selection: $dateColorMode, label: Text("Color")) {
 					Text("Custom").tag(ColorMode.custom)
+					Text("Distinctive Color").tag(ColorMode.distinctive)
 					Text("Background Primary").tag(ColorMode.primary)
 					Text("Background Secondary").tag(ColorMode.secondary)
 					Text("Background Color").tag(ColorMode.background)

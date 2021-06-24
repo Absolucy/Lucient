@@ -11,9 +11,10 @@ import SwiftUI
 
 internal enum ColorMode: Int {
 	case custom = 0
-	case primary = 1
-	case secondary = 2
-	case background = 3
+	case distinctive = 1
+	case primary = 2
+	case secondary = 3
+	case background = 4
 }
 
 internal final class ColorManager {
@@ -23,6 +24,7 @@ internal final class ColorManager {
 	var primary = Color.white
 	var secondary = Color.white
 	var background = Color.white
+	var distinctive = Color.white
 
 	init() {
 		updateWallpaper()
@@ -40,14 +42,17 @@ internal final class ColorManager {
 		case .custom:
 			return separated ? customColor : color
 		case .primary:
-			ColorManager.instance.updateWallpaper()
-			return ColorManager.instance.primary
+			updateWallpaper()
+			return primary
 		case .secondary:
-			ColorManager.instance.updateWallpaper()
-			return ColorManager.instance.secondary
+			updateWallpaper()
+			return secondary
 		case .background:
-			ColorManager.instance.updateWallpaper()
-			return ColorManager.instance.background
+			updateWallpaper()
+			return background
+		case .distinctive:
+			updateWallpaper()
+			return distinctive
 		}
 	}
 
@@ -62,6 +67,9 @@ internal final class ColorManager {
 				primary = Color(getColorFromImage(wallpaper, 1, 4, 1, 100))
 				secondary = Color(getColorFromImage(wallpaper, 1, 9, 3, 90))
 				background = Color(getColorFromImage(wallpaper, 0, 0, 0, 0))
+				let (r, g, b, _) = background.components
+				let y = 0.2126 * pow(r, 2.2) + 0.7151 * pow(g, 2.2) + 0.0721 * pow(b, 2.2)
+				distinctive = y <= 0.18 ? Color.white : Color.black
 			}
 			wallpaperModifiedDate = modified
 		} catch {

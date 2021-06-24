@@ -9,7 +9,8 @@ import Foundation
 
 enum ColorMode: Int {
 	case custom = 0
-	case primary = 1
-	case secondary = 2
-	case background = 3
+	case distinctive = 1
+	case primary = 2
+	case secondary = 3
+	case background = 4
 }

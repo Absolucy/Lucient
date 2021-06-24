@@ -17,7 +17,7 @@ internal enum FontStyle: Int {
 	case custom = 2
 }
 
-final class FontRegistration {
+enum FontRegistration {
 	static let register: Void = {
 		_ = register(url: URL(fileURLWithPath: "/Library/Lucy/LucientResources.bundle/Roboto.ttf"))
 	}()

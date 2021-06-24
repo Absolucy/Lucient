@@ -23,7 +23,7 @@ internal struct TimeView: View {
 	@Preference("fontStyle", identifier: "moe.absolucy.lucient") private var fontStyle = FontStyle.ios
 	@Preference("customFont",
 	            identifier: "moe.absolucy.lucient") var customFont = "/Library/Lucy/LucientResources.bundle/Roboto.ttf"
-	@Preference("colorMode", identifier: "moe.absolucy.lucient") private var colorMode = ColorMode.secondary
+	@Preference("colorMode", identifier: "moe.absolucy.lucient") private var colorMode = ColorMode.distinctive
 	@Preference("color", identifier: "moe.absolucy.lucient") private var customColor = Color.primary
 	@Preference("separatedColors", identifier: "moe.absolucy.lucient") private var separatedColors = false
 
@@ -31,9 +31,10 @@ internal struct TimeView: View {
 	@Preference("maxTimeSize", identifier: "moe.absolucy.lucient") var maxFontSize: Double = 160
 	@Preference("timeOffset", identifier: "moe.absolucy.lucient") var timeOffset: Double = 15
 	@Preference("timeOnTheRight", identifier: "moe.absolucy.lucient") private var timeOnTheRight = false
-	@Preference("timeColorMode", identifier: "moe.absolucy.lucient") var timeColorMode = ColorMode.secondary
+	@Preference("timeColorMode", identifier: "moe.absolucy.lucient") var timeColorMode = ColorMode.distinctive
 	@Preference("timeColor", identifier: "moe.absolucy.lucient") var timeCustomColor = Color.primary
 	@Preference("time24hr", identifier: "moe.absolucy.lucient") var time24Hour = false
+	@Preference("timeShowAmPm", identifier: "moe.absolucy.lucient") var timeShowAmPm = false
 	@State private var date = Date()
 	@State private var hourFmt: DateFormatter = {
 		let is24Hr: Bool = {
@@ -52,8 +53,13 @@ internal struct TimeView: View {
 			else { return false }
 			return defaults.object(forKey: "time24hr") as? Bool ?? false
 		}()
+		let showAmPm: Bool = {
+			guard let defaults = UserDefaults(suiteName: "/var/mobile/Library/Preferences/moe.absolucy.lucient.plist")
+			else { return false }
+			return defaults.object(forKey: "timeShowAmPm") as? Bool ?? false
+		}()
 		let formatter = DateFormatter()
-		formatter.dateFormat = is24Hr ? "HH:mm" : "hh:mm a"
+		formatter.dateFormat = is24Hr ? "HH:mm" : (showAmPm ? "hh:mm a" : "hh:mm")
 		return formatter
 	}()
 
@@ -95,7 +101,12 @@ internal struct TimeView: View {
 			date = Date()
 		}.onChange(of: time24Hour) { newValue in
 			hourFmt.dateFormat = newValue ? "HH" : "hh"
-			minFmt.dateFormat = newValue ? "HH:mm" : "hh:mm a"
+			minFmt.dateFormat = newValue ? "HH:mm" : (timeShowAmPm ? "hh:mm a" : "hh:mm")
+		}
+		.onChange(of: timeShowAmPm) { newValue in
+			if !time24Hour {
+				minFmt.dateFormat = newValue ? "hh:mm a" : "hh:mm"
+			}
 		}
 		.padding(.trailing)
 	}
