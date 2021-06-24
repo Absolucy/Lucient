@@ -20,6 +20,7 @@ internal final class SharedData: ObservableObject {
 	var wallpaperTimer: Timer?
 	var notifsVisible = false
 	var musicVisible = false
+	var musicSuggestionsVisible = false
 	@Published internal var timeMinimized = false
 	@Published internal var temperature: String? = nil
 	@Published internal var weatherImage: Image? = nil
@@ -52,7 +53,7 @@ internal final class SharedData: ObservableObject {
 	}
 
 	final func updateVisibility() {
-		let visible = notifsVisible || musicVisible
+		let visible = notifsVisible || musicVisible || musicSuggestionsVisible
 		let leftOrRight = UserDefaults(suiteName: "/var/mobile/Library/Preferences/moe.absolucy.lucient.plist")?
 			.object(forKey: "timeOnTheRight") as? Bool ?? false
 		timeConstraintCx?.isActive = !visible
@@ -99,6 +100,13 @@ internal func setNotifsVisible(_ visible: Bool) {
 @_cdecl("setMusicVisible")
 internal func setMusicVisible(_ visible: Bool) {
 	SharedData.global.musicVisible = visible
+	SharedData.global.updateVisibility()
+}
+
+
+@_cdecl("setMusicSuggestionsVisible")
+internal func setMusicSuggestionsVisible(_ visible: Bool) {
+	SharedData.global.musicSuggestionsVisible = visible
 	SharedData.global.updateVisibility()
 }
 

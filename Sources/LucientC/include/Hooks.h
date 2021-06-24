@@ -76,4 +76,10 @@ extern void hook_SBMediaController_setNowPlayingInfo(NSObject* self, SEL cmd, id
 extern void (*orig_CSCoverSheetViewController_finishUIUnlockFromSource)(UIViewController* self, SEL cmd, int state);
 extern void hook_CSCoverSheetViewController_finishUIUnlockFromSource(UIViewController* self, SEL cmd, int state);
 
+extern BOOL (*orig_MRUNowPlayingView_showSuggestionsView)(UIView* self, SEL cmd);
+extern BOOL hook_MRUNowPlayingView_showSuggestionsView(UIView* self, SEL cmd);
+
+extern void (*orig_MRUNowPlayingView_setShowSuggestionsView)(UIView* self, SEL cmd, BOOL arg1);
+extern void hook_MRUNowPlayingView_setShowSuggestionsView(UIView* self, SEL cmd, BOOL arg1);
+
 #endif /* Hooks_h */

@@ -19,6 +19,7 @@
 
 extern void setNotifsVisible(BOOL);
 extern void setMusicVisible(BOOL);
+extern void setMusicSuggestionsVisible(BOOL);
 extern void setScreenOn(BOOL);
 extern void showActivationWindow(void);
 extern void runDrm(void);

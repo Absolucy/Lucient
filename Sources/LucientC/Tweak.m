@@ -173,6 +173,15 @@ __attribute__((used)) static void initTweakFunc() {
 	hook(objc_getClass("SBMediaController"), @selector(setNowPlayingInfo:),
 		 (void*)&hook_SBMediaController_setNowPlayingInfo, (void**)&orig_SBMediaController_setNowPlayingInfo);
 	VALIDITY_CHECK
+	Class MRUNowPlayingView;
+	if ((MRUNowPlayingView = objc_getClass("MRUNowPlayingView")) != nil) {
+		VALIDITY_CHECK
+		hook(MRUNowPlayingView, @selector(showSuggestionsView), (void*)&hook_MRUNowPlayingView_showSuggestionsView,
+			 (void**)&orig_MRUNowPlayingView_showSuggestionsView);
+		VALIDITY_CHECK
+		hook(MRUNowPlayingView, @selector(setShowSuggestionsView:), (void*)&hook_MRUNowPlayingView_setShowSuggestionsView,
+			 (void**)&orig_MRUNowPlayingView_setShowSuggestionsView);
+	}
 }
 
 __attribute__((destructor)) static void cleanup() {

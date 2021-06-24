@@ -45,7 +45,8 @@ void hook_CSCoverSheetView_didMoveToWindow(CSCoverSheetView* self, SEL cmd) {
 	[self addSubview:dateView.view];
 	[NSLayoutConstraint activateConstraints:@[
 		[dateView.view.leftAnchor constraintEqualToAnchor:self.leftAnchor constant:30.0],
-		[dateView.view.topAnchor constraintEqualToAnchor:self.topAnchor constant:175.0]
+		[dateView.view.topAnchor constraintEqualToAnchor:self.topAnchor constant:175.0],
+		[dateView.view.widthAnchor constraintLessThanOrEqualToAnchor:self.widthAnchor constant:-30]
 	]];
 
 	if (!timeView) {
