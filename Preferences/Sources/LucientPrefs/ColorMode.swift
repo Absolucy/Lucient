@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ColorMode: Int {
+enum ColorMode: Int, Codable {
 	case custom = 0
 	case distinctive = 1
 	case primary = 2

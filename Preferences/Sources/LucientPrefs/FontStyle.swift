@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum FontStyle: Int {
+enum FontStyle: Int, Codable {
 	case ios = 0
 	case android = 1
 	case custom = 2

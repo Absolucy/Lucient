@@ -33,7 +33,7 @@ struct RootPreferences: View {
 	@Preference("timeColorMode", identifier: identifier) private var timeColorMode = ColorMode.secondary
 	@Preference("timeColor", identifier: identifier) private var timeColor = Color.primary
 	@Preference("time24hr", identifier: identifier) var time24Hour = false
-	@Preference("timeShowAmPm", identifier: "moe.absolucy.lucient") var timeShowAmPm = false
+	@Preference("timeShowAmPm", identifier: identifier) var timeShowAmPm = false
 
 	// Date/Weather
 	@Preference("showWeather", identifier: identifier) private var showWeather = true
@@ -240,6 +240,21 @@ struct RootPreferences: View {
 				.padding(.vertical, 4)
 			SizeOption(name: "Offset", option: $dateOffset, min: 0, max: 128, default: 2)
 				.padding(.top, 4)
+		}
+	}
+
+	@ViewBuilder
+	func ImportExportSecttion() -> some View {
+		Section(header: Text("Import / Export")) {
+			Button(action: {}, label: {
+				HStack {
+					Image(systemName: "square.and.arrow.down.on.square")
+						.resizable()
+						.frame(width: 48, height: 48)
+						.padding([.vertical, .trailing], 5)
+					Text("Import from URL")
+				}
+			})
 		}
 	}
 
