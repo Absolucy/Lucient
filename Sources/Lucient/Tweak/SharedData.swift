@@ -14,10 +14,10 @@ import UIKit
 
 internal final class SharedData: ObservableObject {
 	static let global = SharedData()
-	var timeTimer: Timer?
-	var weatherTimer: Timer?
-	var flipTimer: Timer?
-	var wallpaperTimer: Timer?
+	weak var timeTimer: Timer?
+	weak var weatherTimer: Timer?
+	weak var flipTimer: Timer?
+	weak var wallpaperTimer: Timer?
 	var notifsVisible = false
 	var musicVisible = false
 	var musicSuggestionsVisible = false
@@ -43,13 +43,9 @@ internal final class SharedData: ObservableObject {
 
 	final func stopTimers() {
 		timeTimer?.invalidate()
-		timeTimer = nil
 		weatherTimer?.invalidate()
-		weatherTimer = nil
 		flipTimer?.invalidate()
-		flipTimer = nil
 		wallpaperTimer?.invalidate()
-		wallpaperTimer = nil
 	}
 
 	final func updateVisibility() {
@@ -59,8 +55,8 @@ internal final class SharedData: ObservableObject {
 		timeConstraintCx?.isActive = !visible
 		timeConstraintCy?.isActive = !visible
 		timeConstraintDateLeft?.isActive = visible && !leftOrRight
-		timeConstraintRight?.isActive = visible && leftOrRight
 		timeConstraintDateBottom?.isActive = visible && !leftOrRight
+		timeConstraintRight?.isActive = visible && leftOrRight
 		timeConstraintDateTop?.isActive = visible && leftOrRight
 		timeView?.view?.setNeedsLayout()
 		timeView?.view?.layoutIfNeeded()
@@ -102,7 +98,6 @@ internal func setMusicVisible(_ visible: Bool) {
 	SharedData.global.musicVisible = visible
 	SharedData.global.updateVisibility()
 }
-
 
 @_cdecl("setMusicSuggestionsVisible")
 internal func setMusicSuggestionsVisible(_ visible: Bool) {

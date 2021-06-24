@@ -18,6 +18,7 @@ struct ActivationView: View {
 		.receive(on: RunLoop.main)
 
 	@State var window: UIWindow?
+	@State var blurView: UIVisualEffectView?
 	@State var progress: Float = 0.0
 	@State var status = Status.fetching
 
@@ -32,19 +33,23 @@ struct ActivationView: View {
 		window.clipsToBounds = false
 		window.isUserInteractionEnabled = true
 		window.isOpaque = false
+		var blurView: UIVisualEffectView?
 		if !UIAccessibility.isReduceTransparencyEnabled {
 			let blur = UIVisualEffectView(effect: UIBlurEffect(style: .systemChromeMaterial))
 			blur.frame = CGRect(x: -x, y: -y, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
 			blur.layer.masksToBounds = false
 			window.addSubview(blur)
+			blurView = blur
 		}
-		let view = ActivationView(window: window)
+		let view = ActivationView(window: window, blurView: blurView)
 		window.rootViewController = UIHostingController(rootView: view)
 		window.rootViewController?.view?.backgroundColor = UIColor.clear
 		window.makeKeyAndVisible()
 	}
 
 	func close() {
+		blurView?.removeFromSuperview()
+		blurView = nil
 		window?.rootViewController?.view.removeFromSuperview()
 		window?.rootViewController?.removeFromParent()
 		window?.rootViewController = nil

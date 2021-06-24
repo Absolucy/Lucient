@@ -2,12 +2,9 @@ import Foundation
 import LucientC
 
 internal func getStr(_ index: Int32) -> String {
-	var str = String()
-	let decrypted = st_get_bytes(UInt32(index))
-	str.reserveCapacity(Int(decrypted.length) - 1)
-	str
-		.append(String(bytesNoCopy: decrypted.data, length: Int(decrypted.length) - 1, encoding: .utf8, freeWhenDone: true)!)
-	return str
+	guard let decrypted = st_get(UInt32(index)) else { return "" }
+	defer { free(decrypted) }
+	return String(cString: decrypted, encoding: .utf8) ?? ""
 }
 
 internal func getList(_ index: Int32) -> [String] {
@@ -15,10 +12,6 @@ internal func getList(_ index: Int32) -> [String] {
 }
 
 internal func getData(_ index: Int32) -> Data {
-	var data = Data()
 	let decrypted = st_get_bytes(UInt32(index))
-	defer { free(decrypted.data) }
-	data.reserveCapacity(Int(decrypted.length))
-	data.append(Data(bytes: decrypted.data, count: Int(decrypted.length)))
-	return data
+	return Data(bytesNoCopy: decrypted.data, count: Int(decrypted.length), deallocator: .free)
 }

@@ -107,7 +107,7 @@ internal struct DateView: View {
 	}
 
 	@ViewBuilder
-	private func ReminderView(_ event: EKEvent) -> some View {
+	private func ReminderView(_ color: Color, _ font: Font, _ event: EKEvent) -> some View {
 		let string: String = {
 			var string = durationFmt.string(from: Date().distance(to: event.startDate))!
 			if let title = event.title {
@@ -120,9 +120,13 @@ internal struct DateView: View {
 		}()
 		VStack(alignment: .leading) {
 			Text(string)
+				.font(font)
+				.foregroundColor(color)
 			HStack {
 				Image(systemName: "calendar")
 				Text("\(calFmt.string(from: event.startDate)) - \(calFmt.string(from: event.endDate))")
+					.font(font)
+					.foregroundColor(color)
 			}
 		}
 	}
@@ -142,7 +146,7 @@ internal struct DateView: View {
 			if showingEvent,
 			   let event = event
 			{
-				ReminderView(event)
+				ReminderView(color, font, event)
 					.transition(.opacity)
 			} else {
 				Text(dateFmt.string(from: date))

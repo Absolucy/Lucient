@@ -177,7 +177,7 @@ struct RootPreferences: View {
 					.font(.caption2)
 			}
 		}
-		.onLongPressGesture {
+		.onTapGesture(count: 2) {
 			option.wrappedValue = defaultOption
 		}
 	}
@@ -367,7 +367,7 @@ struct RootPreferences: View {
 					CreditsSection()
 				}
 			}
-			Text("Some options can be reset to default by long-pressing!")
+			Text("Some options can be reset to default by double-tapping!")
 				.font(.system(.caption2, design: .rounded))
 				.fontWeight(.light)
 				.padding()
