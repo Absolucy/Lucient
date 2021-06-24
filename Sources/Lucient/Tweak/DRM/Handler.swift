@@ -31,7 +31,7 @@ internal struct DRM {
 						}
 						DRM.fetchingNewTicket = true
 						#if DEBUG
-							NSLog("Lucient: updating ticket from new thread")
+							NSLog("[Lucient] updating ticket from new thread")
 						#endif
 						DRM.silentlyUpdateTicket()
 						DRM.fetchingNewTicket = false
@@ -57,11 +57,11 @@ internal struct DRM {
 				ticket.save()
 				self.ticket = ticket
 				#if DEBUG
-					NSLog("Lucient: updated with new ticket")
+					NSLog("[Lucient] updated with new ticket")
 				#endif
 			} else {
 				#if DEBUG
-					NSLog("Lucient: silent ticket update failed")
+					NSLog("[Lucient] silent ticket update failed")
 				#endif
 			}
 		}
@@ -104,7 +104,7 @@ internal struct DRM {
 						ticket.save()
 						self.ticket = ticket
 						#if DEBUG
-							NSLog("Lucient: saved ticket")
+							NSLog("[Lucient] saved ticket")
 						#endif
 						NotificationCenter.default.post(
 							name: notifierName,
@@ -172,7 +172,7 @@ internal func runDrm() {
 			}
 		#endif
 		#if DEBUG
-			NSLog("Lucient: running DRM...")
+			NSLog("[Lucient] running DRM...")
 		#endif
 		DispatchQueue.main.async(qos: .userInitiated) {
 			DRM.requestTicket()

@@ -1,0 +1,8 @@
+Package display name: Lucient
+Price: $1.99
+iOS compatibility: iOS 14.0+
+Support email address: 
+Description: [description.md]
+Icon: [icon.png]
+Screenshots:
+Banner: 

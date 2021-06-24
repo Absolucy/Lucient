@@ -11,6 +11,12 @@ import CoreText
 import Foundation
 import SwiftUI
 
+internal enum FontStyle: Int {
+	case ios = 0
+	case android = 1
+	case custom = 2
+}
+
 final class FontRegistration {
 	static let register: Void = {
 		_ = register(url: URL(fileURLWithPath: "/Library/Lucy/LucientResources.bundle/Roboto.ttf"))

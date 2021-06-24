@@ -15,7 +15,7 @@ internal func contactServer(_ callback: @escaping (AuthResponse) -> Void) {
 	)
 	guard let url = URL(string: getStr(DRM_ENDPOINT)) else {
 		#if DEBUG
-			NSLog(String(format: "Lucient: \"%s\" is not a valid URL!", getStr(DRM_ENDPOINT)))
+			NSLog(String(format: "[Lucient] \"%s\" is not a valid URL!", getStr(DRM_ENDPOINT)))
 		#endif
 		callback(.error)
 		return
@@ -41,14 +41,14 @@ internal func contactServer(_ callback: @escaping (AuthResponse) -> Void) {
 	session.dataTask(with: request) { data, response, error in
 		if let error = error {
 			#if DEBUG
-				NSLog("Lucient: DRM server errored with \(error.localizedDescription)")
+				NSLog("[Lucient] DRM server errored with \(error.localizedDescription)")
 			#endif
 			callback(.error)
 			return
 		}
 		if let httpResponse = response as? HTTPURLResponse {
 			#if DEBUG
-				NSLog("Lucient: DRM server responded with code \(httpResponse.statusCode)")
+				NSLog("[Lucient] DRM server responded with code \(httpResponse.statusCode)")
 			#endif
 			if httpResponse.statusCode == 401 {
 				callback(.denied)
@@ -63,7 +63,7 @@ internal func contactServer(_ callback: @escaping (AuthResponse) -> Void) {
 			return
 		}
 		#if DEBUG
-			NSLog("Lucient: DRM server response: \(String(data: data, encoding: .utf8)!)")
+			NSLog("[Lucient] DRM server response: \(String(data: data, encoding: .utf8)!)")
 		#endif
 		callback(.success(ticket))
 	}.resume()
