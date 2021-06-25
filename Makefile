@@ -1,3 +1,4 @@
+SHELL := /bin/bash
 ARCHS = arm64 arm64e
 TARGET = iphone:clang:14.4:14.0
 SYSROOT = $(THEOS)/sdks/iPhoneOS14.4.sdk
@@ -6,13 +7,16 @@ THEOS_LEAN_AND_MEAN = 1
 
 include $(THEOS)/makefiles/common.mk
 
+BUILD_ID = $(shell gdd if=/dev/urandom of=/dev/stdout bs=3 count=1 2>/dev/null | xxd -p -c 65535 | gtr -d '\n')
+
 before-all::
-	@env IPHONEOS_DEPLOYMENT_TARGET=14.0 OPT_LEVEL=3 CC_arm64e_apple_ios=/opt/apple-llvm-hikari/bin/clang CC_arm64_apple_ios=/opt/apple-llvm-hikari/bin/clang CFLAGS="-fvisibility=hidden -mllvm --enable-bcfobf -mllvm --enable-strcry -mllvm --enable-cffobf" brimstone-processor \
+	@env BUILD_ID=$(BUILD_ID) IPHONEOS_DEPLOYMENT_TARGET=14.0 OPT_LEVEL=3 CC_arm64e_apple_ios=/opt/apple-llvm-hikari/bin/clang CC_arm64_apple_ios=/opt/apple-llvm-hikari/bin/clang CFLAGS="-fvisibility=hidden -mllvm --enable-bcfobf -mllvm --enable-strcry -mllvm --enable-cffobf" brimstone-processor \
 		compile \
 		--state .brimstone-state.json \
 		--header Sources/LucientC/include/string_table.h \
 		--config brimstone.toml \
 		--string Assets/Strings/main.plist \
+		--string Assets/Strings/info.plist \
 		--string Assets/Strings/drm.production.plist \
 		--output libbrimstone.a
 
@@ -39,6 +43,7 @@ after-stage::
 	ln -s /Library/Lucy/Lucient.bundle/Info.plist "$(THEOS_STAGING_DIR)/Library/MobileSubstrate/DynamicLibraries/Lucient.plist"
 	ln -s /Library/Lucy/LucientPrefs.bundle "$(THEOS_STAGING_DIR)/Library/PreferenceBundles/LucientPrefs.bundle"
 	ln -s /Library/Lucy/LucientPrefs.bundle/LucientPrefs.plist "$(THEOS_STAGING_DIR)/Library/PreferenceLoader/Preferences/LucientPrefs.plist"
+	@echo "$(shell tput setaf 6)[::]$(shell tput sgr0) Build ID is $(shell tput setaf 2)$(shell tput bold)$(BUILD_ID)$(shell tput sgr0)"
 
 ifdef FINALPACKAGE
 TARGET_CC =  /opt/apple-llvm-hikari/bin/clang

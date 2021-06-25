@@ -1,19 +1,13 @@
 #!/bin/bash
 VERSION="1.0.0"
-TARGET_DIR=$(mktemp -d)
-INITIAL_DIR="$PWD"
+BUILD_ID=$(gdd if=/dev/urandom of=/dev/stdout bs=3 count=1 2>/dev/null | xxd -p -c 65535 | gtr -d '\n')
 
 export VERSION
-export TARGET_DIR
-export INITIAL_DIR
-
+export BUILD_ID
 cleanup() {
-	echo "[::] Cleaning up $TARGET_DIR"
-	[ -d "$TARGET_DIR" ] && rm -rf "$TARGET_DIR"
-	cd "$INITIAL_DIR"
+	echo "$(tput setaf 6)[::]$(tput sgr0) Build ID is $(tput setaf 2)$(tput bold)${BUILD_ID}$(tput sgr0)"
 	unset VERSION
-	unset TARGET_DIR
-	unset INITIAL_DIR
+	unset BUILD_ID
 }
 
 trap cleanup EXIT

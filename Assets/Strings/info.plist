@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Info</key>
+	<dict>
+		<key>Tweak</key>
+		<string>if:TRIAL:moe.absolucy.lucient.trial:moe.absolucy.lucient</string>
+		<key>Version</key>
+		<string>env:VERSION</string>
+		<key>Build ID</key>
+		<string>env:BUILD_ID</string>
+	</dict>
+</dict>

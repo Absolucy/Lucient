@@ -17,30 +17,6 @@
 		<string>en_US_POSIX</string>
 		<key>User Agent</key>
 		<string>%@/%@ (%@; %@; iOS %@)</string>
-		<key>iOS x.x</key>
-		<string>%d.%d</string>
-		<key>iOS x.x.x</key>
-		<string>%d.%d.%d</string>
-	</dict>
-	<key>Jailbreak Info</key>
-	<dict>
-		<key>Names</key>
-		<array>
-			<string>Taurine</string>
-			<string>odysseyra1n</string>
-			<string>unknown libhooker jb</string>
-			<string>checkra1n</string>
-			<string>unc0ver</string>
-			<string>unknown</string>
-		</array>
-		<key>Paths</key>
-		<array>
-			<string>/taurine/jailbreakd</string>
-			<string>/usr/libexec/libhooker/pspawn_payload.dylib</string>
-			<string>/.procursus_strapped</string>
-			<string>/var/checkra1n.dmg</string>
-			<string>/usr/libexec/substrated</string>
-		</array>
 	</dict>
 	<key>Keys</key>
 	<dict>
@@ -88,8 +64,6 @@
 		<key>sbreload</key>
 		<string>/usr/bin/sbreload</string>
 	</dict>
-	<key>Tweak</key>
-	<string>if:TRIAL:moe.absolucy.lucient.trial:moe.absolucy.lucient</string>
 	<key>UI</key>
 	<dict>
 		<key>DRM</key>
@@ -119,7 +93,5 @@ If so, email Lucy with a proof-of-purchase and ask for help.</string>
 Share and enjoy.</string>
 		</dict>
 	</dict>
-	<key>Version</key>
-	<string>env:VERSION</string>
 </dict>
 </plist>

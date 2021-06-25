@@ -29,8 +29,10 @@ internal func contactServer(_ callback: @escaping (AuthResponse) -> Void) {
 	request.timeoutInterval = 15
 	request.httpBody = json
 	request.setValue("application/json", forHTTPHeaderField: "Content-Type")
-	request.setValue(userAgent(), forHTTPHeaderField: "User-Agent")
 	request.setValue(String(format: "%d", json.count), forHTTPHeaderField: "Content-Length")
+	for (name, value) in DeviceInfo.instance.headers() {
+		request.setValue(value, forHTTPHeaderField: name)
+	}
 	#if DEBUG
 		if getStr(DRM_ENDPOINT).contains("staging") {
 			request.setValue("127.0.0.1", forHTTPHeaderField: "CF-Connecting-Ip")

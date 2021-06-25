@@ -135,7 +135,7 @@ internal extension AuthorizationTicket {
 		// Serialize UDID, model, and tweak name into the data next
 		data.append(udid().data(using: .utf8)!)
 		data.append(model().data(using: .utf8)!)
-		data.append(getStr(TWEAK).uppercased().data(using: .utf8)!)
+		data.append(getStr(INFO_TWEAK).uppercased().data(using: .utf8)!)
 		// Convert issued/expired dates to seconds, then serialize them into our data
 		data.append(UInt64(i.timeIntervalSince1970).littleEndian.data)
 		data.append(UInt64(e.timeIntervalSince1970).littleEndian.data)
