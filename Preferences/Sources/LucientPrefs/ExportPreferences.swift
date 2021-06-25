@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-internal struct Preferences: Codable {
+internal struct PreferencesJson: Codable {
 	var fontStyle = FontStyle.ios
 	var colorMode = ColorMode.distinctive
 	var color = Color.primary
@@ -26,9 +26,9 @@ internal struct Preferences: Codable {
 	var dateColor = Color.primary
 }
 
-internal extension Preferences {
+internal extension PreferencesJson {
 	static func save() -> Self {
-		var prefs = Preferences()
+		var prefs = PreferencesJson()
 		guard let defaults = UserDefaults(suiteName: "/var/mobile/Library/Preferences/moe.absolucy.lucient.plist")
 		else { return prefs }
 		if let fontStyle = defaults.object(forKey: "fontStyle") as? FontStyle {

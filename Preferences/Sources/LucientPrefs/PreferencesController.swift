@@ -9,7 +9,7 @@ import SwiftUI
 
 class PreferencesController: NomaePreferencesController {
 	override var suiView: AnyView {
-		get { AnyView(RootPreferences()) }
+		get { AnyView(Preferences()) }
 		set { super.suiView = newValue }
 	}
 }
