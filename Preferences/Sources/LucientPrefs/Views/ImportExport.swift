@@ -46,7 +46,9 @@ struct ImportExport: View {
 				let jsonData = try String(contentsOf: url).data(using: .utf8)!
 				let preferences = try JSONDecoder().decode(PreferencesJson.self, from: jsonData)
 				preferences.load()
-				downloadCheckmark = true
+				withAnimation(.linear(duration: 0.25)) {
+					downloadCheckmark = true
+				}
 			} catch {
 				alert = .error(error.localizedDescription)
 			}
@@ -57,7 +59,9 @@ struct ImportExport: View {
 		do {
 			let preferences = try JSONDecoder().decode(PreferencesJson.self, from: importJson.data(using: .utf8)!)
 			preferences.load()
-			jsonCheckmark = true
+			withAnimation(.linear(duration: 0.25)) {
+				jsonCheckmark = true
+			}
 		} catch {
 			alert = .error(error.localizedDescription)
 		}
@@ -99,7 +103,9 @@ struct ImportExport: View {
 			let rawUrl = responseString.replacingOccurrences(of: "https://pastebin.com/", with: "https://pastebin.com/raw/")
 			UIPasteboard.general.string = rawUrl
 			alert = .success(rawUrl)
-			pastebinCheckmark = true
+			withAnimation(.linear(duration: 0.25)) {
+				pastebinCheckmark = true
+			}
 		}.resume()
 	}
 
@@ -109,7 +115,9 @@ struct ImportExport: View {
 			.foregroundColor(.green)
 			.onAppear {
 				DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-					value.wrappedValue = false
+					withAnimation(.linear(duration: 0.25)) {
+						value.wrappedValue = false
+					}
 				}
 			}
 	}
@@ -122,12 +130,14 @@ struct ImportExport: View {
 					.disabled(downloading)
 				if downloading {
 					ProgressView()
+						.transition(.opacity)
 				} else if downloadCheckmark {
 					Checkmark($downloadCheckmark)
+						.transition(.opacity)
 				} else {
 					Button(action: { downloadFromUrl() }) {
 						Image(systemName: "square.and.arrow.down.on.square")
-					}
+					}.transition(.opacity)
 				}
 			}
 			HStack {
@@ -135,10 +145,11 @@ struct ImportExport: View {
 					.disabled(jsonCheckmark)
 				if jsonCheckmark {
 					Checkmark($jsonCheckmark)
+						.transition(.opacity)
 				} else {
 					Button(action: { importFromJson() }) {
 						Image(systemName: "square.and.arrow.down")
-					}
+					}.transition(.opacity)
 				}
 			}
 			HStack {
@@ -150,9 +161,11 @@ struct ImportExport: View {
 				if uploading {
 					Spacer()
 					ProgressView()
+						.transition(.opacity)
 				} else if pastebinCheckmark {
 					Spacer()
 					Checkmark($pastebinCheckmark)
+						.transition(.opacity)
 				}
 			}
 			HStack {
@@ -165,13 +178,8 @@ struct ImportExport: View {
 				}.disabled(clipboardCheckmark)
 				if clipboardCheckmark {
 					Spacer()
-					Image(systemName: "checkmark")
-						.foregroundColor(.green)
-						.onAppear {
-							DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-								clipboardCheckmark = false
-							}
-						}
+					Checkmark($clipboardCheckmark)
+						.transition(.opacity)
 				}
 			}
 		}.alert(item: $alert) { alert in
