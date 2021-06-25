@@ -59,21 +59,6 @@ struct Preferences: View {
 	}
 
 	@ViewBuilder
-	func ImportExportSection() -> some View {
-		Section(header: Text("Import / Export")) {
-			Button(action: {}, label: {
-				HStack {
-					Image(systemName: "square.and.arrow.down.on.square")
-						.resizable()
-						.frame(width: 48, height: 48)
-						.padding([.vertical, .trailing], 5)
-					Text("Import from URL")
-				}
-			})
-		}
-	}
-
-	@ViewBuilder
 	func CreditsSection() -> some View {
 		Section(header: Text("Credits")) {
 			Credit(name: "Alpha", role: "Logo Designer", profile: .twitter("Kutarin_"))
@@ -91,6 +76,7 @@ struct Preferences: View {
 					StylePreferences(separatedColors: $separatedColors)
 					ClockPreferences(separatedColors: $separatedColors)
 					DatePreferences(separatedColors: $separatedColors)
+					ImportExport()
 					AboutMe()
 					CreditsSection()
 				}

@@ -38,7 +38,7 @@ internal extension PreferencesJson {
 			prefs.colorMode = colorMode
 		}
 		if let rawColor = defaults.object(forKey: "fontStyle") as? String,
-		   let color = Color(rawValue: rawColor)
+		   let color = Color(hex: rawColor)
 		{
 			prefs.color = color
 		}
@@ -61,7 +61,7 @@ internal extension PreferencesJson {
 			prefs.timeColorMode = timeColorMode
 		}
 		if let rawTimeColor = defaults.object(forKey: "timeColor") as? String,
-		   let timeColor = Color(rawValue: rawTimeColor)
+		   let timeColor = Color(hex: rawTimeColor)
 		{
 			prefs.timeColor = timeColor
 		}
@@ -78,7 +78,7 @@ internal extension PreferencesJson {
 			prefs.dateColorMode = dateColorMode
 		}
 		if let rawDateColor = defaults.object(forKey: "dateColor") as? String,
-		   let dateColor = Color(rawValue: rawDateColor)
+		   let dateColor = Color(hex: rawDateColor)
 		{
 			prefs.dateColor = dateColor
 		}
@@ -88,41 +88,27 @@ internal extension PreferencesJson {
 	func load() {
 		guard let defaults = UserDefaults(suiteName: "/var/mobile/Library/Preferences/moe.absolucy.lucient.plist")
 		else { return }
-		defaults.set(fontStyle, forKey: "fontStyle")
-		defaults.set(colorMode, forKey: "colorMode")
-		defaults.set(color.rawValue, forKey: "color")
+		defaults.set(fontStyle.rawValue, forKey: "fontStyle")
+		defaults.set(colorMode.rawValue, forKey: "colorMode")
+		defaults.set(color.hexString(), forKey: "color")
 		defaults.set(separatedColors, forKey: "separatedColors")
 		defaults.set(maxTimeSize, forKey: "maxTimeSize")
 		defaults.set(minTimeSize, forKey: "minTimeSize")
 		defaults.set(timeOffset, forKey: "timeOffset")
 		defaults.set(timeOnTheRight, forKey: "timeOnTheRight")
-		defaults.set(timeColorMode, forKey: "timeColorMode")
-		defaults.set(timeColor.rawValue, forKey: "timeColor")
+		defaults.set(timeColorMode.rawValue, forKey: "timeColorMode")
+		defaults.set(timeColor.hexString(), forKey: "timeColor")
 		defaults.set(showWeather, forKey: "showWeather")
 		defaults.set(dateFontSize, forKey: "dateFontSize")
 		defaults.set(dateOffset, forKey: "dateOffset")
-		defaults.set(dateColorMode, forKey: "dateColorMode")
-		defaults.set(dateColor.rawValue, forKey: "dateColor")
+		defaults.set(dateColorMode.rawValue, forKey: "dateColorMode")
+		defaults.set(dateColor.hexString(), forKey: "dateColor")
 	}
 }
 
 extension Color: Codable {
 	enum CodingKeys: String, CodingKey {
 		case red, green, blue, alpha
-	}
-
-	var components: (Double, Double, Double, Double)? {
-		var r: CGFloat = 0
-		var g: CGFloat = 0
-		var b: CGFloat = 0
-		var o: CGFloat = 0
-
-		guard UIColor(self).getRed(&r, green: &g, blue: &b, alpha: &o) else {
-			// You can handle the failure here as you want
-			return nil
-		}
-
-		return (Double(r), Double(g), Double(b), Double(o))
 	}
 
 	public init(from decoder: Decoder) throws {
@@ -136,9 +122,7 @@ extension Color: Codable {
 	}
 
 	public func encode(to encoder: Encoder) throws {
-		guard let (r, g, b, a) = components else {
-			return
-		}
+		let (r, g, b, a) = components
 
 		var container = encoder.container(keyedBy: CodingKeys.self)
 
