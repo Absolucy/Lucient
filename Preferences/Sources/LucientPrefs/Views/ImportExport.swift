@@ -35,7 +35,7 @@ struct ImportExport: View {
 	@State private var clipboardCheckmark = false
 
 	private func downloadFromUrl() {
-		guard let url = URL(string: importUrl) else {
+		guard let url = URL(string: importUrl.trimmingCharacters(in: .whitespacesAndNewlines)) else {
 			alert = .error("Invalid URL")
 			return
 		}
@@ -57,7 +57,9 @@ struct ImportExport: View {
 
 	private func importFromJson() {
 		do {
-			let preferences = try JSONDecoder().decode(PreferencesJson.self, from: importJson.data(using: .utf8)!)
+			let json = importJson.trimmingCharacters(in: .whitespacesAndNewlines).data(using: .utf8)!
+			let preferences = try JSONDecoder()
+				.decode(PreferencesJson.self, from: json)
 			preferences.load()
 			withAnimation(.linear(duration: 0.25)) {
 				jsonCheckmark = true
