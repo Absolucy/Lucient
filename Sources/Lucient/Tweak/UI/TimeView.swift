@@ -20,6 +20,7 @@ internal struct TimeView: View {
 	private let timeObserver = NotificationCenter.default.publisher(for: NSNotification.Name("moe.absolucy.lucient.time"))
 		.receive(on: RunLoop.main)
 
+	@Environment(\.colorScheme) var colorScheme
 	@Preference("fontStyle", identifier: "moe.absolucy.lucient") private var fontStyle = FontStyle.ios
 	@Preference("customFont",
 	            identifier: "moe.absolucy.lucient") var customFont = "/Library/Lucy/LucientResources.bundle/Roboto.ttf"
@@ -106,6 +107,12 @@ internal struct TimeView: View {
 		.onChange(of: timeShowAmPm) { newValue in
 			if !time24Hour {
 				minFmt.dateFormat = newValue ? "hh:mm a" : "hh:mm"
+			}
+		}
+		.onChange(of: colorScheme) { _ in
+			NSLog("[Lucient] color scheme change detected, updating wallpaper!")
+			DispatchQueue.main.async(qos: .background) {
+				ColorManager.instance.updateWallpaper()
 			}
 		}
 		.padding(.trailing)
