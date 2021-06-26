@@ -47,6 +47,7 @@ internal final class ColorManager {
 			}
 		}
 		wallpaperSource.resume()
+		updateWallpaper()
 	}
 
 	deinit {
