@@ -27,6 +27,8 @@ extern BOOL isValidated(void);
 extern BOOL isEnabled(void);
 
 UIColor* getColorFromImage(UIImage* image, int calculation, int dimension, int flexibility, int range);
-UIImage* lockScreenWallpaper();
+BOOL isDarkImage(UIImage* image);
+
+extern CFArrayRef CPBitmapCreateImagesFromData(CFDataRef cpbitmap, void*, int, void*);
 
 #endif /* Tweak_h */

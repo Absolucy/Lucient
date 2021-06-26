@@ -10,14 +10,31 @@
 #import <UIKit/UIKit.h>
 
 extern CFArrayRef CPBitmapCreateImagesFromData(CFDataRef cpbitmap, void*, int, void*);
-UIImage* lockScreenWallpaper() {
-	NSData* lockWallpaperData =
-		[NSData dataWithContentsOfFile:@"/var/mobile/Library/SpringBoard/LockBackground.cpbitmap"];
-	CFDataRef lockWallpaperDataRef = (__bridge CFDataRef)lockWallpaperData;
-	CFArrayRef imageArray = CPBitmapCreateImagesFromData(lockWallpaperDataRef, NULL, 1, NULL);
-	UIImage* wallpaper = [UIImage imageWithCGImage:(CGImageRef)CFArrayGetValueAtIndex(imageArray, 0)];
-	CFRelease(imageArray);
-	return wallpaper;
+
+BOOL isDarkImage(UIImage* image) {
+	if (!image) return YES;
+
+	BOOL isDark = NO;
+	CFDataRef imageData = CGDataProviderCopyData(CGImageGetDataProvider([image CGImage]));
+	const UInt8* pixels = CFDataGetBytePtr(imageData);
+	int darkPixels = 0;
+	size_t length = (size_t)CFDataGetLength(imageData);
+	int const darkPixelThreshold = (image.size.width * image.size.height) * 0.45;
+
+	for (int i = 0; i < length; i += 4) {
+		int r = pixels[i];
+		int g = pixels[i + 1];
+		int b = pixels[i + 2];
+		float luminance = (0.299 * r + 0.587 * g + 0.114 * b);
+		if (luminance < 150) darkPixels++;
+	}
+
+	if (darkPixels >= darkPixelThreshold) isDark = YES;
+
+	CFRelease(imageData);
+
+	return isDark;
+
 }
 
 UIColor* getColorFromImage(UIImage* image, int calculation, int dimension, int flexibility, int range) {

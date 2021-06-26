@@ -74,8 +74,40 @@ internal final class ColorManager {
 		primary = Color(getColorFromImage(wallpaper, 1, 4, 1, 100))
 		secondary = Color(getColorFromImage(wallpaper, 1, 9, 3, 90))
 		background = Color(getColorFromImage(wallpaper, 0, 0, 0, 0))
-		let (r, g, b, _) = background.components
-		let y = 0.2126 * pow(r, 2.2) + 0.7151 * pow(g, 2.2) + 0.0721 * pow(b, 2.2)
-		distinctive = y <= 0.18 ? Color.white : Color.black
+		if isDarkImage(wallpaper) {
+			distinctive = Color.white
+		} else {
+			distinctive = Color.black
+		}
+	}
+
+	final func lockScreenWallpaper() -> UIImage? {
+		var wallpaperData: Data
+		if UITraitCollection.current.userInterfaceStyle == .dark,
+		   FileManager.default.fileExists(atPath: "/var/mobile/Library/SpringBoard/LockBackgrounddark.cpbitmap")
+		{
+			do {
+				wallpaperData =
+					try Data(contentsOf: URL(fileURLWithPath: "/var/mobile/Library/SpringBoard/LockBackgrounddark.cpbitmap"))
+			} catch {
+				NSLog("[Lucient] failed to get LockBackgrounddark.cpbitmap: \(error.localizedDescription)")
+				return nil
+			}
+		} else {
+			do {
+				wallpaperData =
+					try Data(contentsOf: URL(fileURLWithPath: "/var/mobile/Library/SpringBoard/LockBackground.cpbitmap"))
+			} catch {
+				NSLog("[Lucient] failed to get LockBackground.cpbitmap: \(error.localizedDescription)")
+				return nil
+			}
+		}
+		guard let imageArray = CPBitmapCreateImagesFromData(wallpaperData as CFData, nil, 1, nil)?
+			.takeRetainedValue() as? [CGImage]
+		else {
+			NSLog("[Lucient] failed to parse wallpaper cpbitmap")
+			return nil
+		}
+		return UIImage(cgImage: imageArray[0])
 	}
 }
