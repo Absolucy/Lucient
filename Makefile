@@ -2,7 +2,7 @@ SHELL := /bin/bash
 ARCHS = arm64 arm64e
 TARGET = iphone:clang:14.4:14.0
 SYSROOT = $(THEOS)/sdks/iPhoneOS14.4.sdk
-#INSTALL_TARGET_PROCESSES = SpringBoard
+INSTALL_TARGET_PROCESSES = SpringBoard
 THEOS_LEAN_AND_MEAN = 1
 
 include $(THEOS)/makefiles/common.mk

@@ -179,7 +179,8 @@ __attribute__((used)) static void initTweakFunc() {
 		hook(MRUNowPlayingView, @selector(showSuggestionsView), (void*)&hook_MRUNowPlayingView_showSuggestionsView,
 			 (void**)&orig_MRUNowPlayingView_showSuggestionsView);
 		VALIDITY_CHECK
-		hook(MRUNowPlayingView, @selector(setShowSuggestionsView:), (void*)&hook_MRUNowPlayingView_setShowSuggestionsView,
+		hook(MRUNowPlayingView, @selector(setShowSuggestionsView:),
+			 (void*)&hook_MRUNowPlayingView_setShowSuggestionsView,
 			 (void**)&orig_MRUNowPlayingView_setShowSuggestionsView);
 	}
 }

@@ -1,8 +1,8 @@
 Package display name: Lucient
 Price: $1.99
 iOS compatibility: iOS 14.0+
-Support email address: 
+Support email address: support@absolucy.moe
 Description: [description.md]
 Icon: [icon.png]
-Screenshots:
-Banner: 
+Screenshots: [screenshots folder]
+Banner: [sileo banner.png]
