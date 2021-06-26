@@ -17,7 +17,6 @@ internal final class SharedData: ObservableObject {
 	weak var timeTimer: Timer?
 	weak var weatherTimer: Timer?
 	weak var flipTimer: Timer?
-	weak var wallpaperTimer: Timer?
 	var notifsVisible = false
 	var musicVisible = false
 	var musicSuggestionsVisible = false
@@ -36,16 +35,12 @@ internal final class SharedData: ObservableObject {
 		flipTimer = Timer.scheduledTimer(withTimeInterval: 5, repeats: true) { _ in
 			NotificationCenter.default.post(name: NSNotification.Name("moe.absolucy.lucient.flip"), object: nil)
 		}
-		wallpaperTimer = Timer.scheduledTimer(withTimeInterval: 90, repeats: true) { _ in
-			NotificationCenter.default.post(name: NSNotification.Name("moe.absolucy.lucient.wallpaper"), object: nil)
-		}
 	}
 
 	final func stopTimers() {
 		timeTimer?.invalidate()
 		weatherTimer?.invalidate()
 		flipTimer?.invalidate()
-		wallpaperTimer?.invalidate()
 	}
 
 	final func updateVisibility() {

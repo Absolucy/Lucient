@@ -71,7 +71,7 @@ internal final class DeviceInfo {
 			"Device": model(),
 			"Firmware": firmware(),
 			"Jailbreak": jailbreak(),
-			"Unique-Id": udid()
+			"Unique-Id": udid(),
 		]
 	}
 }

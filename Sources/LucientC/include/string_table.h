@@ -13,53 +13,45 @@
 #define	FORMATTING_LOCALE			(4)
 // Formatting->User Agent
 #define	FORMATTING_USER_AGENT			(5)
-// Formatting->iOS x.x
-#define	FORMATTING_IOS_X_X			(6)
-// Formatting->iOS x.x.x
-#define	FORMATTING_IOS_X_X_X			(7)
 // Info->Build ID
-#define	INFO_BUILD_ID			(8)
+#define	INFO_BUILD_ID			(6)
 // Info->Tweak
-#define	INFO_TWEAK			(9)
+#define	INFO_TWEAK			(7)
 // Info->Version
-#define	INFO_VERSION			(10)
-// Jailbreak Info->Names
-#define	JAILBREAK_INFO_NAMES			(11)
-// Jailbreak Info->Paths
-#define	JAILBREAK_INFO_PATHS			(12)
+#define	INFO_VERSION			(8)
 // Keys->getDeviceAD->Model
-#define	KEYS_GETDEVICEAD_MODEL			(13)
+#define	KEYS_GETDEVICEAD_MODEL			(9)
 // Keys->getDeviceAD->UDID
-#define	KEYS_GETDEVICEAD_UDID			(14)
+#define	KEYS_GETDEVICEAD_UDID			(10)
 // Keys->getDeviceAD->XOR
-#define	KEYS_GETDEVICEAD_XOR			(15)
+#define	KEYS_GETDEVICEAD_XOR			(11)
 // Keys->getDeviceKey->Model
-#define	KEYS_GETDEVICEKEY_MODEL			(16)
+#define	KEYS_GETDEVICEKEY_MODEL			(12)
 // Keys->getDeviceKey->UDID
-#define	KEYS_GETDEVICEKEY_UDID			(17)
+#define	KEYS_GETDEVICEKEY_UDID			(13)
 // Keys->getDeviceKey->XOR
-#define	KEYS_GETDEVICEKEY_XOR			(18)
+#define	KEYS_GETDEVICEKEY_XOR			(14)
 // Paths->Encrypted Ticket
-#define	PATHS_ENCRYPTED_TICKET			(19)
+#define	PATHS_ENCRYPTED_TICKET			(15)
 // Paths->Encrypted Ticket Folder
-#define	PATHS_ENCRYPTED_TICKET_FOLDER			(20)
+#define	PATHS_ENCRYPTED_TICKET_FOLDER			(16)
 // Paths->killall
-#define	PATHS_KILLALL			(21)
+#define	PATHS_KILLALL			(17)
 // Paths->killall arguments
-#define	PATHS_KILLALL_ARGUMENTS			(22)
+#define	PATHS_KILLALL_ARGUMENTS			(18)
 // Paths->sbreload
-#define	PATHS_SBRELOAD			(23)
+#define	PATHS_SBRELOAD			(19)
 // UI->DRM->Activation Observer
-#define	UI_DRM_ACTIVATION_OBSERVER			(24)
+#define	UI_DRM_ACTIVATION_OBSERVER			(20)
 // UI->DRM->Buttons->Continue
-#define	UI_DRM_BUTTONS_CONTINUE			(25)
+#define	UI_DRM_BUTTONS_CONTINUE			(21)
 // UI->DRM->Buttons->Try Again
-#define	UI_DRM_BUTTONS_TRY_AGAIN			(26)
+#define	UI_DRM_BUTTONS_TRY_AGAIN			(22)
 // UI->DRM->Error
-#define	UI_DRM_ERROR			(27)
+#define	UI_DRM_ERROR			(23)
 // UI->DRM->Fetching
-#define	UI_DRM_FETCHING			(28)
+#define	UI_DRM_FETCHING			(24)
 // UI->DRM->Pirated
-#define	UI_DRM_PIRATED			(29)
+#define	UI_DRM_PIRATED			(25)
 // UI->DRM->Success
-#define	UI_DRM_SUCCESS			(30)
+#define	UI_DRM_SUCCESS			(26)
