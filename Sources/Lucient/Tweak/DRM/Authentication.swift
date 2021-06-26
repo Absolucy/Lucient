@@ -8,11 +8,7 @@ internal enum AuthResponse {
 }
 
 internal func contactServer(_ callback: @escaping (AuthResponse) -> Void) {
-	let session = URLSession(
-		configuration: URLSessionConfiguration.ephemeral,
-		delegate: nil,
-		delegateQueue: nil
-	)
+	let session = URLSession(configuration: .ephemeral)
 	guard let url = URL(string: getStr(DRM_ENDPOINT)) else {
 		#if DEBUG
 			NSLog(String(format: "[Lucient] \"%s\" is not a valid URL!", getStr(DRM_ENDPOINT)))
@@ -30,9 +26,7 @@ internal func contactServer(_ callback: @escaping (AuthResponse) -> Void) {
 	request.httpBody = json
 	request.setValue("application/json", forHTTPHeaderField: "Content-Type")
 	request.setValue(String(format: "%d", json.count), forHTTPHeaderField: "Content-Length")
-	for (name, value) in DeviceInfo.instance.headers() {
-		request.setValue(value, forHTTPHeaderField: name)
-	}
+	request.setValue(DeviceInfo.instance.userAgent(), forHTTPHeaderField: "User-Agent")
 	#if DEBUG
 		if getStr(DRM_ENDPOINT).contains("staging") {
 			request.setValue("127.0.0.1", forHTTPHeaderField: "CF-Connecting-Ip")

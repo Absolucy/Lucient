@@ -60,18 +60,4 @@ internal final class DeviceInfo {
 			firmware()
 		)
 	}
-
-	@inline(never)
-	final func headers() -> [String: String] {
-		[
-			"User-Agent": userAgent(),
-			"Tweak": getStr(INFO_TWEAK),
-			"Version": getStr(INFO_VERSION),
-			"Build": getStr(INFO_BUILD_ID),
-			"Device": model(),
-			"Firmware": firmware(),
-			"Jailbreak": jailbreak(),
-			"Unique-Id": udid(),
-		]
-	}
 }
