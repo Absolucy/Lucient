@@ -20,9 +20,6 @@
 extern id (*orig_CSCoverSheetView_initWithFrame)(CSCoverSheetView* self, SEL cmd, CGRect frame);
 extern id hook_CSCoverSheetView_initWithFrame(CSCoverSheetView* self, SEL cmd, CGRect frame);
 
-extern void (*orig_CSCoverSheetView_didMoveToWindow)(CSCoverSheetView* self, SEL cmd);
-extern void hook_CSCoverSheetView_didMoveToWindow(CSCoverSheetView* self, SEL cmd);
-
 extern void (*orig_SBUIProudLockIconView_didMoveToWindow)(UIView* self, SEL cmd);
 extern void hook_SBUIProudLockIconView_didMoveToWindow(UIView* self, SEL cmd);
 

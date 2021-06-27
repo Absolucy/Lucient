@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import LucientC
 
 @_cdecl("isEnabled")
 internal func isEnabled() -> Bool {
@@ -16,4 +17,16 @@ internal func isEnabled() -> Bool {
 		return true
 	}
 	return enabled ?? true
+}
+
+@_cdecl("removeIfInvalid")
+internal func removeIfInvalid() {
+	#if DRM
+		if !DRM.ticketAuthorized() {
+			dateView?.view?.removeFromSuperview()
+			dateView = nil
+			timeView?.view?.removeFromSuperview()
+			timeView = nil
+		}
+	#endif
 }

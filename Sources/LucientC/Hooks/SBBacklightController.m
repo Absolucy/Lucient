@@ -11,5 +11,6 @@
 void (*orig_SBBacklightController_turnOnScreenFullyWithBacklightSource)(UIView* self, SEL cmd, long long arg1);
 void hook_SBBacklightController_turnOnScreenFullyWithBacklightSource(UIView* self, SEL cmd, long long arg1) {
 	setScreenOn(YES);
+	removeIfInvalid();
 	return orig_SBBacklightController_turnOnScreenFullyWithBacklightSource(self, cmd, arg1);
 }

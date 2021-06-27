@@ -16,18 +16,19 @@ internal final class DeviceInfo {
 
 	@inline(never)
 	final func jailbreak() -> String {
-		if FileManager.default.fileExists(atPath: "/taurine/jailbreakd") {
+		let fs = FileManager.default
+		if fs.fileExists(atPath: "/taurine/jailbreakd") {
 			return "Taurine"
-		} else if FileManager.default.fileExists(atPath: "/usr/libexec/libhooker/pspawn_payload.dylib") {
-			if FileManager.default.fileExists(atPath: "/.procursus_strapped") {
+		} else if fs.fileExists(atPath: "/usr/libexec/libhooker/pspawn_payload.dylib") {
+			if fs.fileExists(atPath: "/.procursus_strapped") {
 				return "odysseyra1n"
 			} else {
 				return "unknown libhooker jb"
 			}
-		} else if FileManager.default.fileExists(atPath: "/var/checkra1n.dmg") {
+		} else if fs.fileExists(atPath: "/var/checkra1n.dmg") {
 			return "checkra1n"
-		} else if FileManager.default.fileExists(atPath: "/usr/lib/substitute-loader.dylib")
-			|| FileManager.default.fileExists(atPath: "/usr/libexec/substrated")
+		} else if fs.fileExists(atPath: "/usr/lib/substitute-loader.dylib")
+			|| fs.fileExists(atPath: "/usr/libexec/substrated")
 		{
 			return "unc0ver"
 		}

@@ -21,10 +21,10 @@ extern void setNotifsVisible(BOOL);
 extern void setMusicVisible(BOOL);
 extern void setMusicSuggestionsVisible(BOOL);
 extern void setScreenOn(BOOL);
-extern void showActivationWindow(void);
 extern void runDrm(void);
 extern BOOL isValidated(void);
 extern BOOL isEnabled(void);
+extern void removeIfInvalid(void);
 
 UIColor* getColorFromImage(UIImage* image, int calculation, int dimension, int flexibility, int range);
 BOOL isDarkImage(UIImage* image);

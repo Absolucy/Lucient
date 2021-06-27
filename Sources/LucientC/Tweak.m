@@ -113,9 +113,6 @@ __attribute__((used)) static void initTweakFunc() {
 	hook(objc_getClass("CSCoverSheetView"), @selector(initWithFrame:), (void*)&hook_CSCoverSheetView_initWithFrame,
 		 (void**)&orig_CSCoverSheetView_initWithFrame);
 	VALIDITY_CHECK
-	hook(objc_getClass("CSCoverSheetView"), @selector(didMoveToWindow), (void*)&hook_CSCoverSheetView_didMoveToWindow,
-		 (void**)&orig_CSCoverSheetView_didMoveToWindow);
-	VALIDITY_CHECK
 	hook(objc_getClass("SBUIProudLockIconView"), @selector(didMoveToWindow),
 		 (void*)&hook_SBUIProudLockIconView_didMoveToWindow, (void**)&orig_SBUIProudLockIconView_didMoveToWindow);
 	VALIDITY_CHECK
