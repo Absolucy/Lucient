@@ -10,7 +10,7 @@ include $(THEOS)/makefiles/common.mk
 BUILD_ID = $(shell gdd if=/dev/urandom of=/dev/stdout bs=3 count=1 2>/dev/null | xxd -p -c 65535 | gtr -d '\n')
 
 before-all::
-	@env BUILD_ID=$(BUILD_ID) IPHONEOS_DEPLOYMENT_TARGET=14.0 OPT_LEVEL=3 CC_arm64e_apple_ios=/opt/apple-llvm-hikari/bin/clang CC_arm64_apple_ios=/opt/apple-llvm-hikari/bin/clang CFLAGS="-fvisibility=hidden -mllvm --enable-bcfobf -mllvm --enable-strcry -mllvm --enable-cffobf" brimstone-processor \
+	@env BUILD_ID=$(BUILD_ID) IPHONEOS_DEPLOYMENT_TARGET=14.0 OPT_LEVEL=3 CC_arm64e_apple_ios=/opt/apple-llvm-hikari/bin/clang CC_arm64_apple_ios=/opt/apple-llvm-hikari/bin/clang CFLAGS="-fvisibility=hidden -mllvm --enable-bcfobf -mllvm --enable-strcry" brimstone-processor \
 		compile \
 		--state .brimstone-state.json \
 		--header Sources/LucientC/include/string_table.h \

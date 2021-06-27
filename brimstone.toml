@@ -5,7 +5,7 @@ ctor = true
 [protection]
 anti-debug = true
 faro-shuffle = true
-encryption = false
+encryption = true
 dpkg-check = true
 garbage-asm = true
 
