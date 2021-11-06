@@ -1,0 +1,11 @@
+Package: moe.absolucy.lucient
+Name: Lucient
+Version: 1.2.6
+Architecture: iphoneos-arm
+Description: A lovely Android 12-inspired lock screen overhaul
+Maintainer: Lucy <support@absolucy.moe>
+Author: Lucy <support@absolucy.moe>
+Section: Tweaks
+Replaces: moe.absolucy.lucient.trial
+Conflicts: moe.absolucy.lucient.trial
+Depends: firmware (>= 14.0), mobilesubstrate | com.ex.substitute | org.coolstar.libhooker, preferenceloader
