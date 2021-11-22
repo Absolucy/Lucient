@@ -4,7 +4,6 @@
 //  License, v. 2.0. If a copy of the MPL was not distributed with this
 //  file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-
 import CoreFoundation
 import CoreGraphics
 import Foundation
@@ -151,56 +150,4 @@ internal final class SharedData: ObservableObject {
 			musicSuggestionsVisible = false
 		}
 	}
-}
-
-@_cdecl("setNotifsVisible")
-internal func setNotifsVisible(_ visible: Bool) {
-	SharedData.global.notifsVisible = visible
-	SharedData.global.updateVisibility()
-}
-
-@_cdecl("setMusicVisible")
-internal func setMusicVisible(_ visible: Bool) {
-	SharedData.global.musicVisible = visible
-	SharedData.global.updateSuggestions()
-	SharedData.global.updateVisibility()
-}
-
-@_cdecl("setMusicSuggestionsVisible")
-internal func setMusicSuggestionsVisible(_ visible: Bool) {
-	SharedData.global.musicSuggestionsVisible = visible
-	SharedData.global.updateNowPlaying()
-	SharedData.global.updateVisibility()
-}
-
-@_cdecl("setScreenOn")
-internal func setScreenOn(status: Bool) {
-	SharedData.global.updateScreen(status)
-	SharedData.global.updateNowPlaying()
-	SharedData.global.updateSuggestions()
-	SharedData.global.updateVisibility()
-	SharedData.global.updateTimers()
-}
-
-@_cdecl("setAodOn")
-internal func setAodOn(status: Bool) {
-	SharedData.global.updateAod(status)
-	SharedData.global.updateTimers()
-}
-
-@_cdecl("setNotificationsOffset")
-internal func setNotificationsOffset(_ offset: CGFloat) {
-	SharedData.global.offset = Double(-offset.rounded(.towardZero))
-}
-
-@_cdecl("updateAxon")
-internal func updateAxon(manager: AXNManager!) {
-	SharedData.global.updateAxon(manager)
-	SharedData.global.updateVisibility()
-}
-
-@_cdecl("updateTako")
-internal func updateTako(manager: TKOController!) {
-	SharedData.global.updateTako(manager)
-	SharedData.global.updateVisibility()
 }

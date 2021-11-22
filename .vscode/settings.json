@@ -5,7 +5,10 @@
 		"-target",
 		"arm64-apple-ios",
 		"-isysroot",
-		"/Users/Lucy/Library/Theos/sdks/iPhoneOS14.4.sdk"
+		"/Users/Lucy/Library/Theos/sdks/iPhoneOS14.4.sdk",
+		"-I/Users/Lucy/Library/Theos/vendor/include",
+		"-I/Users/Lucy/Library/Theos/include",
+		"-F/Users/Lucy/Library/Theos/vendor/lib"
 	],
 	"files.associations": {
 		"*.h": "objective-c"

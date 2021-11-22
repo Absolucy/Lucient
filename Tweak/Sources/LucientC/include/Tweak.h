@@ -10,31 +10,21 @@
 #import "Globals.h"
 #import "NSTask.h"
 #import "compat/Axon.h"
+#import "compat/LastLook.h"
 #import "compat/Tako.h"
 #import "libpddokdo.h"
 #import "lockscreen/CSCoverSheetViewController.h"
 #import "lockscreen/MRUNowPlayingView.h"
+#import "lockscreen/NCNotificationMasterList.h"
 #import "lockscreen/NCNotificationStructuredListViewController.h"
-#import "popups.h"
+#import "lockscreen/SBBacklightController.h"
+#import "lockscreen/SBLockScreenManager.h"
 #import <Foundation/Foundation.h>
+#import <MediaRemote/MediaRemote.h>
 
 @interface UIView (private)
 - (UIViewController*)_viewDelegate;
 @end
-
-extern void setNotifsVisible(BOOL);
-extern void setMusicVisible(BOOL);
-extern void setMusicSuggestionsVisible(BOOL);
-extern void setScreenOn(BOOL);
-extern void setAodOn(BOOL);
-extern BOOL isEnabled(void);
-extern void removeIfInvalid(void);
-extern BOOL isStupidTinyPhone(void);
-extern void setNotificationsOffset(CGFloat);
-extern BOOL hideQuickActions(void);
-extern BOOL hideLock(void);
-extern void updateAxon(AXNManager*);
-extern void updateTako(TKOController*);
 
 UIColor* getColorFromImage(UIImage* image, int calculation, int dimension, int flexibility, int range);
 BOOL isDarkImage(UIImage* image);
