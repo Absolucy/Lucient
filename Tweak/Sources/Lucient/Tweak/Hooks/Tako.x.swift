@@ -8,13 +8,13 @@ class TKOControllerHook: ClassHook<NSObject> {
 	typealias Group = TakoGroup
 	static var targetName: String = "TKOController"
 
-	func insertNotificationRequest(req: Any) {
-		orig.insertNotificationRequest(req: req)
+	func insertNotificationRequest(_ req: Any) {
+		orig.insertNotificationRequest(req)
 		SharedData.global.updateTako(Dynamic.convert(orig.target, to: TKOController.self))
 	}
 
-	func removeNotificationRequest(req: Any) {
-		orig.removeNotificationRequest(req: req)
+	func removeNotificationRequest(_ req: Any) {
+		orig.removeNotificationRequest(req)
 		SharedData.global.updateTako(Dynamic.convert(orig.target, to: TKOController.self))
 	}
 

@@ -8,13 +8,13 @@ class AXNManagerHook: ClassHook<NSObject> {
 	typealias Group = AxonGroup
 	static var targetName: String = "AXNManager"
 
-	func insertNotificationRequest(req: Any) {
-		orig.insertNotificationRequest(req: req)
+	func insertNotificationRequest(_ req: Any) {
+		orig.insertNotificationRequest(req)
 		SharedData.global.updateAxon(Dynamic.convert(orig.target, to: AXNManager.self))
 	}
 
-	func removeNotificationRequest(req: Any) {
-		orig.removeNotificationRequest(req: req)
+	func removeNotificationRequest(_ req: Any) {
+		orig.removeNotificationRequest(req)
 		SharedData.global.updateAxon(Dynamic.convert(orig.target, to: AXNManager.self))
 	}
 
