@@ -9,9 +9,6 @@
 
 #import "Globals.h"
 #import "NSTask.h"
-#import "compat/Axon.h"
-#import "compat/LastLook.h"
-#import "compat/Tako.h"
 #import "libpddokdo.h"
 #import "lockscreen/CSCoverSheetViewController.h"
 #import "lockscreen/MRUNowPlayingView.h"

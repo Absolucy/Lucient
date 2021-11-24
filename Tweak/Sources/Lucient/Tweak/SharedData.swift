@@ -8,6 +8,7 @@ import CoreFoundation
 import CoreGraphics
 import Foundation
 import LucientC
+import Orion
 import SwiftUI
 import UIKit
 
@@ -25,6 +26,7 @@ internal final class SharedData: ObservableObject {
 	internal var ensureTimerRunning = false
 	internal var screenOn = false
 	internal var aodOn = false
+	internal var mruNowPlayingView: MRUNowPlayingView?
 	@Published internal var date = Date()
 	@Published internal var timeMinimized = false
 	@Published internal var temperature: String? = nil
@@ -82,11 +84,11 @@ internal final class SharedData: ObservableObject {
 		let animation: Animation? = {
 			UIAccessibility.isReduceMotionEnabled ? nil : Animation.easeInOut(duration: 0.25)
 		}()
-		if let axonManagerClass = objc_getClass("AXNManager") as? AXNManager.Type {
-			updateAxon(axonManagerClass.sharedInstance())
+		if objc_getClass("AXNManager") != nil {
+			updateAxon(Dynamic("AXNManager").as(interface: AXNManager.self).sharedInstance())
 		}
-		if let takoControllerClass = objc_getClass("TKOController") as? TKOController.Type {
-			updateTako(takoControllerClass.sharedInstance())
+		if objc_getClass("TKOController") != nil {
+			updateTako(Dynamic("TKOController").as(interface: TKOController.self).sharedInstance())
 		}
 		withAnimation(animation) {
 			timeMinimized = (!takoThingyVisible && notifsVisible) || axonVisible || musicVisible || musicSuggestionsVisible
@@ -108,7 +110,7 @@ internal final class SharedData: ObservableObject {
 		weatherImage = Image(uiImage: image)
 	}
 
-	final func updateAxon(_ manager: AXNManager!) {
+	final func updateAxon(_ manager: AXNManager) {
 		if UserDefaults.lucientSettings.miscSettings.axonCompat {
 			if let axonView = manager.view {
 				axonVisible = axonView.list.count > 0
@@ -118,12 +120,12 @@ internal final class SharedData: ObservableObject {
 		}
 	}
 
-	final func updateTako(_ manager: TKOController!) {
+	final func updateTako(_ manager: TKOController) {
 		if UserDefaults.lucientSettings.miscSettings.takoCompat {
 			if let takoView = manager.view {
-				axonVisible = takoView.cellsInfo.count > 0 && manager?.groupView?.isVisible != true
+				axonVisible = takoView.cellsInfo.count > 0 && manager.groupView?.isVisible != true
 			}
-			takoThingyVisible = manager?.groupView?.isVisible == true
+			takoThingyVisible = manager.groupView?.isVisible == true
 		} else {
 			axonVisible = false
 		}
